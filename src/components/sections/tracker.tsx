@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -14,60 +13,71 @@ import {
   Shield, 
   CheckCircle2, 
   Navigation, 
-  Truck, 
   User, 
   Phone,
   AlertCircle,
   ArrowRight,
-  Plane
+  Plane,
+  RefreshCw
 } from 'lucide-react';
-import { predictiveLogisticsEta } from '@/ai/flows/predictive-logistics-eta';
+import { fetchLiveShipment, type ShipmentData } from '@/lib/actions/shipment-actions';
 import { cn } from '@/lib/utils';
-
-// Mock Shipment Data generator for demo
-const getMockShipment = (id: string) => ({
-  awbNumber: id,
-  status: "In Transit",
-  origin: "SINGAPORE (SIN)",
-  destination: "HAMBURG (HAM)",
-  progress: 68,
-  eta: "Oct 29, 14:00 GMT",
-  flightDetails: "ZN-FLIGHT-772 / B747-8F",
-  currentLocation: "Bay of Bengal (14.59° N, 88.83° E)",
-  history: [
-    { timestamp: "Oct 24, 08:30", activity: "Departure", location: "Singapore Port Terminal 4" },
-    { timestamp: "Oct 25, 12:00", activity: "Customs Clearance", location: "Global Hub SIN" },
-    { timestamp: "Oct 26, 02:00", activity: "En Route", location: "Transit Node A" }
-  ]
-});
+import { doc, setDoc, serverTimestamp, Firestore } from 'firebase/firestore';
+import { useFirestore, useDoc } from '@/firebase';
+import { errorEmitter } from '@/firebase/error-emitter';
+import { FirestorePermissionError, type SecurityRuleContext } from '@/firebase/errors';
 
 export function Tracker() {
-  const [awb, setAwb] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    if (result) {
-      const timer = setTimeout(() => setProgress(result.progress), 500);
-      return () => clearTimeout(timer);
-    } else {
-      setProgress(0);
-    }
-  }, [result]);
+  const [awbInput, setAwbInput] = useState('');
+  const [activeAwb, setActiveAwb] = useState<string | null>(null);
+  const [isSearching, setIsSearching] = useState(false);
+  
+  const firestore = useFirestore();
+  
+  // Use real-time hook to listen to the shipment document in Firestore
+  const { data: shipment, loading: loadingDoc } = useDoc<ShipmentData>(
+    activeAwb ? doc(firestore!, 'shipments', activeAwb.toUpperCase()) : null
+  );
 
   const handleTrack = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!awb) return;
+    if (!awbInput.trim()) return;
 
-    setLoading(true);
-    setResult(null);
-    
-    // Simulate API fetch delay
-    setTimeout(() => {
-      setResult(getMockShipment(awb));
-      setLoading(false);
-    }, 2000);
+    setIsSearching(true);
+    const normalizedAwb = awbInput.trim().toUpperCase();
+
+    try {
+      // 1. Fetch live data from secure Server Action (Proxy to external APIs)
+      const freshData = await fetchLiveShipment(normalizedAwb);
+      
+      if (freshData && firestore) {
+        // 2. Synchronize with Firestore (Optimistic Update pattern)
+        const docRef = doc(firestore, 'shipments', normalizedAwb);
+        
+        // Non-blocking write to Firestore
+        setDoc(docRef, {
+          ...freshData,
+          updatedAt: serverTimestamp()
+        }, { merge: true })
+        .catch(async (error) => {
+          const permissionError = new FirestorePermissionError({
+            path: docRef.path,
+            operation: 'update',
+            requestResourceData: freshData,
+          } satisfies SecurityRuleContext);
+          errorEmitter.emit('permission-error', permissionError);
+        });
+
+        setActiveAwb(normalizedAwb);
+      } else {
+        // Handle not found
+        setActiveAwb(null);
+      }
+    } catch (error) {
+      console.error("Tracking Error:", error);
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   return (
@@ -84,13 +94,13 @@ export function Tracker() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24 reveal-on-scroll">
           <div className="max-w-2xl">
-            <h2 className="text-foreground/30 font-bold tracking-[0.5em] uppercase text-[10px] mb-8">Airway Bill Monitoring</h2>
+            <h2 className="text-foreground/30 font-bold tracking-[0.5em] uppercase text-[10px] mb-8">Enterprise Monitoring Protocol</h2>
             <h3 className="text-6xl md:text-8xl font-black text-foreground mb-10 tracking-tighter leading-none uppercase">
               GLOBAL<br />
               <span className="text-foreground/40 text-stroke">TRACKING.</span>
             </h3>
             <p className="text-foreground/50 text-xl font-light max-w-lg">
-              Synchronizing real-time satellite data with enterprise logistics for absolute visibility.
+              High-precision AWB synchronization with real-time satellite telemetry and AI-driven status verification.
             </p>
           </div>
           
@@ -98,65 +108,71 @@ export function Tracker() {
             <div className="relative flex-1 md:w-96">
               <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-foreground/20" size={20} />
               <Input 
-                value={awb}
-                onChange={(e) => setAwb(e.target.value)}
+                value={awbInput}
+                onChange={(e) => setAwbInput(e.target.value)}
                 placeholder="ENTER AWB NUMBER"
                 className="h-20 pl-16 bg-foreground/5 border-foreground/10 text-foreground rounded-none border-b-2 border-b-foreground/20 focus:border-b-foreground transition-all tracking-widest uppercase font-bold text-sm"
               />
             </div>
             <Button 
-              disabled={loading}
+              type="submit"
+              disabled={isSearching}
               className="h-20 px-12 bg-foreground text-background hover:bg-foreground/90 font-black rounded-none uppercase tracking-[0.3em] text-[12px]"
             >
-              {loading ? <Loader2 className="animate-spin" /> : "Initiate"}
+              {isSearching ? <Loader2 className="animate-spin" /> : "Initiate"}
             </Button>
           </form>
         </div>
 
-        {loading && (
+        {isSearching && (
           <div className="py-48 flex flex-col items-center justify-center animate-in fade-in duration-700">
             <div className="w-32 h-32 border border-foreground/10 flex items-center justify-center mb-10 relative">
               <div className="absolute inset-0 border border-foreground animate-ping opacity-20" />
               <Loader2 className="text-foreground animate-spin" size={40} />
             </div>
-            <span className="text-[12px] uppercase tracking-[0.5em] text-foreground/40 font-black">Satellite Synchronization...</span>
+            <span className="text-[12px] uppercase tracking-[0.5em] text-foreground/40 font-black">Connecting to CargoAI Hub...</span>
           </div>
         )}
 
-        {result && (
+        {shipment && !isSearching && (
           <div className="animate-in fade-in slide-in-from-bottom-12 duration-1000">
             <div className="grid lg:grid-cols-3 gap-12">
               
               <div className="lg:col-span-2 space-y-12">
                 <Card className="bg-foreground/5 border-foreground/10 rounded-none overflow-hidden relative glass-morphism">
-                  <div className="absolute top-0 right-0 p-8">
+                  <div className="absolute top-0 right-0 p-8 flex items-center gap-4">
+                    <div className="flex items-center gap-2 text-[10px] text-foreground/40 uppercase font-black">
+                      <RefreshCw size={12} className="animate-spin-slow" /> Auto-Syncing
+                    </div>
                     <Badge variant="outline" className="border-foreground/20 text-foreground font-black uppercase tracking-widest text-[10px] px-4 py-2 bg-foreground/10">
-                      {result.status}
+                      {shipment.status}
                     </Badge>
                   </div>
                   
                   <CardContent className="p-12">
                     <div className="grid md:grid-cols-2 gap-16 mb-16">
                       <div>
-                        <span className="text-foreground/30 text-[10px] uppercase tracking-[0.4em] font-black block mb-6">Origin / Destination</span>
+                        <span className="text-foreground/30 text-[10px] uppercase tracking-[0.4em] font-black block mb-6">Route Intelligence</span>
                         <div className="flex items-center gap-6 text-foreground">
                           <div className="space-y-2">
-                            <p className="font-black text-2xl tracking-tighter">{result.origin}</p>
-                            <p className="text-[10px] text-foreground/40 uppercase font-bold">AWB: {result.awbNumber}</p>
+                            <p className="font-black text-2xl tracking-tighter">{shipment.origin}</p>
+                            <p className="text-[10px] text-foreground/40 uppercase font-bold">AWB: {shipment.awbNumber}</p>
                           </div>
                           <ArrowRight className="text-foreground/20" size={24} />
                           <div className="space-y-2">
-                            <p className="font-black text-2xl tracking-tighter">{result.destination}</p>
-                            <p className="text-[10px] text-foreground/40 uppercase font-bold italic">ETA: {result.eta}</p>
+                            <p className="font-black text-2xl tracking-tighter">{shipment.destination}</p>
+                            <p className="text-[10px] text-foreground/40 uppercase font-bold italic">
+                              ETA: {new Date(shipment.eta).toLocaleDateString()}
+                            </p>
                           </div>
                         </div>
                       </div>
                       
                       <div className="text-right md:text-left lg:text-right">
-                        <span className="text-foreground/30 text-[10px] uppercase tracking-[0.4em] font-black block mb-6">Cargo Details</span>
-                        <p className="font-black text-2xl text-foreground tracking-tighter">{result.flightDetails}</p>
+                        <span className="text-foreground/30 text-[10px] uppercase tracking-[0.4em] font-black block mb-6">Telemetry & Ops</span>
+                        <p className="font-black text-2xl text-foreground tracking-tighter">{shipment.flightDetails}</p>
                         <p className="text-[10px] text-foreground/40 uppercase font-black flex items-center justify-end md:justify-start lg:justify-end gap-3 mt-2">
-                          <span className="w-2 h-2 rounded-full bg-foreground animate-pulse" /> Live Tracker Active
+                          <span className="w-2 h-2 rounded-full bg-foreground animate-pulse" /> Live Map Synchronization Active
                         </p>
                       </div>
                     </div>
@@ -165,11 +181,11 @@ export function Tracker() {
                       <div className="h-px w-full bg-foreground/10 relative">
                         <div 
                           className="absolute h-full bg-foreground transition-all duration-[2500ms] ease-out shadow-[0_0_30px_rgba(255,255,255,0.8)]"
-                          style={{ width: `${progress}%` }}
+                          style={{ width: `${shipment.progress}%` }}
                         />
                         <div 
                           className="absolute top-1/2 -translate-y-1/2 transition-all duration-[2500ms] ease-out"
-                          style={{ left: `${progress}%` }}
+                          style={{ left: `${shipment.progress}%` }}
                         >
                           <div className="w-12 h-12 bg-foreground text-background flex items-center justify-center -translate-x-1/2 -mt-1 shadow-2xl">
                             <Plane size={24} />
@@ -180,17 +196,17 @@ export function Tracker() {
 
                     <div className="mt-16 flex items-center justify-between border-t border-foreground/10 pt-10">
                       <div>
-                        <span className="text-foreground/30 text-[10px] uppercase tracking-[0.4em] font-black block mb-4">Transmission Strength</span>
+                        <span className="text-foreground/30 text-[10px] uppercase tracking-[0.4em] font-black block mb-4">API Response Integrity</span>
                         <div className="flex items-center gap-6">
-                          <div className="text-4xl font-black text-foreground">98%</div>
+                          <div className="text-4xl font-black text-foreground">High</div>
                           <div className="h-1 w-40 bg-foreground/10">
-                            <div className="h-full bg-foreground" style={{ width: '98%' }} />
+                            <div className="h-full bg-foreground" style={{ width: '100%' }} />
                           </div>
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className="text-foreground/30 text-[10px] uppercase tracking-[0.4em] font-black block mb-4">Total Completion</span>
-                        <div className="text-4xl font-black text-foreground">{progress}%</div>
+                        <span className="text-foreground/30 text-[10px] uppercase tracking-[0.4em] font-black block mb-4">Movement Completion</span>
+                        <div className="text-4xl font-black text-foreground">{shipment.progress}%</div>
                       </div>
                     </div>
                   </CardContent>
@@ -199,10 +215,10 @@ export function Tracker() {
                 <div className="grid md:grid-cols-2 gap-12">
                   <div className="p-10 border border-foreground/10 bg-foreground/5 glass-morphism">
                     <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-foreground/40 mb-10 flex items-center gap-4">
-                      <Clock size={16} /> Activity History
+                      <Clock size={16} /> Protocol History
                     </h4>
                     <div className="space-y-10 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-px before:bg-foreground/10">
-                      {result.history.map((h: any, i: number) => (
+                      {shipment.history.map((h, i) => (
                         <div key={i} className="relative flex items-center gap-8">
                           <div className={cn(
                             "w-6 h-6 border flex items-center justify-center z-10",
@@ -211,7 +227,9 @@ export function Tracker() {
                             {i === 0 ? <CheckCircle2 size={12} className="text-background" /> : <div className="w-1.5 h-1.5 bg-foreground/20" />}
                           </div>
                           <div>
-                            <p className={cn("text-[12px] font-black uppercase", i === 0 ? "text-foreground" : "text-foreground/40")}>{h.timestamp} • {h.activity}</p>
+                            <p className={cn("text-[12px] font-black uppercase", i === 0 ? "text-foreground" : "text-foreground/40")}>
+                              {new Date(h.timestamp).toLocaleString()} • {h.activity}
+                            </p>
                             <p className="text-[10px] text-foreground/30 font-bold uppercase tracking-widest">{h.location}</p>
                           </div>
                         </div>
@@ -221,16 +239,18 @@ export function Tracker() {
 
                   <div className="p-10 border border-foreground/10 bg-foreground/5 glass-morphism">
                     <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-foreground/40 mb-10 flex items-center gap-4">
-                      <Navigation size={16} /> Asset Intelligence
+                      <Navigation size={16} /> Asset Intel
                     </h4>
                     <div className="space-y-8">
                       <div className="p-6 bg-foreground/5 border border-foreground/5">
-                        <span className="text-[10px] font-black text-foreground/40 uppercase block mb-3">Current Location</span>
-                        <p className="text-sm text-foreground font-light">{result.currentLocation}</p>
+                        <span className="text-[10px] font-black text-foreground/40 uppercase block mb-3">Live Coordinates</span>
+                        <p className="text-sm text-foreground font-light">{shipment.currentLocation}</p>
                       </div>
                       <div className="p-6 bg-foreground/5 border border-foreground/5">
-                        <span className="text-[10px] font-black text-foreground/40 uppercase block mb-3">Weather/Environmental</span>
-                        <p className="text-sm text-foreground/70 font-light leading-relaxed">Winds: 12kts N, Sea State: Calm, Visibility: 10nm. No delays predicted.</p>
+                        <span className="text-[10px] font-black text-foreground/40 uppercase block mb-3">System Updates</span>
+                        <p className="text-[10px] text-foreground/70 font-bold uppercase tracking-widest">
+                          Last Updated: {new Date(shipment.lastUpdated).toLocaleTimeString()}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -240,11 +260,11 @@ export function Tracker() {
               <div className="space-y-12">
                 <div className="p-10 border border-foreground/10 bg-foreground/5 glass-morphism">
                   <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-foreground/40 mb-10 flex items-center gap-4">
-                    <User size={16} /> Operations Lead
+                    <User size={16} /> Operations Authority
                   </h4>
                   <div className="flex items-center gap-8 mb-10">
                     <div className="w-20 h-20 border border-foreground/10 relative overflow-hidden grayscale contrast-125">
-                      <img src="https://picsum.photos/seed/lead/200/200" alt="Captain" className="object-cover" />
+                      <img src="https://picsum.photos/seed/lead/200/200" alt="Officer" className="object-cover" />
                     </div>
                     <div>
                       <p className="text-xl font-black text-foreground tracking-tight">CAPT. R. VANCE</p>
@@ -253,11 +273,11 @@ export function Tracker() {
                   </div>
                   <div className="space-y-6">
                     <div className="flex justify-between text-[11px] font-black uppercase tracking-widest border-b border-foreground/5 pb-6">
-                      <span className="text-foreground/20">Protocol</span>
-                      <span className="text-foreground">Level 05 Critical</span>
+                      <span className="text-foreground/20">Clearance</span>
+                      <span className="text-foreground">Level 05 Alpha</span>
                     </div>
                     <Button variant="outline" className="w-full border-foreground/20 text-foreground hover:bg-foreground hover:text-background text-[10px] font-black uppercase tracking-widest h-16 rounded-none">
-                      <Phone size={14} className="mr-3" /> Secure Terminal Link
+                      <Phone size={14} className="mr-3" /> Secure Communications
                     </Button>
                   </div>
                 </div>
@@ -267,7 +287,7 @@ export function Tracker() {
                   <div>
                     <h5 className="text-[11px] font-black text-foreground uppercase tracking-widest mb-3">Vault Security</h5>
                     <p className="text-[10px] text-foreground/40 leading-relaxed font-bold uppercase tracking-[0.15em]">
-                      This movement is secured by ZN end-to-end encryption protocols and real-time biometric vault monitoring.
+                      Monitored via end-to-end encrypted satellite link. FIATA Certified handling protocols in effect.
                     </p>
                   </div>
                 </div>
@@ -276,14 +296,26 @@ export function Tracker() {
           </div>
         )}
 
-        {!result && !loading && (
+        {!shipment && !isSearching && activeAwb && (
+          <div className="py-32 border border-dashed border-destructive/20 bg-destructive/5 flex flex-col items-center justify-center text-center reveal-on-scroll">
+            <div className="w-20 h-20 border border-destructive/10 flex items-center justify-center mb-10 rotate-45">
+              <AlertCircle className="text-destructive/40 -rotate-45" size={32} />
+            </div>
+            <h4 className="text-2xl font-black text-destructive/40 uppercase tracking-[0.3em] mb-6">Invalid AWB Signature</h4>
+            <p className="text-destructive/40 text-sm font-black uppercase tracking-widest max-w-xs">
+              No shipment record found for signature: {activeAwb}. Re-verify airway bill number.
+            </p>
+          </div>
+        )}
+
+        {!shipment && !isSearching && !activeAwb && (
           <div className="py-32 border border-dashed border-foreground/10 flex flex-col items-center justify-center text-center reveal-on-scroll">
             <div className="w-20 h-20 border border-foreground/5 flex items-center justify-center mb-10 rotate-45">
               <AlertCircle className="text-foreground/10 -rotate-45" size={32} />
             </div>
-            <h4 className="text-2xl font-black text-foreground/20 uppercase tracking-[0.3em] mb-6">Monitoring Protocol Idle</h4>
+            <h4 className="text-2xl font-black text-foreground/20 uppercase tracking-[0.3em] mb-6">Tracking Terminal Standby</h4>
             <p className="text-foreground/20 text-sm font-black uppercase tracking-widest max-w-xs">
-              Enter an enterprise Airway Bill to re-establish satellite connectivity.
+              Enter enterprise credentials (AWB) to establish live satellite link.
             </p>
           </div>
         )}
