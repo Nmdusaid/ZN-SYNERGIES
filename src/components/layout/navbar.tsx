@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
@@ -34,14 +34,17 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        {/* Simplified Typographic Logo */}
+        {/* Global Logo Identity */}
         <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div className="w-12 h-12 border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-colors duration-500">
+            <Globe size={24} className="text-foreground animate-pulse-slow" />
+          </div>
           <div className="flex flex-col">
             <span className="text-2xl md:text-3xl font-black tracking-tighter text-foreground uppercase leading-[0.8]">
               ZN <span className="text-foreground/40">SYNERGIES</span>
             </span>
             <span className="text-[10px] font-bold tracking-[0.4em] text-foreground/20 uppercase mt-2">
-              Logistics Excellence
+              Global Logistics Excellence
             </span>
           </div>
         </div>
