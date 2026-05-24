@@ -5,7 +5,6 @@ import { Navbar } from '@/components/layout/navbar';
 import { Hero } from '@/components/sections/hero';
 import { Services } from '@/components/sections/services';
 import { AboutUs } from '@/components/sections/about';
-import { Tracker } from '@/components/sections/tracker';
 import { Industries } from '@/components/sections/industries';
 import { AnalyticsDashboard } from '@/components/sections/dashboard-preview';
 import { Methodology } from '@/components/sections/methodology';
@@ -40,7 +39,6 @@ export default function Home() {
     <main className="relative bg-background min-h-screen">
       <Navbar />
       <Hero />
-      <Tracker />
       <AboutUs />
       <Services />
       <Industries />

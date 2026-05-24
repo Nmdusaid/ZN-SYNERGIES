@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -49,15 +48,6 @@ export function Hero() {
             >
               Inquire Now <ArrowRight className="ml-4" size={20} />
             </a>
-            <button 
-              onClick={() => {
-                const el = document.getElementById('tracking');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-[12px] uppercase tracking-[0.4em] font-black text-foreground/40 hover:text-foreground transition-colors flex items-center gap-4"
-            >
-              <span className="w-16 h-px bg-foreground/20" /> Initiate Tracking
-            </button>
           </div>
         </div>
       </div>
