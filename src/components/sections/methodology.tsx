@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -28,18 +29,18 @@ const steps = [
 
 export function Methodology() {
   return (
-    <section className="py-48 px-6 bg-black border-y border-white/5">
+    <section className="py-48 px-6 bg-background border-y border-foreground/5">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-24 items-start mb-32 reveal-on-scroll">
           <div className="flex-1">
-            <h2 className="text-white/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">The Process</h2>
-            <h3 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-12">
+            <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">The Process</h2>
+            <h3 className="text-5xl md:text-7xl font-black text-foreground tracking-tighter leading-none mb-12">
               STRATEGIC<br />
               METHODOLOGY.
             </h3>
           </div>
           <div className="flex-1">
-            <p className="text-white/50 text-xl font-light leading-relaxed max-w-lg">
+            <p className="text-foreground/50 text-xl font-light leading-relaxed max-w-lg">
               Our approach is defined by cold logic and architectural precision. We don't just move freight; we engineer the path of least resistance for global capital.
             </p>
           </div>
@@ -48,12 +49,14 @@ export function Methodology() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {steps.map((step, idx) => (
             <div key={idx} className="reveal-on-scroll group" style={{ transitionDelay: `${idx * 150}ms` }}>
-              <div className="mb-12 w-16 h-16 border border-white/10 flex items-center justify-center group-hover:border-white transition-all duration-500">
-                {step.icon}
+              <div className="mb-12 w-16 h-16 border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-all duration-500">
+                <div className="text-foreground">
+                  {step.icon}
+                </div>
               </div>
-              <h4 className="text-2xl font-black text-white mb-6 uppercase tracking-tight">{step.title}</h4>
-              <div className="w-12 h-px bg-white/20 mb-6 group-hover:w-full transition-all duration-700" />
-              <p className="text-white/40 text-sm font-light leading-relaxed">
+              <h4 className="text-2xl font-black text-foreground mb-6 uppercase tracking-tight">{step.title}</h4>
+              <div className="w-12 h-px bg-foreground/20 mb-6 group-hover:w-full transition-all duration-700" />
+              <p className="text-foreground/40 text-sm font-light leading-relaxed">
                 {step.desc}
               </p>
             </div>

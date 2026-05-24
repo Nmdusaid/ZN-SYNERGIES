@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -10,7 +11,7 @@ export function Hero() {
   const heroImage = PlaceHolderImages.find(img => img.id === 'hero-bg');
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-black">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
       <div className="absolute inset-0 z-0">
         <Image 
           src={heroImage?.imageUrl || "https://picsum.photos/seed/luxury-cargo/1920/1080"} 
@@ -20,41 +21,44 @@ export function Hero() {
           priority
           data-ai-hint="black and white logistics"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
       </div>
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-12 w-full">
         <div className="max-w-4xl space-y-12">
-          <div className="inline-block px-6 py-2 border border-white/20 text-[10px] uppercase tracking-[0.5em] font-bold animate-in fade-in slide-in-from-left-4 duration-1000">
+          <div className="inline-block px-6 py-2 border border-foreground/20 text-[10px] uppercase tracking-[0.5em] font-bold animate-in fade-in slide-in-from-left-4 duration-1000">
             Enterprise Logistics Excellence
           </div>
           
-          <h1 className="text-7xl md:text-[10rem] font-black text-white leading-[0.85] tracking-tighter uppercase animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
+          <h1 className="text-7xl md:text-[10rem] font-black text-foreground leading-[0.85] tracking-tighter uppercase animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
             GLOBAL<br />
             <span className="text-stroke">PRECISION.</span>
           </h1>
           
-          <p className="max-w-xl text-xl text-white/50 font-light leading-relaxed animate-in fade-in slide-in-from-left-12 duration-1000 delay-400">
+          <p className="max-w-xl text-xl text-foreground/50 font-light leading-relaxed animate-in fade-in slide-in-from-left-12 duration-1000 delay-400">
             Architecting the world's most complex supply chains with absolute speed and military precision. Monochrome intelligence for a global economy.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center gap-10 animate-in fade-in slide-in-from-left-16 duration-1000 delay-600">
             <Button 
               size="lg" 
-              className="h-20 px-16 bg-white text-black hover:bg-white/90 text-[12px] uppercase tracking-[0.4em] font-black transition-all duration-500 rounded-none"
-              onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
+              className="h-20 px-16 bg-foreground text-background hover:bg-foreground/90 text-[12px] uppercase tracking-[0.4em] font-black transition-all duration-500 rounded-none"
+              onClick={() => {
+                const el = document.getElementById('services');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Inquire Now <ArrowRight className="ml-4" size={20} />
             </Button>
-            <button className="text-[12px] uppercase tracking-[0.4em] font-black text-white/40 hover:text-white transition-colors flex items-center gap-4">
-              <span className="w-16 h-px bg-white/20" /> View Portfolio
+            <button className="text-[12px] uppercase tracking-[0.4em] font-black text-foreground/40 hover:text-foreground transition-colors flex items-center gap-4">
+              <span className="w-16 h-px bg-foreground/20" /> View Portfolio
             </button>
           </div>
         </div>
       </div>
 
       <div className="absolute bottom-20 right-20 animate-bounce opacity-20 hidden lg:block">
-        <div className="w-px h-24 bg-white" />
+        <div className="w-px h-24 bg-foreground" />
       </div>
     </section>
   );

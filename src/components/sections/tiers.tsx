@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -23,32 +24,32 @@ const tiers = [
 
 export function EnterpriseTiers() {
   return (
-    <section className="py-48 px-6 bg-black">
+    <section className="py-48 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-32 reveal-on-scroll">
-          <h2 className="text-white/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Service Framework</h2>
-          <h3 className="text-6xl md:text-8xl font-black text-white tracking-tighter">OPERATIONAL TIERS</h3>
+          <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Service Framework</h2>
+          <h3 className="text-6xl md:text-8xl font-black text-foreground tracking-tighter">OPERATIONAL TIERS</h3>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-white/10 border border-white/10">
+        <div className="grid md:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
           {tiers.map((tier, idx) => (
-            <div key={idx} className="bg-black p-16 flex flex-col hover:bg-white/[0.02] transition-colors duration-500 reveal-on-scroll" style={{ transitionDelay: `${idx * 200}ms` }}>
-              <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold mb-4">Level 0{idx + 1}</div>
-              <h4 className="text-4xl font-black text-white mb-8">{tier.name}</h4>
-              <p className="text-white/50 text-sm font-light mb-12 h-12">
+            <div key={idx} className="bg-background p-16 flex flex-col hover:bg-foreground/[0.02] transition-colors duration-500 reveal-on-scroll" style={{ transitionDelay: `${idx * 200}ms` }}>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-foreground/40 font-bold mb-4">Level 0{idx + 1}</div>
+              <h4 className="text-4xl font-black text-foreground mb-8">{tier.name}</h4>
+              <p className="text-foreground/50 text-sm font-light mb-12 h-12">
                 {tier.focus}
               </p>
               
               <ul className="space-y-6 mt-auto">
                 {tier.features.map((feature, fidx) => (
-                  <li key={fidx} className="flex items-center gap-4 text-[11px] uppercase tracking-widest text-white/30 font-bold group">
-                    <Check size={14} className="text-white/20 group-hover:text-white transition-colors" />
+                  <li key={fidx} className="flex items-center gap-4 text-[11px] uppercase tracking-widest text-foreground/30 font-bold group">
+                    <Check size={14} className="text-foreground/20 group-hover:text-foreground transition-colors" />
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              <button className="mt-20 w-full py-6 border border-white/10 text-[10px] uppercase tracking-[0.4em] font-black hover:bg-white hover:text-black transition-all">
+              <button className="mt-20 w-full py-6 border border-foreground/10 text-[10px] uppercase tracking-[0.4em] font-black hover:bg-foreground hover:text-background transition-all">
                 Learn More
               </button>
             </div>

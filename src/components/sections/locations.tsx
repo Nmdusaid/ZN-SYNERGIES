@@ -1,41 +1,37 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Globe, MapPin, ArrowUpRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Globe } from 'lucide-react';
 
 const offices = [
   {
     city: "Delhi",
     fullAddress: "Aerocity, Indira Gandhi International Airport, New Delhi, Delhi 110037",
     type: "National Capital Hub",
-    orbitScale: "scale-[0.4]",
     angle: 45,
-    delay: "0s"
+    radius: 0.4
   },
   {
     city: "Mumbai",
     fullAddress: "Bandra Kurla Complex, Mumbai, Maharashtra 400051",
     type: "Financial Terminal",
-    orbitScale: "scale-[0.6]",
     angle: 135,
-    delay: "2s"
+    radius: 0.6
   },
   {
     city: "Bangalore",
     fullAddress: "Outer Ring Road, Bellandur, Bengaluru, Karnataka 560103",
     type: "Technology Hub",
-    orbitScale: "scale-[0.8]",
     angle: 225,
-    delay: "4s"
+    radius: 0.8
   },
   {
     city: "Chennai",
     fullAddress: "OMR, Karapakkam, Chennai, Tamil Nadu 600097",
     type: "Maritime Strategy Hub",
-    orbitScale: "scale-[1.0]",
     angle: 315,
-    delay: "6s"
+    radius: 1.0
   }
 ];
 
@@ -64,13 +60,13 @@ export function Locations() {
   };
 
   return (
-    <section id="contact" className="py-48 px-6 bg-black border-t border-white/5 overflow-hidden relative min-h-screen flex flex-col items-center justify-center">
+    <section id="contact" className="py-48 px-6 bg-background border-t border-foreground/5 overflow-hidden relative min-h-screen flex flex-col items-center justify-center">
       {/* Background Stars */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         {stars.map((star, i) => (
           <div 
             key={i} 
-            className="absolute w-px h-px bg-white rounded-full animate-pulse"
+            className="absolute w-px h-px bg-foreground rounded-full animate-pulse"
             style={{ 
               top: star.top, 
               left: star.left,
@@ -83,53 +79,49 @@ export function Locations() {
 
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <div className="text-center mb-24 reveal-on-scroll">
-          <div className="text-white/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Global Infrastructure</div>
-          <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none mb-10">
+          <div className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Global Infrastructure</div>
+          <h2 className="text-6xl md:text-8xl font-black text-foreground tracking-tighter leading-none mb-10">
             STRATEGIC<br />
-            <span className="text-white/40">GALAXY.</span>
+            <span className="text-foreground/40">GALAXY.</span>
           </h2>
-          <p className="text-white/30 text-sm font-light tracking-widest max-w-md mx-auto uppercase">
-            Establishing direct geolocation coordinates across our primary citadels.
-          </p>
         </div>
 
         {/* Single Galaxy System */}
         <div className="relative w-full aspect-square max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
           
-          {/* World Map Backdrop - Subtly behind everything */}
+          {/* World Map Backdrop */}
           <div className="absolute inset-0 pointer-events-none opacity-10 flex items-center justify-center">
-             <svg viewBox="0 0 1000 500" className="w-[120%] h-auto text-white fill-current">
-                <path d="M150,150 L160,140 L180,145 L200,130 L220,135 L240,120 L260,130 L280,125 L300,140 L320,150 L310,170 L290,180 L270,190 L250,200 L230,190 L210,185 L190,170 Z" /> {/* Simplified Americas */}
-                <path d="M450,120 L470,110 L500,105 L530,115 L550,130 L540,160 L520,180 L490,190 L460,180 L440,150 Z" /> {/* Simplified Africa */}
-                <path d="M500,80 L530,70 L570,75 L600,60 L640,65 L680,80 L700,100 L720,130 L700,160 L670,180 L630,190 L600,170 L570,160 L540,140 L520,120 Z" /> {/* Simplified Eurasia */}
-                <path d="M750,250 L780,240 L810,245 L830,260 L820,280 L800,295 L770,290 L740,270 Z" /> {/* Simplified Australia */}
-                <circle cx="650" cy="150" r="50" className="opacity-20" /> {/* Abstract India Zone */}
+             <svg viewBox="0 0 1000 500" className="w-[120%] h-auto text-foreground fill-current">
+                <path d="M150,150 L160,140 L180,145 L200,130 L220,135 L240,120 L260,130 L280,125 L300,140 L320,150 L310,170 L290,180 L270,190 L250,200 L230,190 L210,185 L190,170 Z" />
+                <path d="M450,120 L470,110 L500,105 L530,115 L550,130 L540,160 L520,180 L490,190 L460,180 L440,150 Z" />
+                <path d="M500,80 L530,70 L570,75 L600,60 L640,65 L680,80 L700,100 L720,130 L700,160 L670,180 L630,190 L600,170 L570,160 L540,140 L520,120 Z" />
+                <path d="M750,250 L780,240 L810,245 L830,260 L820,280 L800,295 L770,290 L740,270 Z" />
+                <circle cx="650" cy="150" r="50" className="opacity-20" />
              </svg>
           </div>
 
-          {/* Central Hub Text - No Effects */}
+          {/* Central Hub Text */}
           <div className="relative z-30 flex flex-col items-center justify-center text-center">
-             <span className="text-2xl md:text-4xl font-black tracking-tighter text-white uppercase">
-              ZN <span className="text-white/40">SYNERGIES</span>
+             <span className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">
+              ZN <span className="text-foreground/40">SYNERGIES</span>
             </span>
-            <div className="w-12 h-px bg-white/20 mt-4" />
+            <div className="w-12 h-px bg-foreground/20 mt-4" />
           </div>
 
-          {/* Concentric Orbits - Stationary */}
+          {/* Concentric Orbits */}
           {[0.4, 0.6, 0.8, 1.0].map((scale, i) => (
             <div 
               key={i}
-              className="absolute inset-0 border border-white/5 rounded-full pointer-events-none"
+              className="absolute inset-0 border border-foreground/5 rounded-full pointer-events-none"
               style={{ transform: `scale(${scale})` }}
             />
           ))}
 
           {/* Location Nodes */}
           {offices.map((office, idx) => {
-            // Convert angle to X and Y coordinates on a circle
-            const radius = 50 * (0.4 + idx * 0.2); // Percentage radius based on orbit index
-            const x = Math.cos((office.angle * Math.PI) / 180) * radius;
-            const y = Math.sin((office.angle * Math.PI) / 180) * radius;
+            const orbitRadius = 50 * office.radius;
+            const x = Math.cos((office.angle * Math.PI) / 180) * orbitRadius;
+            const y = Math.sin((office.angle * Math.PI) / 180) * orbitRadius;
 
             return (
               <div 
@@ -142,26 +134,20 @@ export function Locations() {
                 }}
                 onClick={() => openMap(office.fullAddress)}
               >
-                {/* Node visual */}
                 <div className="relative">
-                  <div className="w-3 h-3 bg-white rounded-full transition-transform duration-500 group-hover:scale-150" />
+                  <div className="w-3 h-3 bg-foreground rounded-full transition-transform duration-500 group-hover:scale-150" />
                   
-                  {/* Label - Always Visible */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 transition-all duration-500 whitespace-nowrap opacity-100">
-                    <div className="bg-white text-black px-4 py-2 flex flex-col items-center">
+                    <div className="bg-foreground text-background px-4 py-2 flex flex-col items-center">
                       <span className="text-[10px] font-black uppercase tracking-[0.2em]">{office.city}</span>
-                      <span className="text-[8px] font-bold text-black/50 uppercase tracking-[0.1em]">{office.type}</span>
+                      <span className="text-[8px] font-bold opacity-50 uppercase tracking-[0.1em]">{office.type}</span>
                     </div>
-                    <div className="w-px h-4 bg-white mx-auto -mt-1" />
+                    <div className="w-px h-4 bg-foreground mx-auto -mt-1" />
                   </div>
                 </div>
               </div>
             );
           })}
-
-          {/* Aesthetic Grid Overlay */}
-          <div className="absolute inset-0 pointer-events-none opacity-[0.03]" 
-               style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         </div>
       </div>
     </section>
