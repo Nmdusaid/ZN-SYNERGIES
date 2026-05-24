@@ -10,7 +10,9 @@ const offices = [
     fullAddress: "Level 42, International Trade Tower, Singapore",
     phone: "+65 800 ZN-SING",
     type: "APAC Hub",
-    coordinates: { top: '65%', left: '82%' }
+    orbit: "w-[40%] h-[40%]",
+    angle: "45deg",
+    delay: "0s"
   },
   {
     city: "London",
@@ -18,7 +20,9 @@ const offices = [
     fullAddress: "30 St Mary Axe, London EC3A 8BF, United Kingdom",
     phone: "+44 20 7946 0000",
     type: "EMEA Hub",
-    coordinates: { top: '35%', left: '48%' }
+    orbit: "w-[60%] h-[60%]",
+    angle: "135deg",
+    delay: "1s"
   },
   {
     city: "New York",
@@ -26,7 +30,9 @@ const offices = [
     fullAddress: "One World Trade Center, New York, NY 10007, USA",
     phone: "+1 212 555 0123",
     type: "Americas Hub",
-    coordinates: { top: '40%', left: '25%' }
+    orbit: "w-[80%] h-[80%]",
+    angle: "225deg",
+    delay: "2s"
   },
   {
     city: "Dubai",
@@ -34,7 +40,9 @@ const offices = [
     fullAddress: "Burj Daman, DIFC, Dubai, United Arab Emirates",
     phone: "+971 4 301 7777",
     type: "MENA Hub",
-    coordinates: { top: '50%', left: '60%' }
+    orbit: "w-[100%] h-[100%]",
+    angle: "315deg",
+    delay: "3s"
   }
 ];
 
@@ -44,73 +52,79 @@ export function Locations() {
   };
 
   return (
-    <section id="contact" className="py-48 px-6 bg-black border-t border-white/5">
+    <section id="contact" className="py-48 px-6 bg-black border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-32 gap-12">
           <div className="reveal-on-scroll">
             <div className="text-white/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Global Network</div>
             <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">
               OUR<br />
-              <span className="text-white/40">CITADELS.</span>
+              <span className="text-white/40">GALAXY.</span>
             </h2>
           </div>
           <p className="text-white/40 text-xl font-light max-w-sm reveal-on-scroll">
-            Strategic command centers positioned at the critical crossroads of the global constellation.
+            A centralized universe of strategic command centers orchestrated through synchronized orbital logistics.
           </p>
         </div>
 
-        {/* Universe/Constellation Visualization */}
-        <div className="relative w-full aspect-[21/9] bg-white/[0.01] border border-white/10 mb-32 overflow-hidden reveal-on-scroll group/universe">
-          {/* Star Field */}
-          <div className="absolute inset-0 opacity-20" 
-               style={{ backgroundImage: 'radial-gradient(circle, white 0.5px, transparent 0.5px)', backgroundSize: '60px 60px' }} />
+        {/* Galaxy Circle Visualization */}
+        <div className="relative w-full aspect-square md:aspect-[21/9] flex items-center justify-center mb-32 reveal-on-scroll">
+          <div className="absolute inset-0 bg-white/[0.01] border border-white/5 opacity-50" />
           
-          {/* Orbital Paths */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-10 pointer-events-none">
-            <div className="absolute inset-0 border border-white/20 rounded-full animate-[spin_100s_linear_infinite]" />
-            <div className="absolute inset-[15%] border border-white/10 rounded-full animate-[spin_80s_linear_infinite_reverse]" />
-            <div className="absolute inset-[30%] border border-white/20 rounded-full animate-[spin_60s_linear_infinite]" />
-            <div className="absolute inset-[45%] border border-white/10 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+          {/* Central Pulsing Core */}
+          <div className="relative z-10 w-4 h-4 bg-white rounded-full shadow-[0_0_30px_rgba(255,255,255,0.8)] animate-pulse">
+            <div className="absolute inset-0 w-full h-full bg-white rounded-full animate-ping opacity-50" />
+            <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[10px] text-white/20 font-black uppercase tracking-[0.5em] whitespace-nowrap">
+              ZN Core
+            </div>
           </div>
 
-          {/* Central Pulsing Sun/Hub */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="w-1 h-1 bg-white rounded-full blur-[2px] animate-pulse" />
-            <div className="absolute inset-0 w-24 h-24 -translate-x-1/2 -translate-y-1/2 bg-white/5 rounded-full blur-2xl animate-pulse" />
-          </div>
-
-          {/* Location Nodes (Planetary) */}
-          {offices.map((office, idx) => (
-            <div 
-              key={idx} 
-              className="absolute group/node cursor-pointer z-20"
-              style={{ top: office.coordinates.top, left: office.coordinates.left }}
-              onClick={() => openMap(office.fullAddress)}
-            >
-              <div className="relative">
-                {/* Node Aura */}
-                <div className="absolute inset-0 w-4 h-4 -translate-x-1/2 -translate-y-1/2 bg-white/0 group-hover/node:bg-white/20 transition-all duration-500 rounded-full blur-md" />
-                
-                {/* The Dot */}
-                <div className="w-2 h-2 bg-white rounded-full group-hover/node:scale-150 transition-transform duration-500" />
-                <div className="absolute inset-0 w-2 h-2 bg-white rounded-full animate-ping opacity-30" />
-                
-                {/* Information Overlay */}
-                <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover/node:opacity-100 transition-all duration-500 pointer-events-none whitespace-nowrap bg-white text-black text-[10px] font-black uppercase tracking-widest px-4 py-2 flex items-center gap-3 translate-y-2 group-hover/node:translate-y-0 shadow-2xl">
-                  {office.city}
-                  <Globe size={10} />
+          {/* Orbital Containers */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            {offices.map((office, idx) => (
+              <div 
+                key={idx}
+                className={`absolute border border-white/10 rounded-full ${office.orbit} transition-colors duration-700 hover:border-white/30`}
+              >
+                {/* Hub Node on Orbit */}
+                <div 
+                  className="absolute cursor-pointer pointer-events-auto group/node"
+                  style={{ 
+                    top: '50%', 
+                    left: '50%', 
+                    transform: `rotate(${office.angle}) translate(calc(50% + 0px))`,
+                  }}
+                  onClick={() => openMap(office.fullAddress)}
+                >
+                  <div 
+                    className="relative"
+                    style={{ transform: `rotate(-${office.angle})` }}
+                  >
+                    {/* Node Dot */}
+                    <div className="w-3 h-3 bg-white rounded-full group-hover/node:scale-150 transition-transform duration-500 shadow-[0_0_10px_white]" />
+                    
+                    {/* Tooltip HUD */}
+                    <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover/node:opacity-100 transition-all duration-500 whitespace-nowrap bg-white text-black text-[10px] font-black uppercase tracking-widest px-4 py-2 flex items-center gap-3 translate-y-2 group-hover/node:translate-y-0">
+                      {office.city}
+                      <ArrowUpRight size={10} />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
-          {/* HUD Elements */}
+          {/* Grid Overlay HUD */}
+          <div className="absolute inset-0 pointer-events-none" 
+               style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '100px 100px' }} />
+          
           <div className="absolute bottom-10 right-10 flex items-center gap-4">
             <div className="text-[10px] text-white/20 font-bold uppercase tracking-[0.3em]">Network Active</div>
             <div className="w-2 h-2 bg-white rounded-full animate-pulse shadow-[0_0_10px_white]" />
           </div>
         </div>
 
+        {/* Office Details Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
           {offices.map((office, idx) => (
             <div 
