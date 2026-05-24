@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -32,7 +33,7 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-4 group cursor-pointer">
+        <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="w-10 h-10 border border-white/20 flex items-center justify-center transition-all duration-500 group-hover:border-white">
             <Globe className="text-white" size={18} />
           </div>
@@ -41,6 +42,7 @@ export function Navbar() {
           </span>
         </div>
 
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-16">
           {navLinks.map((link) => (
             <a
@@ -54,28 +56,42 @@ export function Navbar() {
           ))}
         </div>
 
+        {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-10">
           <Button 
             className="bg-white text-black hover:bg-white/90 text-[11px] uppercase tracking-[0.3em] font-black px-10 h-14 rounded-none"
-            onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              const el = document.getElementById('contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
           >
             Get a Quote
           </Button>
         </div>
 
+        {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-white p-2"
+          className="md:hidden text-white p-2 relative z-[60]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle Menu"
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <div className={cn(
-        "fixed inset-0 top-0 bg-black z-40 transition-transform duration-500 md:hidden flex flex-col items-center justify-center",
+        "fixed inset-0 bg-black z-50 transition-transform duration-500 md:hidden flex flex-col items-center justify-center",
         isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
+        {/* Secondary Exit for UX */}
+        <button 
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="absolute top-10 right-12 text-white/40 hover:text-white transition-colors"
+        >
+          <X size={32} />
+        </button>
+
         <div className="flex flex-col items-center gap-10">
           {navLinks.map((link) => (
             <a
@@ -91,7 +107,8 @@ export function Navbar() {
             className="mt-12 bg-white text-black text-lg py-10 px-16 uppercase tracking-[0.3em] font-black rounded-none"
             onClick={() => {
               setIsMobileMenuOpen(false);
-              document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+              const el = document.getElementById('contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
           >
             Get a Quote
