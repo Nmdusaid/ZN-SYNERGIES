@@ -89,13 +89,24 @@ export function Locations() {
             <span className="text-white/40">GALAXY.</span>
           </h2>
           <p className="text-white/30 text-sm font-light tracking-widest max-w-md mx-auto uppercase">
-            Click any orbital node to establish direct geolocation coordinates.
+            Establishing direct geolocation coordinates across our primary citadels.
           </p>
         </div>
 
         {/* Single Galaxy System */}
         <div className="relative w-full aspect-square max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
           
+          {/* World Map Backdrop - Subtly behind everything */}
+          <div className="absolute inset-0 pointer-events-none opacity-10 flex items-center justify-center">
+             <svg viewBox="0 0 1000 500" className="w-[120%] h-auto text-white fill-current">
+                <path d="M150,150 L160,140 L180,145 L200,130 L220,135 L240,120 L260,130 L280,125 L300,140 L320,150 L310,170 L290,180 L270,190 L250,200 L230,190 L210,185 L190,170 Z" /> {/* Simplified Americas */}
+                <path d="M450,120 L470,110 L500,105 L530,115 L550,130 L540,160 L520,180 L490,190 L460,180 L440,150 Z" /> {/* Simplified Africa */}
+                <path d="M500,80 L530,70 L570,75 L600,60 L640,65 L680,80 L700,100 L720,130 L700,160 L670,180 L630,190 L600,170 L570,160 L540,140 L520,120 Z" /> {/* Simplified Eurasia */}
+                <path d="M750,250 L780,240 L810,245 L830,260 L820,280 L800,295 L770,290 L740,270 Z" /> {/* Simplified Australia */}
+                <circle cx="650" cy="150" r="50" className="opacity-20" /> {/* Abstract India Zone */}
+             </svg>
+          </div>
+
           {/* Central Hub Text - No Effects */}
           <div className="relative z-30 flex flex-col items-center justify-center text-center">
              <span className="text-2xl md:text-4xl font-black tracking-tighter text-white uppercase">
