@@ -2,11 +2,17 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { AnimatedCounter } from '@/components/ui/animated-counter';
 
 export function AboutUs() {
   return (
     <section id="about" className="py-48 px-6 bg-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      {/* Background Universe/Planet Decoration */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 border border-white/5 rounded-full animate-pulse-slow pointer-events-none">
+        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent rotate-45" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-32 items-center">
           <div className="reveal-on-scroll">
             <div className="text-white/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Our Foundation</div>
@@ -25,11 +31,15 @@ export function AboutUs() {
             
             <div className="mt-20 grid grid-cols-2 gap-16">
               <div>
-                <div className="text-6xl font-black text-white mb-4">150+</div>
+                <div className="text-6xl font-black text-white mb-4">
+                  <AnimatedCounter end={150} suffix="+" />
+                </div>
                 <div className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-bold">Strategic Hubs</div>
               </div>
               <div>
-                <div className="text-6xl font-black text-white mb-4">24/7</div>
+                <div className="text-6xl font-black text-white mb-4">
+                  <AnimatedCounter end={24} suffix="/7" />
+                </div>
                 <div className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-bold">Global Watch</div>
               </div>
             </div>

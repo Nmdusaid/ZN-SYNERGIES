@@ -10,6 +10,7 @@ import { Methodology } from '@/components/sections/methodology';
 import { EnterpriseTiers } from '@/components/sections/tiers';
 import { FleetShowcase } from '@/components/sections/fleet';
 import { Footer } from '@/components/sections/footer';
+import { ChatBot } from '@/components/features/chat-bot';
 
 export default function Home() {
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative bg-background">
+    <main className="relative bg-background min-h-screen">
       <Navbar />
       <Hero />
       <AboutUs />
@@ -43,6 +44,7 @@ export default function Home() {
       <Locations />
       <FleetShowcase />
       <Footer />
+      <ChatBot />
     </main>
   );
 }
