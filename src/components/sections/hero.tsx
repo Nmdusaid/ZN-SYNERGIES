@@ -2,25 +2,29 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function Hero() {
   const quoteMailto = "mailto:usaid6765@gmail.com?subject=Enterprise Inquiry&body=I would like to discuss a luxury logistics solution for my enterprise.";
+  const heroImg = PlaceHolderImages.find(img => img.id === 'hero-bg');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
       <div className="absolute inset-0 z-0">
-        {/* 4K Video Background: Cargo Port Operations */}
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale contrast-125"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-cargo-ship-entering-a-port-at-night-42610-large.mp4" type="video/mp4" />
-        </video>
+        {/* Reverted to high-fidelity static background image */}
+        {heroImg && (
+          <Image
+            src={heroImg.imageUrl}
+            alt={heroImg.description}
+            fill
+            priority
+            className="object-cover opacity-20 grayscale contrast-125"
+            data-ai-hint={heroImg.imageHint}
+          />
+        )}
         
         {/* Cinematic Backdrop Overlays */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />

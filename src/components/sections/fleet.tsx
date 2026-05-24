@@ -12,7 +12,6 @@ const fleet = [
     title: 'Precision Road Fleet',
     desc: 'Autonomous electric long-haul transporters for zero-emission delivery.',
     specs: ['Autonomous Level 4', '1,200km Range', 'Cold Chain Ready'],
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-truck-driving-on-the-highway-at-night-42612-large.mp4',
     animationClass: 'animate-drift'
   },
   {
@@ -20,7 +19,6 @@ const fleet = [
     title: 'Ocean Megastructures',
     desc: 'Deep-water logistics vessels powered by hybrid hydrogen propulsion.',
     specs: ['24k TEU Capacity', 'Smart Stowage', 'Reduced Emissions'],
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-container-ship-sailing-the-ocean-at-sunset-42611-large.mp4',
     animationClass: 'animate-float'
   },
   {
@@ -28,7 +26,6 @@ const fleet = [
     title: 'Aviation Express',
     desc: 'High-velocity air freight connecting major global hubs in < 24 hours.',
     specs: ['Next-Gen Cargo Bay', 'Route Optimization', 'Priority Handling'],
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-cargo-plane-taking-off-at-dusk-42613-large.mp4',
     animationClass: 'animate-plane'
   }
 ];
@@ -54,25 +51,13 @@ export function FleetShowcase() {
                 <div className="flex-1 relative aspect-video w-full group">
                   <div className="absolute -inset-4 border border-white/5 group-hover:border-white/20 transition-colors duration-700" />
                   <div className={cn("relative h-full w-full overflow-hidden grayscale contrast-125", item.animationClass)}>
-                    {item.videoUrl ? (
-                      <video 
-                        autoPlay 
-                        loop 
-                        muted 
-                        playsInline 
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60"
-                      >
-                        <source src={item.videoUrl} type="video/mp4" />
-                      </video>
-                    ) : (
-                      <Image 
-                        src={imageData?.imageUrl || `https://picsum.photos/seed/${item.id}/800/600`} 
-                        alt={item.title}
-                        fill
-                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                        data-ai-hint={imageData?.imageHint || "logistics vehicle"}
-                      />
-                    )}
+                    <Image 
+                      src={imageData?.imageUrl || `https://picsum.photos/seed/${item.id}/800/600`} 
+                      alt={item.title}
+                      fill
+                      className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60"
+                      data-ai-hint={imageData?.imageHint || "logistics vehicle"}
+                    />
                   </div>
                 </div>
                 
