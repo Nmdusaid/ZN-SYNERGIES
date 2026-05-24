@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect } from 'react';
@@ -5,10 +6,13 @@ import { Navbar } from '@/components/layout/navbar';
 import { Hero } from '@/components/sections/hero';
 import { Services } from '@/components/sections/services';
 import { AboutUs } from '@/components/sections/about';
-import { Locations } from '@/components/sections/locations';
+import { Tracker } from '@/components/sections/tracker';
+import { Industries } from '@/components/sections/industries';
+import { AnalyticsDashboard } from '@/components/sections/dashboard-preview';
 import { Methodology } from '@/components/sections/methodology';
 import { EnterpriseTiers } from '@/components/sections/tiers';
 import { FleetShowcase } from '@/components/sections/fleet';
+import { Locations } from '@/components/sections/locations';
 import { Footer } from '@/components/sections/footer';
 import { ChatBot } from '@/components/features/chat-bot';
 
@@ -37,12 +41,15 @@ export default function Home() {
     <main className="relative bg-background min-h-screen">
       <Navbar />
       <Hero />
+      <Tracker />
       <AboutUs />
       <Services />
+      <Industries />
+      <AnalyticsDashboard />
       <Methodology />
       <EnterpriseTiers />
-      <Locations />
       <FleetShowcase />
+      <Locations />
       <Footer />
       <ChatBot />
     </main>

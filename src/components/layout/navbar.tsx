@@ -21,16 +21,17 @@ export function Navbar() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '#services' },
+    { name: 'Tracking', href: '#tracking' },
     { name: 'About Us', href: '#about' },
     { name: 'Contact Us', href: '#contact' },
   ];
 
-  const quoteMailto = "mailto:ops@zn-synergies.com?subject=Enterprise Quote Inquiry&body=Dear ZN Synergies Team,%0D%0A%0D%0AI would like to request a quote for the following logistics operations:";
+  const quoteMailto = "mailto:usaid6765@gmail.com?subject=Enterprise Quote Inquiry&body=I would like to request a quote for the following logistics operations:";
 
   return (
     <nav 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-12 py-8",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 md:px-12 py-8",
         isScrolled ? "bg-background/90 backdrop-blur-2xl border-b border-foreground/10 py-6" : "bg-transparent"
       )}
     >
@@ -39,18 +40,18 @@ export function Navbar() {
           <div className="w-10 h-10 border border-foreground/20 flex items-center justify-center transition-all duration-500 group-hover:border-foreground">
             <Globe className="text-foreground" size={18} />
           </div>
-          <span className="text-2xl font-black tracking-tighter text-foreground uppercase">
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-foreground uppercase">
             ZN <span className="text-foreground/40">SYNERGIES</span>
           </span>
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-16">
+        <div className="hidden md:flex items-center gap-12 lg:gap-16">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-[11px] uppercase tracking-[0.3em] font-bold text-foreground/50 hover:text-foreground transition-all relative group"
+              className="text-[10px] lg:text-[11px] uppercase tracking-[0.3em] font-bold text-foreground/50 hover:text-foreground transition-all relative group"
             >
               {link.name}
               <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-foreground transition-all duration-300 group-hover:w-full" />
@@ -63,7 +64,7 @@ export function Navbar() {
           <ThemeToggle />
           <a 
             href={quoteMailto}
-            className="bg-foreground text-background hover:bg-foreground/90 text-[11px] uppercase tracking-[0.3em] font-black px-10 h-14 rounded-none flex items-center justify-center transition-colors no-underline"
+            className="bg-foreground text-background hover:bg-foreground/90 text-[10px] lg:text-[11px] uppercase tracking-[0.3em] font-black px-8 lg:px-10 h-14 rounded-none flex items-center justify-center transition-colors no-underline"
           >
             Get a Quote
           </a>
@@ -89,7 +90,7 @@ export function Navbar() {
       )}>
         <button 
           onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-10 right-12 text-foreground/40 hover:text-foreground transition-colors"
+          className="absolute top-10 right-8 text-foreground/40 hover:text-foreground transition-colors"
         >
           <X size={32} />
         </button>
@@ -99,7 +100,7 @@ export function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-4xl font-black uppercase tracking-tighter hover:text-foreground/50 transition-colors no-underline"
+              className="text-3xl font-black uppercase tracking-tighter hover:text-foreground/50 transition-colors no-underline"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
@@ -107,7 +108,7 @@ export function Navbar() {
           ))}
           <a 
             href={quoteMailto}
-            className="mt-12 bg-foreground text-background text-lg py-10 px-16 uppercase tracking-[0.3em] font-black rounded-none flex items-center justify-center transition-colors w-full no-underline"
+            className="mt-8 bg-foreground text-background text-lg py-8 px-12 uppercase tracking-[0.3em] font-black rounded-none flex items-center justify-center transition-colors w-full no-underline text-center"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Get a Quote
