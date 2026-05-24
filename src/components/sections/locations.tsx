@@ -100,7 +100,7 @@ export function Locations() {
              </svg>
           </div>
 
-          {/* Central Hub Text */}
+          {/* Central Hub Text - Pure typography, no effects */}
           <div className="relative z-30 flex flex-col items-center justify-center text-center">
              <span className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">
               ZN <span className="text-foreground/40">SYNERGIES</span>
@@ -108,7 +108,7 @@ export function Locations() {
             <div className="w-12 h-px bg-foreground/20 mt-4" />
           </div>
 
-          {/* Concentric Orbits */}
+          {/* Concentric Orbits - Stationary */}
           {[0.4, 0.6, 0.8, 1.0].map((scale, i) => (
             <div 
               key={i}
@@ -117,7 +117,7 @@ export function Locations() {
             />
           ))}
 
-          {/* Location Nodes */}
+          {/* Location Nodes - Permanently Visible Labels */}
           {offices.map((office, idx) => {
             const orbitRadius = 50 * office.radius;
             const x = Math.cos((office.angle * Math.PI) / 180) * orbitRadius;
@@ -137,7 +137,8 @@ export function Locations() {
                 <div className="relative">
                   <div className="w-3 h-3 bg-foreground rounded-full transition-transform duration-500 group-hover:scale-150" />
                   
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 transition-all duration-500 whitespace-nowrap opacity-100">
+                  {/* Permanently Visible Labels */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 whitespace-nowrap opacity-100">
                     <div className="bg-foreground text-background px-4 py-2 flex flex-col items-center">
                       <span className="text-[10px] font-black uppercase tracking-[0.2em]">{office.city}</span>
                       <span className="text-[8px] font-bold opacity-50 uppercase tracking-[0.1em]">{office.type}</span>
