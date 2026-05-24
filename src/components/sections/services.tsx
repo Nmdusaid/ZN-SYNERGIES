@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -6,101 +7,94 @@ import { cn } from "@/lib/utils";
 
 const services = [
   {
-    title: "Air Freight",
-    description: "Premium express global delivery via our elite aviation network.",
-    icon: <Plane className="text-accent" size={32} />,
-    tag: "High Velocity"
+    title: "Aviation Express",
+    description: "Elite air freight network connecting global capitals within 24 hours.",
+    icon: <Plane className="text-primary" size={24} />,
+    tag: "Priority"
   },
   {
-    title: "Sea Freight",
-    description: "High-capacity ocean transport for global enterprise scale.",
-    icon: <Ship className="text-accent" size={32} />,
-    tag: "Global Range"
+    title: "Maritime Strategy",
+    description: "High-capacity ocean transport for global enterprise scale and stability.",
+    icon: <Ship className="text-primary" size={24} />,
+    tag: "Global"
   },
   {
-    title: "Road Transport",
-    description: "Precision last-mile and long-haul trucking solutions.",
-    icon: <Truck className="text-accent" size={32} />,
-    tag: "Dynamic Routing"
+    title: "Overland Logistics",
+    description: "Precision last-mile solutions utilizing our autonomous electric fleet.",
+    icon: <Truck className="text-primary" size={24} />,
+    tag: "Precision"
   },
   {
-    title: "Warehousing",
-    description: "Smart storage and automated inventory management hubs.",
-    icon: <Warehouse className="text-accent" size={32} />,
-    tag: "Secured Nodes"
+    title: "Vault Storage",
+    description: "Climate-controlled, secure warehousing for high-value enterprise assets.",
+    icon: <Warehouse className="text-primary" size={24} />,
+    tag: "Secured"
   },
   {
-    title: "Supply Chain",
-    description: "AI-optimized end-to-end logistics architecture.",
-    icon: <Box className="text-accent" size={32} />,
-    tag: "Optimized"
+    title: "Supply Architecture",
+    description: "End-to-end logistics design optimized by our proprietary GenAI.",
+    icon: <Box className="text-primary" size={24} />,
+    tag: "Intelligent"
   },
   {
-    title: "Customs Clearance",
-    description: "Expert navigation of international regulatory frameworks.",
-    icon: <FileText className="text-accent" size={32} />,
+    title: "Regulatory Counsel",
+    description: "Expert navigation of global customs and trade compliance frameworks.",
+    icon: <FileText className="text-primary" size={24} />,
     tag: "Compliant"
   },
   {
-    title: "Cargo Shield",
-    description: "Premium insurance and risk mitigation for valuable assets.",
-    icon: <ShieldCheck className="text-accent" size={32} />,
-    tag: "Insured"
+    title: "Asset Shield",
+    description: "Premium cargo insurance and bespoke risk mitigation strategies.",
+    icon: <ShieldCheck className="text-primary" size={24} />,
+    tag: "Protected"
   },
   {
     title: "Global Export",
-    description: "Strategic export solutions for complex global markets.",
-    icon: <Globe className="text-accent" size={32} />,
-    tag: "Omni-Channel"
+    description: "Strategic export solutions for the most complex international markets.",
+    icon: <Globe className="text-primary" size={24} />,
+    tag: "Limitless"
   }
 ];
 
 export function Services() {
   return (
-    <section id="services" className="py-24 px-6 bg-[#0B0C0E]">
+    <section id="services" className="py-32 px-6 bg-[#08090A] border-y border-white/5">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-2xl">
-            <h2 className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Precision Services</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-white leading-tight">
-              WORLD-CLASS <span className="text-gradient">LOGISTICS</span><br />
-              ENGINEERED FOR EXCELLENCE.
-            </h3>
-          </div>
-          <p className="text-muted-foreground text-lg max-w-md">
-            Custom-tailored logistics solutions designed to handle the most demanding global supply chain requirements.
+        <div className="text-center mb-24 reveal-on-scroll">
+          <div className="text-primary text-[10px] uppercase tracking-[0.4em] mb-6">Our Capabilities</div>
+          <h2 className="text-5xl md:text-7xl font-serif text-white mb-8">
+            World-class <span className="text-primary italic">Excellence.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto leading-relaxed">
+            Meticulously engineered solutions designed to navigate the intricate complexities of modern global trade.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5">
           {services.map((service, idx) => (
             <div 
               key={idx}
-              className="group relative glass-morphism p-8 rounded-2xl hover:border-accent/40 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group bg-background p-12 hover:bg-primary/[0.01] transition-all duration-700 reveal-on-scroll"
+              style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              {/* Card Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="mb-10 w-12 h-12 flex items-center justify-center border border-primary/20 group-hover:border-primary/60 transition-colors">
+                {service.icon}
+              </div>
               
-              <div className="relative z-10">
-                <div className="mb-6 p-3 w-fit rounded-xl bg-accent/10 border border-accent/20 group-hover:scale-110 transition-transform duration-500">
-                  {service.icon}
-                </div>
-                
-                <span className="text-[10px] text-accent font-bold uppercase tracking-widest mb-2 block">
-                  {service.tag}
-                </span>
-                
-                <h4 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">
-                  {service.title}
-                </h4>
-                
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                  {service.description}
-                </p>
+              <div className="text-[9px] text-primary uppercase tracking-[0.3em] font-bold mb-4">
+                {service.tag}
+              </div>
+              
+              <h4 className="text-2xl font-serif text-white mb-4 group-hover:text-primary transition-colors">
+                {service.title}
+              </h4>
+              
+              <p className="text-muted-foreground text-sm font-light leading-relaxed mb-8 h-12 overflow-hidden">
+                {service.description}
+              </p>
 
-                <div className="flex items-center text-xs font-bold text-accent group-hover:translate-x-2 transition-transform">
-                  EXPLORE CAPABILITIES <div className="ml-2 w-4 h-px bg-accent" />
-                </div>
+              <div className="flex items-center text-[10px] uppercase tracking-widest font-bold text-white/40 group-hover:text-primary transition-all group-hover:translate-x-2">
+                Learn More <div className="ml-3 w-8 h-px bg-current" />
               </div>
             </div>
           ))}
