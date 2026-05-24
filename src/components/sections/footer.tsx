@@ -1,8 +1,7 @@
-
 "use client";
 
 import React from 'react';
-import { Globe, Mail, Phone, MapPin, Instagram, Linkedin, Twitter, ShieldCheck, Plane, Ship, Truck } from 'lucide-react';
+import { Mail, Phone, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -10,24 +9,14 @@ export function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
           <div className="space-y-10">
-            {/* Integrated Footer Logo */}
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 border border-foreground/10 flex flex-col items-center justify-center p-1 bg-foreground/5">
-                <Globe className="text-foreground mb-1" size={18} />
-                <div className="flex gap-1 text-foreground/30">
-                  <Plane size={8} />
-                  <Ship size={8} />
-                  <Truck size={8} />
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-black tracking-tighter text-white uppercase leading-none">
-                  ZN <span className="text-white/40">SYNERGIES</span>
-                </span>
-                <span className="text-[7px] font-bold tracking-[0.4em] text-white/20 uppercase mt-1">
-                  FIATA Certified
-                </span>
-              </div>
+            {/* Simplified Typographic Footer Logo */}
+            <div className="flex flex-col">
+              <span className="text-2xl font-black tracking-tighter text-white uppercase leading-none">
+                ZN <span className="text-white/40">SYNERGIES</span>
+              </span>
+              <span className="text-[10px] font-bold tracking-[0.4em] text-white/20 uppercase mt-2">
+                Logistics Excellence
+              </span>
             </div>
             <p className="text-muted-foreground text-sm font-light leading-relaxed tracking-wide">
               Reliable logistics solutions built for modern business transportation needs. Orchestrating movement with cinematic precision.
@@ -42,7 +31,6 @@ export function Footer() {
           <div>
             <h4 className="text-foreground/40 text-[10px] uppercase tracking-[0.3em] font-bold mb-10">Governance</h4>
             <ul className="space-y-4 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              <li><a href="#" className="hover:text-white transition-colors">FIATA Certification</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Strategic Sourcing</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Global Compliance</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Risk Mitigation</a></li>
