@@ -12,7 +12,7 @@ export function ChatBot() {
   const [messages, setMessages] = useState<{ role: 'user' | 'model', content: string }[]>([
     { 
       role: 'model', 
-      content: `👋 Welcome to ZN Synergies\n\n📦 Looking for trusted logistics support?\n\nWe specialize in:\n• Air Freight\n• Sea Freight\n• Road Transport\n• Warehousing\n• Customs Clearance\n• Express Cargo Delivery\n\nLet’s simplify your shipping operations.\n🚚 Reliable Logistics. Smarter Deliveries.\n\nFrom air freight to warehousing, we help businesses move cargo safely and efficiently with professional logistics support and on-time delivery services.\n\nHow can we help you today?\n• Get a Freight Quote\n• Explore Our Services\n• Talk to Logistics Expert\n• Schedule a Pickup\n• Business Shipping Support`
+      content: "👋 Welcome to ZN Synergies\n\nWe provide fast, secure, and reliable logistics solutions for businesses across domestic and international markets.\n\nHow can we help you today?"
     }
   ]);
   const [input, setInput] = useState('');
