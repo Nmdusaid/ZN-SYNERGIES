@@ -1,41 +1,41 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { MapPin, Phone, ArrowUpRight, Globe } from 'lucide-react';
+import { Globe, MapPin, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const offices = [
   {
     city: "Delhi",
-    address: "Aerocity Corporate Hub, Level 12",
     fullAddress: "Aerocity, Indira Gandhi International Airport, New Delhi, Delhi 110037",
-    phone: "+91 11 4000 0000",
     type: "National Capital Hub",
-    angle: "45deg",
+    orbitScale: "scale-[0.4]",
+    angle: 45,
+    delay: "0s"
   },
   {
     city: "Mumbai",
-    address: "BKC Financial Centre, Tower A",
     fullAddress: "Bandra Kurla Complex, Mumbai, Maharashtra 400051",
-    phone: "+91 22 6000 0000",
     type: "Financial Terminal",
-    angle: "135deg",
+    orbitScale: "scale-[0.6]",
+    angle: 135,
+    delay: "2s"
   },
   {
     city: "Bangalore",
-    address: "Tech Corridor, Outer Ring Road",
     fullAddress: "Outer Ring Road, Bellandur, Bengaluru, Karnataka 560103",
-    phone: "+91 80 2000 0000",
     type: "Technology Hub",
-    angle: "225deg",
+    orbitScale: "scale-[0.8]",
+    angle: 225,
+    delay: "4s"
   },
   {
     city: "Chennai",
-    address: "Maritime Plaza, Old Mahabalipuram Rd",
     fullAddress: "OMR, Karapakkam, Chennai, Tamil Nadu 600097",
-    phone: "+91 44 3000 0000",
     type: "Maritime Strategy Hub",
-    angle: "315deg",
+    orbitScale: "scale-[1.0]",
+    angle: 315,
+    delay: "6s"
   }
 ];
 
@@ -50,7 +50,7 @@ export function Locations() {
   const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
-    const generatedStars = [...Array(40)].map(() => ({
+    const generatedStars = [...Array(60)].map(() => ({
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
       delay: `${Math.random() * 5}s`,
@@ -64,9 +64,9 @@ export function Locations() {
   };
 
   return (
-    <section id="contact" className="py-48 px-6 bg-black border-t border-white/5 overflow-hidden relative">
+    <section id="contact" className="py-48 px-6 bg-black border-t border-white/5 overflow-hidden relative min-h-screen flex flex-col items-center justify-center">
       {/* Background Stars */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
+      <div className="absolute inset-0 pointer-events-none opacity-30">
         {stars.map((star, i) => (
           <div 
             key={i} 
@@ -81,77 +81,76 @@ export function Locations() {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-32 gap-12">
-          <div className="reveal-on-scroll">
-            <div className="text-white/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Strategic Network</div>
-            <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">
-              INDIAN<br />
-              <span className="text-white/40">CITADELS.</span>
-            </h2>
-          </div>
-          <p className="text-white/40 text-xl font-light max-w-sm reveal-on-scroll">
-            A specialized logistics universe connecting the core economic hubs of the subcontinent through separate, high-velocity orbital paths.
+      <div className="max-w-7xl mx-auto relative z-10 w-full">
+        <div className="text-center mb-24 reveal-on-scroll">
+          <div className="text-white/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Global Infrastructure</div>
+          <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none mb-10">
+            STRATEGIC<br />
+            <span className="text-white/40">GALAXY.</span>
+          </h2>
+          <p className="text-white/30 text-sm font-light tracking-widest max-w-md mx-auto uppercase">
+            Click any orbital node to establish direct geolocation coordinates.
           </p>
         </div>
 
-        {/* Separate Galaxy Hubs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-32">
-          {offices.map((office, idx) => (
-            <div key={idx} className="flex flex-col items-center reveal-on-scroll" style={{ transitionDelay: `${idx * 100}ms` }}>
-              {/* Individual Galaxy Circle */}
+        {/* Single Galaxy System */}
+        <div className="relative w-full aspect-square max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
+          
+          {/* Central Hub Core */}
+          <div className="relative z-30 w-16 h-16 flex items-center justify-center">
+            <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-10" />
+            <div className="absolute inset-0 bg-white rounded-full blur-md opacity-20" />
+            <div className="w-4 h-4 bg-white rounded-full shadow-[0_0_30px_rgba(255,255,255,0.8)] z-10" />
+          </div>
+
+          {/* Concentric Orbits */}
+          {[0.4, 0.6, 0.8, 1.0].map((scale, i) => (
+            <div 
+              key={i}
+              className="absolute inset-0 border border-white/5 rounded-full pointer-events-none"
+              style={{ transform: `scale(${scale})` }}
+            />
+          ))}
+
+          {/* Location Nodes */}
+          {offices.map((office, idx) => {
+            // Convert angle to X and Y coordinates on a circle
+            const radius = 50 * (0.4 + idx * 0.2); // Percentage radius based on orbit index
+            const x = Math.cos((office.angle * Math.PI) / 180) * radius;
+            const y = Math.sin((office.angle * Math.PI) / 180) * radius;
+
+            return (
               <div 
-                className="relative w-full aspect-square flex items-center justify-center mb-12 group cursor-pointer"
+                key={idx}
+                className="absolute z-40 group cursor-pointer"
+                style={{ 
+                  left: `calc(50% + ${x}%)`, 
+                  top: `calc(50% + ${y}%)`,
+                  transform: 'translate(-50%, -50%)'
+                }}
                 onClick={() => openMap(office.fullAddress)}
               >
-                {/* Central Core */}
-                <div className="relative z-20 w-3 h-3 bg-white rounded-full shadow-[0_0_25px_white]">
+                {/* Node visual */}
+                <div className="relative">
+                  <div className="w-3 h-3 bg-white rounded-full shadow-[0_0_15px_white] transition-transform duration-500 group-hover:scale-150" />
                   <div className="absolute inset-0 w-full h-full bg-white rounded-full animate-ping opacity-20" />
-                </div>
-
-                {/* Single Orbit Line */}
-                <div className="absolute inset-8 border border-white/10 rounded-full group-hover:border-white/30 transition-colors duration-700">
-                  {/* Rotating Hub Node */}
-                  <div 
-                    className="absolute w-full h-full animate-[spin_10s_linear_infinite]"
-                    style={{ animationDuration: `${12 + idx * 2}s` }}
-                  >
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                      <div className="w-4 h-4 bg-white rounded-full shadow-[0_0_15px_white] scale-75 group-hover:scale-100 transition-transform duration-500" />
-                      <div className="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 whitespace-nowrap bg-white text-black text-[8px] font-black uppercase tracking-[0.2em] px-2 py-1 flex items-center gap-1">
-                        {office.city}
-                      </div>
+                  
+                  {/* Label on Hover */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 whitespace-nowrap">
+                    <div className="bg-white text-black px-4 py-2 flex flex-col items-center">
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em]">{office.city}</span>
+                      <span className="text-[8px] font-bold text-black/50 uppercase tracking-[0.1em]">{office.type}</span>
                     </div>
-                  </div>
-                </div>
-
-                {/* Background Grid */}
-                <div className="absolute inset-0 pointer-events-none opacity-5 group-hover:opacity-10 transition-opacity" 
-                     style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-              </div>
-
-              {/* Office Metadata */}
-              <div className="w-full p-8 border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all group cursor-pointer" onClick={() => openMap(office.fullAddress)}>
-                <div className="flex justify-between items-start mb-10">
-                  <div className="text-[9px] uppercase tracking-[0.3em] text-white/30 font-bold">{office.type}</div>
-                  <ArrowUpRight className="text-white/20 group-hover:text-white transition-colors" size={18} />
-                </div>
-                
-                <h3 className="text-3xl font-black text-white mb-6 uppercase tracking-tighter">{office.city}</h3>
-                
-                <div className="space-y-4 text-xs font-light text-white/30 group-hover:text-white/50 transition-colors">
-                  <div className="flex gap-4">
-                    <MapPin size={14} className="text-white shrink-0" />
-                    <span className="line-clamp-1">{office.address}</span>
-                  </div>
-                  <div className="flex gap-4">
-                    <Phone size={14} className="text-white shrink-0" />
-                    <span>{office.phone}</span>
+                    <div className="w-px h-4 bg-white mx-auto -mt-1" />
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
+
+          {/* Aesthetic Grid Overlay */}
+          <div className="absolute inset-0 pointer-events-none opacity-[0.03]" 
+               style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         </div>
       </div>
     </section>
