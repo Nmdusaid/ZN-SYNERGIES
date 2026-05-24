@@ -1,7 +1,7 @@
 "use client";
 
-import React from 'react';
-import { MapPin, Phone, Mail, ArrowUpRight, Globe } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MapPin, Phone, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const offices = [
@@ -43,7 +43,26 @@ const offices = [
   }
 ];
 
+type Star = {
+  top: string;
+  left: string;
+  delay: string;
+  duration: string;
+};
+
 export function Locations() {
+  const [stars, setStars] = useState<Star[]>([]);
+
+  useEffect(() => {
+    const generatedStars = [...Array(50)].map(() => ({
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      delay: `${Math.random() * 5}s`,
+      duration: `${2 + Math.random() * 4}s`,
+    }));
+    setStars(generatedStars);
+  }, []);
+
   const openMap = (address: string) => {
     window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`, '_blank');
   };
@@ -52,15 +71,15 @@ export function Locations() {
     <section id="contact" className="py-48 px-6 bg-black border-t border-white/5 overflow-hidden relative">
       {/* Background Stars */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
-        {[...Array(50)].map((_, i) => (
+        {stars.map((star, i) => (
           <div 
             key={i} 
             className="absolute w-px h-px bg-white rounded-full animate-pulse"
             style={{ 
-              top: `${Math.random() * 100}%`, 
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${2 + Math.random() * 4}s`
+              top: star.top, 
+              left: star.left,
+              animationDelay: star.delay,
+              animationDuration: star.duration
             }}
           />
         ))}
