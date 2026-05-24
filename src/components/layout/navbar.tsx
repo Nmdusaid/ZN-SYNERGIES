@@ -1,9 +1,9 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Menu, X, Globe } from 'lucide-react';
-import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
@@ -25,9 +25,7 @@ export function Navbar() {
     { name: 'Contact Us', href: '#contact' },
   ];
 
-  const handleQuoteClick = () => {
-    window.location.href = "mailto:ops@zn-synergies.com?subject=Enterprise Quote Inquiry";
-  };
+  const quoteMailto = "mailto:ops@zn-synergies.com?subject=Enterprise Quote Inquiry&body=Dear ZN Synergies Team,%0D%0A%0D%0AI would like to request a quote for the following logistics operations:";
 
   return (
     <nav 
@@ -63,12 +61,12 @@ export function Navbar() {
         {/* Desktop Controls */}
         <div className="hidden md:flex items-center gap-6">
           <ThemeToggle />
-          <Button 
-            className="bg-foreground text-background hover:bg-foreground/90 text-[11px] uppercase tracking-[0.3em] font-black px-10 h-14 rounded-none"
-            onClick={handleQuoteClick}
+          <a 
+            href={quoteMailto}
+            className="bg-foreground text-background hover:bg-foreground/90 text-[11px] uppercase tracking-[0.3em] font-black px-10 h-14 rounded-none flex items-center justify-center transition-colors no-underline"
           >
             Get a Quote
-          </Button>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -96,26 +94,24 @@ export function Navbar() {
           <X size={32} />
         </button>
 
-        <div className="flex flex-col items-center gap-10">
+        <div className="flex flex-col items-center gap-10 w-full px-12">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-4xl font-black uppercase tracking-tighter hover:text-foreground/50 transition-colors"
+              className="text-4xl font-black uppercase tracking-tighter hover:text-foreground/50 transition-colors no-underline"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
             </a>
           ))}
-          <Button 
-            className="mt-12 bg-foreground text-background text-lg py-10 px-16 uppercase tracking-[0.3em] font-black rounded-none"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              handleQuoteClick();
-            }}
+          <a 
+            href={quoteMailto}
+            className="mt-12 bg-foreground text-background text-lg py-10 px-16 uppercase tracking-[0.3em] font-black rounded-none flex items-center justify-center transition-colors w-full no-underline"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             Get a Quote
-          </Button>
+          </a>
         </div>
       </div>
     </nav>
