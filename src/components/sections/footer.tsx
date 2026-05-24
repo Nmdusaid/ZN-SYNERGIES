@@ -19,7 +19,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-muted-foreground text-sm font-light leading-relaxed tracking-wide">
-              Orchestrating the movement of global enterprise with cinematic precision and intelligence. Founded by Siddique Hussain Hashimi.
+              Reliable logistics solutions built for modern business transportation needs. Orchestrating movement with cinematic precision.
             </p>
             <div className="flex items-center gap-2 text-primary font-bold text-[10px] tracking-[0.3em] uppercase">
               <ShieldCheck size={14} /> FIATA Certified

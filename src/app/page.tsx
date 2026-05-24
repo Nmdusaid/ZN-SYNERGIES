@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect } from 'react';
@@ -11,6 +12,7 @@ import { Methodology } from '@/components/sections/methodology';
 import { EnterpriseTiers } from '@/components/sections/tiers';
 import { FleetShowcase } from '@/components/sections/fleet';
 import { Locations } from '@/components/sections/locations';
+import { CallToAction } from '@/components/sections/cta';
 import { Footer } from '@/components/sections/footer';
 import { ChatBot } from '@/components/features/chat-bot';
 
@@ -47,6 +49,7 @@ export default function Home() {
       <EnterpriseTiers />
       <FleetShowcase />
       <Locations />
+      <CallToAction />
       <Footer />
       <ChatBot />
     </main>
