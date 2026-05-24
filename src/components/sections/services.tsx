@@ -1,64 +1,73 @@
 "use client";
 
 import React from 'react';
-import { Plane, Ship, Truck, Box, ShieldCheck, FileText, Globe, Warehouse } from 'lucide-react';
+import { Plane, Ship, Truck, Box, ShieldCheck, FileText, Globe, Warehouse, ArrowRight, Anchor, Navigation } from 'lucide-react';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from "@/lib/utils";
 
 const services = [
   {
-    title: "Aviation Express",
-    description: "Elite air freight network connecting global capitals within 24 hours.",
+    title: "Aviation Express (Air Cargo)",
+    description: "High-velocity air freight connecting 180+ global hubs. Utilizing next-gen cargo bays for sensitive enterprise assets.",
     icon: <Plane className="text-white" size={24} />,
-    tag: "Priority"
+    tag: "AERIAL",
+    id: "fleet-plane"
   },
   {
-    title: "Maritime Strategy",
-    description: "High-capacity ocean transport for global enterprise scale and stability.",
+    title: "Maritime Strategy (Sea Cargo)",
+    description: "Deep-water logistics with 24k TEU capacity. Hydrogen-powered vessels ensuring stable, high-volume global transit.",
     icon: <Ship className="text-white" size={24} />,
-    tag: "Global"
+    tag: "OCEANIC",
+    id: "fleet-ship"
   },
   {
-    title: "Overland Logistics",
-    description: "Precision last-mile solutions utilizing our autonomous electric fleet.",
+    title: "Overland Logistics (Roadways)",
+    description: "Precision last-mile solutions utilizing our autonomous electric fleet. Optimized for urban and long-haul delivery.",
     icon: <Truck className="text-white" size={24} />,
-    tag: "Precision"
+    tag: "TERRESTRIAL",
+    id: "fleet-truck"
   },
   {
-    title: "Vault Storage",
-    description: "Climate-controlled, secure warehousing for high-value enterprise assets.",
+    title: "Global Export Solutions",
+    description: "Strategic export protocols for complex international markets, ensuring seamless cross-border asset movement.",
+    icon: <Globe className="text-white" size={24} />,
+    tag: "OUTBOUND"
+  },
+  {
+    title: "Global Import Protocol",
+    description: "End-to-end import management with real-time clearance and local integration for global enterprises.",
+    icon: <Navigation className="text-white" size={24} />,
+    tag: "INBOUND"
+  },
+  {
+    title: "Vault Warehousing",
+    description: "High-security, climate-controlled storage architectures designed for high-value inventory and asset preservation.",
     icon: <Warehouse className="text-white" size={24} />,
-    tag: "Secured"
+    tag: "SECURED"
+  },
+  {
+    title: "Customs & Compliance",
+    description: "Expert navigation of global regulatory frameworks, trade laws, and international compliance standards.",
+    icon: <FileText className="text-white" size={24} />,
+    tag: "REGULATORY"
   },
   {
     title: "Supply Architecture",
-    description: "End-to-end logistics design optimized by our proprietary GenAI.",
+    description: "AI-optimized supply chain design, reducing latency and maximizing operational throughput globally.",
     icon: <Box className="text-white" size={24} />,
-    tag: "Intelligent"
-  },
-  {
-    title: "Regulatory Counsel",
-    description: "Expert navigation of global customs and trade compliance frameworks.",
-    icon: <FileText className="text-white" size={24} />,
-    tag: "Compliant"
-  },
-  {
-    title: "Asset Shield",
-    description: "Premium cargo insurance and bespoke risk mitigation strategies.",
-    icon: <ShieldCheck className="text-white" size={24} />,
-    tag: "Protected"
-  },
-  {
-    title: "Global Export",
-    description: "Strategic export solutions for the most complex international markets.",
-    icon: <Globe className="text-white" size={24} />,
-    tag: "Limitless"
+    tag: "INTELLIGENT"
   }
 ];
 
 export function Services() {
+  const truckImg = PlaceHolderImages.find(img => img.id === 'fleet-truck');
+  const shipImg = PlaceHolderImages.find(img => img.id === 'fleet-ship');
+  const planeImg = PlaceHolderImages.find(img => img.id === 'fleet-plane');
+
   return (
     <section id="services" className="py-48 px-6 bg-[#08090A] border-y border-white/5 relative overflow-hidden">
-      {/* Universe/Planet Object Background */}
+      {/* Background Universe/Planet Object */}
       <div className="absolute -right-40 top-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none opacity-20">
         <div className="absolute inset-0 border border-white/10 rounded-full" />
         <div className="absolute inset-20 border border-white/5 rounded-full animate-spin [animation-duration:60s]" />
@@ -69,17 +78,47 @@ export function Services() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-24 reveal-on-scroll">
-          <div className="text-white/40 text-[10px] uppercase tracking-[0.4em] mb-6 font-bold">Our Capabilities</div>
+        <div className="mb-32 reveal-on-scroll">
+          <div className="text-white/40 text-[10px] uppercase tracking-[0.4em] mb-6 font-bold">Logistics Capabilities</div>
           <h2 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase leading-none">
-            WORLD-CLASS<br />
-            <span className="text-white/30">EXCELLENCE.</span>
+            INTEGRATED<br />
+            <span className="text-white/30">OPERATIONS.</span>
           </h2>
-          <p className="text-white/50 text-xl font-light max-w-2xl mx-auto leading-relaxed">
-            Meticulously engineered solutions designed to navigate the intricate complexities of modern global trade.
+          <p className="text-white/50 text-xl font-light max-w-2xl leading-relaxed">
+            From deep-water strategy to autonomous roadways, ZN Synergies provides an exhaustive framework for global enterprise movement.
           </p>
         </div>
 
+        {/* Fleet Visual Showcase */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32 reveal-on-scroll">
+          {[
+            { img: planeImg, title: "Air Cargo Hub", desc: "Aviation Infrastructure", icon: <Plane size={16} />, anim: "animate-plane" },
+            { img: shipImg, title: "Oceanic Strategy", desc: "Maritime Grid", icon: <Ship size={16} />, anim: "animate-float" },
+            { img: truckImg, title: "Terrestrial Roadways", desc: "Autonomous Fleet", icon: <Truck size={16} />, anim: "animate-drift" }
+          ].map((item, idx) => (
+            <div key={idx} className="group relative aspect-[4/5] bg-white/5 border border-white/10 overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+              <div className={cn("absolute inset-0 transition-transform duration-1000 group-hover:scale-110", item.anim)}>
+                <Image 
+                  src={item.img?.imageUrl || "https://picsum.photos/seed/zn-service/800/1000"} 
+                  alt={item.title} 
+                  fill 
+                  className="object-cover opacity-60"
+                  data-ai-hint="logistics infrastructure"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-8 space-y-4">
+                <div className="flex items-center gap-3 text-white/40">
+                  {item.icon}
+                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold">{item.desc}</span>
+                </div>
+                <h4 className="text-3xl font-black text-white uppercase tracking-tighter">{item.title}</h4>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Detailed Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5">
           {services.map((service, idx) => (
             <div 
@@ -95,16 +134,16 @@ export function Services() {
                 {service.tag}
               </div>
               
-              <h4 className="text-2xl font-black text-white mb-4 uppercase tracking-tighter">
+              <h4 className="text-2xl font-black text-white mb-4 uppercase tracking-tighter leading-tight">
                 {service.title}
               </h4>
               
-              <p className="text-white/40 text-sm font-light leading-relaxed mb-8 h-12 overflow-hidden">
+              <p className="text-white/40 text-sm font-light leading-relaxed mb-8">
                 {service.description}
               </p>
 
               <div className="flex items-center text-[10px] uppercase tracking-widest font-black text-white/20 group-hover:text-white transition-all group-hover:translate-x-2 cursor-pointer">
-                Learn More <div className="ml-3 w-8 h-px bg-current" />
+                Protocol Details <ArrowRight className="ml-3" size={12} />
               </div>
             </div>
           ))}
