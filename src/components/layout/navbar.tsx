@@ -1,8 +1,9 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Plane, Ship, Truck } from 'lucide-react';
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
@@ -34,13 +35,25 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="w-10 h-10 border border-foreground/20 flex items-center justify-center transition-all duration-500 group-hover:border-foreground">
-            <Globe className="text-foreground" size={18} />
+        {/* Enhanced Multi-Symbol Logo */}
+        <div className="flex items-center gap-5 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div className="relative w-16 h-16 border border-foreground/20 flex flex-col items-center justify-center p-2 transition-all duration-500 group-hover:border-foreground bg-background/5">
+            <Globe className="text-foreground mb-1 group-hover:scale-110 transition-transform duration-500" size={22} />
+            <div className="flex items-center gap-1.5 text-foreground/40 group-hover:text-foreground transition-colors mb-1">
+              <Plane size={10} />
+              <Ship size={10} />
+              <Truck size={10} />
+            </div>
+            <span className="text-[7px] font-black tracking-[0.3em] text-foreground/30 uppercase group-hover:text-foreground transition-colors">FIATA</span>
           </div>
-          <span className="text-xl md:text-2xl font-black tracking-tighter text-foreground uppercase">
-            ZN <span className="text-foreground/40">SYNERGIES</span>
-          </span>
+          <div className="flex flex-col">
+            <span className="text-2xl md:text-3xl font-black tracking-tighter text-foreground uppercase leading-[0.8]">
+              ZN <span className="text-foreground/40">SYNERGIES</span>
+            </span>
+            <span className="text-[10px] font-bold tracking-[0.4em] text-foreground/20 uppercase mt-2">
+              Global Logistics Excellence
+            </span>
+          </div>
         </div>
 
         {/* Desktop Links */}
