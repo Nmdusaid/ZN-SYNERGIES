@@ -36,7 +36,7 @@ export function Navbar() {
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
         {/* Global Logo Identity */}
         <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="w-12 h-12 border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-colors duration-500">
+          <div className="w-12 h-12 border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-colors duration-500 bg-foreground/5">
             <Globe size={24} className="text-foreground animate-pulse-slow" />
           </div>
           <div className="flex flex-col">

@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -90,7 +89,7 @@ export function Services() {
           </p>
         </div>
 
-        {/* Fleet Visual Showcase */}
+        {/* Fleet Visual Showcase with Specific Transport Animations */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32 reveal-on-scroll">
           {[
             { img: planeImg, title: "Air Cargo Hub", desc: "Aviation Infrastructure", icon: <Plane size={16} />, anim: "animate-plane" },
@@ -108,9 +107,17 @@ export function Services() {
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+              
+              {/* Restored Global Logo Identity Overlay */}
+              <div className="absolute top-8 right-8 w-10 h-10 border border-foreground/20 flex items-center justify-center bg-background/50 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <Globe size={18} className="text-foreground animate-pulse-slow" />
+              </div>
+
               <div className="absolute bottom-0 left-0 p-8 space-y-4">
                 <div className="flex items-center gap-3 text-foreground/40">
-                  {item.icon}
+                  <span className={cn(item.anim, "flex items-center justify-center")}>
+                    {item.icon}
+                  </span>
                   <span className="text-[10px] uppercase tracking-[0.3em] font-bold">{item.desc}</span>
                 </div>
                 <h4 className="text-3xl font-black text-foreground uppercase tracking-tighter">{item.title}</h4>
@@ -127,8 +134,10 @@ export function Services() {
               className="group bg-background p-12 hover:bg-foreground/[0.02] transition-all duration-700 reveal-on-scroll"
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              <div className="mb-10 w-12 h-12 flex items-center justify-center border border-foreground/20 group-hover:border-foreground transition-colors">
-                {service.icon}
+              <div className="mb-10 w-12 h-12 flex items-center justify-center border border-foreground/20 group-hover:border-foreground transition-colors overflow-hidden">
+                <div className="transition-transform duration-500 group-hover:scale-110">
+                  {service.icon}
+                </div>
               </div>
               
               <div className="text-[9px] text-foreground/40 uppercase tracking-[0.3em] font-bold mb-4">
