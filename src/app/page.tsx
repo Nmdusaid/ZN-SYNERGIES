@@ -9,7 +9,6 @@ import { Locations } from '@/components/sections/locations';
 import { Methodology } from '@/components/sections/methodology';
 import { EnterpriseTiers } from '@/components/sections/tiers';
 import { FleetShowcase } from '@/components/sections/fleet';
-import { Tracker } from '@/components/sections/tracker';
 import { Footer } from '@/components/sections/footer';
 import { ChatBot } from '@/components/features/chat-bot';
 
@@ -38,7 +37,6 @@ export default function Home() {
     <main className="relative bg-background min-h-screen">
       <Navbar />
       <Hero />
-      <Tracker />
       <AboutUs />
       <Services />
       <Methodology />
