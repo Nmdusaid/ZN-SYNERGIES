@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,8 +22,8 @@ import {
 } from 'lucide-react';
 import { fetchLiveShipment, type ShipmentData } from '@/lib/actions/shipment-actions';
 import { cn } from '@/lib/utils';
-import { doc, setDoc, serverTimestamp, Firestore } from 'firebase/firestore';
-import { useFirestore, useDoc } from '@/firebase';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { useFirestore, useDoc, useMemoFirebase } from '@/firebase';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError, type SecurityRuleContext } from '@/firebase/errors';
 
@@ -34,10 +34,14 @@ export function Tracker() {
   
   const firestore = useFirestore();
   
-  // Use real-time hook to listen to the shipment document in Firestore
-  const { data: shipment, loading: loadingDoc } = useDoc<ShipmentData>(
-    activeAwb ? doc(firestore!, 'shipments', activeAwb.toUpperCase()) : null
-  );
+  // Stabilize the document reference to prevent infinite render loops
+  const shipmentRef = useMemoFirebase(() => {
+    if (!firestore || !activeAwb) return null;
+    return doc(firestore, 'shipments', activeAwb.toUpperCase());
+  }, [firestore, activeAwb]);
+
+  // Use real-time hook to listen to the stabilized shipment document
+  const { data: shipment } = useDoc<ShipmentData>(shipmentRef);
 
   const handleTrack = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,22 +51,21 @@ export function Tracker() {
     const normalizedAwb = awbInput.trim().toUpperCase();
 
     try {
-      // 1. Fetch live data from secure Server Action (Proxy to external APIs)
+      // 1. Fetch live data from secure Server Action
       const freshData = await fetchLiveShipment(normalizedAwb);
       
       if (freshData && firestore) {
-        // 2. Synchronize with Firestore (Optimistic Update pattern)
+        // 2. Synchronize with Firestore
         const docRef = doc(firestore, 'shipments', normalizedAwb);
         
-        // Non-blocking write to Firestore
         setDoc(docRef, {
           ...freshData,
           updatedAt: serverTimestamp()
         }, { merge: true })
-        .catch(async (error) => {
+        .catch(async () => {
           const permissionError = new FirestorePermissionError({
             path: docRef.path,
-            operation: 'update',
+            operation: 'write',
             requestResourceData: freshData,
           } satisfies SecurityRuleContext);
           errorEmitter.emit('permission-error', permissionError);
@@ -70,7 +73,6 @@ export function Tracker() {
 
         setActiveAwb(normalizedAwb);
       } else {
-        // Handle not found
         setActiveAwb(null);
       }
     } catch (error) {
@@ -82,7 +84,6 @@ export function Tracker() {
 
   return (
     <section id="tracking" className="py-48 px-6 relative bg-background overflow-hidden border-b border-foreground/5">
-      {/* Background World Map Backdrop */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center">
          <svg viewBox="0 0 1000 500" className="w-[120%] h-auto text-foreground fill-current">
             <path d="M150,150 L160,140 L180,145 L200,130 L220,135 L240,120 L260,130 L280,125 L300,140 L320,150 L310,170 L290,180 L270,190 L250,200 L230,190 L210,185 L190,170 Z" />
