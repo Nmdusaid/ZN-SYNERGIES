@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useEffect } from 'react';
@@ -7,8 +6,8 @@ import { Hero } from '@/components/sections/hero';
 import { Services } from '@/components/sections/services';
 import { AboutUs } from '@/components/sections/about';
 import { Locations } from '@/components/sections/locations';
-import { Tracker } from '@/components/sections/tracker';
-import { FreightCalculator } from '@/components/sections/calculator';
+import { Methodology } from '@/components/sections/methodology';
+import { EnterpriseTiers } from '@/components/sections/tiers';
 import { FleetShowcase } from '@/components/sections/fleet';
 import { Footer } from '@/components/sections/footer';
 
@@ -39,8 +38,8 @@ export default function Home() {
       <Hero />
       <AboutUs />
       <Services />
-      <Tracker />
-      <FreightCalculator />
+      <Methodology />
+      <EnterpriseTiers />
       <Locations />
       <FleetShowcase />
       <Footer />
