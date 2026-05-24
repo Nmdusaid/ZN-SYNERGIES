@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -34,8 +35,8 @@ export function FleetShowcase() {
     <section id="fleet" className="py-32 px-6 relative bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-32 reveal-on-scroll">
-          <h2 className="text-white font-bold tracking-[0.5em] uppercase text-xs mb-6">Hardware & Infrastructure</h2>
-          <h3 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter">THE MODERN FLEET</h3>
+          <h2 className="text-white/30 font-bold tracking-[0.5em] uppercase text-xs mb-6">Hardware & Infrastructure</h2>
+          <h3 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-none">THE MODERN FLEET</h3>
           <div className="w-24 h-px bg-white/20 mx-auto" />
         </div>
 
@@ -51,7 +52,7 @@ export function FleetShowcase() {
                   <div className="absolute -inset-4 border border-white/5 group-hover:border-white/20 transition-colors duration-700" />
                   <div className={cn("relative h-full w-full overflow-hidden grayscale contrast-125", item.animationClass)}>
                     <Image 
-                      src={imageData?.imageUrl || "https://picsum.photos/seed/fleet/800/600"} 
+                      src={imageData?.imageUrl || `https://picsum.photos/seed/${item.id}/800/600`} 
                       alt={item.title}
                       fill
                       className="object-cover transition-transform duration-1000 group-hover:scale-110"

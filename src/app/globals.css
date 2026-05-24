@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,7 +36,7 @@
     @apply bg-background text-foreground font-sans antialiased selection:bg-white selection:text-black;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold tracking-tighter uppercase;
+    @apply font-sans font-black tracking-tighter uppercase;
   }
 }
 
@@ -63,9 +64,9 @@
 }
 
 @keyframes plane-drift {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(20px, -10px) scale(1.02); }
-  100% { transform: translate(0, 0) scale(1); }
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(30px, -15px) scale(1.05) rotate(-1deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
 }
 
 .animate-float {

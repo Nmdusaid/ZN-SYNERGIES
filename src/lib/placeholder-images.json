@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Futuristic logistics cargo port at night",
+      "imageUrl": "https://picsum.photos/seed/zn-hero/1920/1080",
+      "imageHint": "futuristic logistics"
+    },
+    {
+      "id": "fleet-truck",
+      "description": "Modern electric transport truck",
+      "imageUrl": "https://picsum.photos/seed/zn-truck/800/600",
+      "imageHint": "modern truck"
+    },
+    {
+      "id": "fleet-ship",
+      "description": "Autonomous cargo ship at sea",
+      "imageUrl": "https://picsum.photos/seed/zn-ship/800/600",
+      "imageHint": "cargo ship"
+    },
+    {
+      "id": "fleet-plane",
+      "description": "Air freight cargo aircraft",
+      "imageUrl": "https://picsum.photos/seed/zn-plane/800/600",
+      "imageHint": "cargo aircraft"
+    }
+  ]
 }
