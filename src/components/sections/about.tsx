@@ -16,17 +16,17 @@ export function AboutUs() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-32 items-center">
           <div className="reveal-on-scroll">
-            <div className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Our Foundation</div>
+            <div className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Our Foundation • FIATA Certified</div>
             <h2 className="text-6xl md:text-8xl font-black text-foreground mb-12 tracking-tighter leading-none">
               ABSOLUTE<br />
               <span className="text-foreground/40">INTEGRITY.</span>
             </h2>
             <div className="space-y-8 text-foreground/50 text-xl font-light leading-relaxed max-w-lg">
               <p>
-                Founded on the cold logic of operational excellence, ZN Synergies has evolved into a global benchmark for high-stakes logistics.
+                Under the strategic leadership of <span className="text-foreground font-bold">Siddique Hussain Hashimi</span>, ZN Synergies has evolved from a vision of operational excellence into a global benchmark for high-stakes logistics.
               </p>
               <p>
-                We operate in the shadows of global commerce, ensuring that your enterprise assets move with the silence and speed of light. No distractions. No compromises.
+                As a <span className="text-foreground font-bold">FIATA Certified</span> enterprise, we operate in the shadows of global commerce, ensuring that your enterprise assets move with the silence and speed of light. No distractions. No compromises.
               </p>
             </div>
             
@@ -51,7 +51,7 @@ export function AboutUs() {
             <div className="relative h-full w-full overflow-hidden grayscale contrast-150">
               <Image 
                 src="https://picsum.photos/seed/zn-about/1200/1200" 
-                alt="Professional Excellence" 
+                alt="Founder Vision" 
                 fill 
                 className="object-cover transition-all duration-1000 scale-110 hover:scale-100"
                 data-ai-hint="minimalist office"

@@ -2,7 +2,7 @@
 "use client";
 
 import React from 'react';
-import { Globe, Mail, Phone, MapPin, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Globe, Mail, Phone, MapPin, Instagram, Linkedin, Twitter, ShieldCheck } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -19,8 +19,11 @@ export function Footer() {
               </span>
             </div>
             <p className="text-muted-foreground text-sm font-light leading-relaxed tracking-wide">
-              Orchestrating the movement of global enterprise with cinematic precision and intelligence.
+              Orchestrating the movement of global enterprise with cinematic precision and intelligence. Founded by Siddique Hussain Hashimi.
             </p>
+            <div className="flex items-center gap-2 text-primary font-bold text-[10px] tracking-[0.3em] uppercase">
+              <ShieldCheck size={14} /> FIATA Certified
+            </div>
             <div className="flex gap-6">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin size={18} /></a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter size={18} /></a>
@@ -31,11 +34,11 @@ export function Footer() {
           <div>
             <h4 className="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-10">Governance</h4>
             <ul className="space-y-4 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              <li><a href="#" className="hover:text-white transition-colors">FIATA Certification</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Strategic Sourcing</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Global Compliance</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Risk Mitigation</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Sustainability</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Ethics Charter</a></li>
             </ul>
           </div>
 
