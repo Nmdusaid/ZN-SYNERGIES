@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -25,6 +24,10 @@ export function Navbar() {
     { name: 'About Us', href: '#about' },
     { name: 'Contact Us', href: '#contact' },
   ];
+
+  const handleQuoteClick = () => {
+    window.location.href = "mailto:ops@zn-synergies.com?subject=Enterprise Quote Inquiry";
+  };
 
   return (
     <nav 
@@ -62,10 +65,7 @@ export function Navbar() {
           <ThemeToggle />
           <Button 
             className="bg-foreground text-background hover:bg-foreground/90 text-[11px] uppercase tracking-[0.3em] font-black px-10 h-14 rounded-none"
-            onClick={() => {
-              const el = document.getElementById('contact');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={handleQuoteClick}
           >
             Get a Quote
           </Button>
@@ -111,8 +111,7 @@ export function Navbar() {
             className="mt-12 bg-foreground text-background text-lg py-10 px-16 uppercase tracking-[0.3em] font-black rounded-none"
             onClick={() => {
               setIsMobileMenuOpen(false);
-              const el = document.getElementById('contact');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              handleQuoteClick();
             }}
           >
             Get a Quote
