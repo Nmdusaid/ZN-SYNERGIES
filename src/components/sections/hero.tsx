@@ -1,29 +1,30 @@
+
 "use client";
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function Hero() {
-  const heroImage = PlaceHolderImages.find(img => img.id === 'hero-bg');
   const quoteMailto = "mailto:usaid6765@gmail.com?subject=Enterprise Inquiry&body=I would like to discuss a luxury logistics solution for my enterprise.";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
       <div className="absolute inset-0 z-0">
-        <Image 
-          src={heroImage?.imageUrl || "https://picsum.photos/seed/luxury-cargo/1920/1080"} 
-          alt="Hero Background" 
-          fill
-          className="object-cover opacity-20 grayscale contrast-150 scale-105"
-          priority
-          data-ai-hint="black and white logistics"
-        />
-        {/* Cinematic Particles Backdrop */}
+        {/* 4K Video Background: Cargo Port Operations */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale contrast-125"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-cargo-ship-entering-a-port-at-night-42610-large.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Cinematic Backdrop Overlays */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
-        <div className="absolute inset-0 opacity-10 bg-[url('https://picsum.photos/seed/stars/1920/1080')] bg-repeat" />
+        <div className="absolute inset-0 bg-background/40 backdrop-blur-[2px]" />
       </div>
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-12 w-full">

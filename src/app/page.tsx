@@ -9,6 +9,7 @@ import { AboutUs } from '@/components/sections/about';
 import { Industries } from '@/components/sections/industries';
 import { AnalyticsDashboard } from '@/components/sections/dashboard-preview';
 import { Methodology } from '@/components/sections/methodology';
+import { Sustainability } from '@/components/sections/sustainability';
 import { EnterpriseTiers } from '@/components/sections/tiers';
 import { FleetShowcase } from '@/components/sections/fleet';
 import { Locations } from '@/components/sections/locations';
@@ -46,6 +47,7 @@ export default function Home() {
       <Industries />
       <AnalyticsDashboard />
       <Methodology />
+      <Sustainability />
       <EnterpriseTiers />
       <FleetShowcase />
       <Locations />
