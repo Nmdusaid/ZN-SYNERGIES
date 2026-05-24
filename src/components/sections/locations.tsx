@@ -96,14 +96,15 @@ export function Locations() {
         {/* Single Galaxy System */}
         <div className="relative w-full aspect-square max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
           
-          {/* Central Hub Core */}
-          <div className="relative z-30 w-16 h-16 flex items-center justify-center">
-            <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-10" />
-            <div className="absolute inset-0 bg-white rounded-full blur-md opacity-20" />
-            <div className="w-4 h-4 bg-white rounded-full shadow-[0_0_30px_rgba(255,255,255,0.8)] z-10" />
+          {/* Central Hub Text - No Effects */}
+          <div className="relative z-30 flex flex-col items-center justify-center text-center">
+             <span className="text-2xl md:text-4xl font-black tracking-tighter text-white uppercase">
+              ZN <span className="text-white/40">SYNERGIES</span>
+            </span>
+            <div className="w-12 h-px bg-white/20 mt-4" />
           </div>
 
-          {/* Concentric Orbits */}
+          {/* Concentric Orbits - Stationary */}
           {[0.4, 0.6, 0.8, 1.0].map((scale, i) => (
             <div 
               key={i}
@@ -132,11 +133,10 @@ export function Locations() {
               >
                 {/* Node visual */}
                 <div className="relative">
-                  <div className="w-3 h-3 bg-white rounded-full shadow-[0_0_15px_white] transition-transform duration-500 group-hover:scale-150" />
-                  <div className="absolute inset-0 w-full h-full bg-white rounded-full animate-ping opacity-20" />
+                  <div className="w-3 h-3 bg-white rounded-full transition-transform duration-500 group-hover:scale-150" />
                   
-                  {/* Label on Hover */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 whitespace-nowrap">
+                  {/* Label - Always Visible */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 transition-all duration-500 whitespace-nowrap opacity-100">
                     <div className="bg-white text-black px-4 py-2 flex flex-col items-center">
                       <span className="text-[10px] font-black uppercase tracking-[0.2em]">{office.city}</span>
                       <span className="text-[8px] font-bold text-black/50 uppercase tracking-[0.1em]">{office.type}</span>
