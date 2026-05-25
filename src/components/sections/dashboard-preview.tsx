@@ -17,6 +17,7 @@ import {
   Legend
 } from 'recharts';
 import { TrendingUp, Globe, Activity, Zap, Star, ShieldCheck } from 'lucide-react';
+import { AnimatedCounter } from '@/components/ui/animated-counter';
 
 const growthData = [
   { year: '2019', revenue: 420, shipments: 2400 },
@@ -94,6 +95,7 @@ export function AnalyticsDashboard() {
                     fillOpacity={1} 
                     fill="url(#growthGradient)" 
                     strokeWidth={2}
+                    animationDuration={2500}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -131,6 +133,7 @@ export function AnalyticsDashboard() {
                     strokeWidth={3} 
                     dot={{ r: 4, fill: 'white', strokeWidth: 2 }} 
                     activeDot={{ r: 8 }}
+                    animationDuration={2500}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -140,14 +143,16 @@ export function AnalyticsDashboard() {
 
         <div className="grid md:grid-cols-3 gap-12 mt-12 reveal-on-scroll">
           {[
-            { label: 'Strategic Integrity', value: '99.9%', icon: <ShieldCheck size={20} />, trend: 'Verified' },
-            { label: 'Global Footprint', value: '180+', icon: <Globe size={20} />, trend: '+4 Markets' },
-            { label: 'AI Optimization', value: '32ms', icon: <Zap size={20} />, trend: 'Ultra-Low Latency' }
+            { label: 'Strategic Integrity', value: 99.9, suffix: '%', icon: <ShieldCheck size={20} />, trend: 'Verified' },
+            { label: 'Global Footprint', value: 180, suffix: '+', icon: <Globe size={20} />, trend: '+4 Markets' },
+            { label: 'AI Optimization', value: 32, suffix: 'ms', icon: <Zap size={20} />, trend: 'Ultra-Low Latency' }
           ].map((stat, i) => (
             <div key={i} className="p-10 border border-foreground/10 bg-foreground/5 glass-morphism flex items-center justify-between">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30 block mb-4">{stat.label}</span>
-                <div className="text-4xl font-black text-foreground tracking-tighter">{stat.value}</div>
+                <div className="text-4xl font-black text-foreground tracking-tighter">
+                  <AnimatedCounter end={stat.value} suffix={stat.suffix} duration={3000} />
+                </div>
               </div>
               <div className="text-right">
                  <div className="w-10 h-10 border border-foreground/20 flex items-center justify-center text-foreground/40 mb-4 ml-auto">
