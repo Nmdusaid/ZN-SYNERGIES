@@ -19,7 +19,7 @@ export function CallToAction() {
         <div className="flex flex-col items-center text-center reveal-on-scroll">
           <h2 className="text-[10px] uppercase tracking-[0.8em] font-black mb-16 opacity-40">Strategic Partnership Protocol</h2>
           
-          <h3 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-none max-w-5xl mb-24">
+          <h3 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-tight max-w-4xl mb-24">
             Partner with a <br />
             <span className="opacity-40">Logistics Team</span> <br />
             You Can Trust.
