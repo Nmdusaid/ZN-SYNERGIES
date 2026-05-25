@@ -6,6 +6,13 @@ import { Navbar } from '@/components/layout/navbar';
 import { Hero } from '@/components/sections/hero';
 import { Services } from '@/components/sections/services';
 import { AboutUs } from '@/components/sections/about';
+import { AnalyticsDashboard } from '@/components/sections/dashboard-preview';
+import { Methodology } from '@/components/sections/methodology';
+import { EnterpriseTiers } from '@/components/sections/tiers';
+import { FleetShowcase } from '@/components/sections/fleet';
+import { Industries } from '@/components/sections/industries';
+import { Sustainability } from '@/components/sections/sustainability';
+import { Locations } from '@/components/sections/locations';
 import { CallToAction } from '@/components/sections/cta';
 import { Footer } from '@/components/sections/footer';
 import { ChatBot } from '@/components/features/chat-bot';
@@ -37,7 +44,14 @@ export default function Home() {
       <Navbar />
       <Hero />
       <AboutUs />
+      <AnalyticsDashboard />
       <Services />
+      <Methodology />
+      <EnterpriseTiers />
+      <FleetShowcase />
+      <Industries />
+      <Sustainability />
+      <Locations />
       <CallToAction />
       <Footer />
       <ChatBot />
