@@ -1,295 +1,168 @@
+
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
-  Globe, 
+  Area, 
+  AreaChart, 
+  CartesianGrid, 
+  XAxis, 
+  YAxis, 
+  ResponsiveContainer 
+} from 'recharts';
+import { 
+  ChartContainer, 
+  ChartTooltip, 
+  ChartTooltipContent 
+} from '@/components/ui/chart';
+import { 
   Activity, 
-  ShieldCheck, 
-  Clock, 
-  Plane, 
-  Ship, 
-  Truck, 
-  Search,
-  Box,
-  CheckCircle2,
-  MapPin,
-  Anchor,
-  Navigation,
-  Database,
-  Terminal,
-  Cpu
+  TrendingUp, 
+  Globe, 
+  BarChart3,
+  Users
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// --- Types ---
-interface TransitStage {
-  label: string;
-  status: 'complete' | 'active' | 'pending';
-  icon: React.ReactNode;
-}
-
-interface DemoShipment {
-  id: string;
-  awb: string;
-  client: string;
-  pickup: string;
-  destination: string;
-  weight: string;
-  cargo: string;
-  timeline: string;
-  currentStage: number;
-  type: 'air' | 'sea' | 'road';
-}
-
-// --- Mock Data ---
-const TRANSIT_STAGES = [
-  { label: "Picked Up", icon: <MapPin size={12} /> },
-  { label: "In Warehouse", icon: <Box size={12} /> },
-  { label: "Customs Clearance", icon: <ShieldCheck size={12} /> },
-  { label: "In Transit", icon: <Navigation size={12} /> },
-  { label: "Arrived at Hub", icon: <Anchor size={12} /> },
-  { label: "Out for Delivery", icon: <Truck size={12} /> },
-  { label: "Delivered", icon: <CheckCircle2 size={12} /> },
+const growthData = [
+  { year: '2019', shipments: 420, revenue: 2.1 },
+  { year: '2020', shipments: 580, revenue: 3.4 },
+  { year: '2021', shipments: 890, revenue: 5.8 },
+  { year: '2022', shipments: 1240, revenue: 8.2 },
+  { year: '2023', shipments: 1850, revenue: 12.4 },
+  { year: '2024', shipments: 2400, revenue: 18.1 },
 ];
 
-const SHIPMENTS: DemoShipment[] = [
-  {
-    id: "1",
-    awb: "ZN-942-8821",
-    client: "ZENITH TECH SOLUTIONS",
-    pickup: "SHANGHAI (PVG)",
-    destination: "NEW YORK (JFK)",
-    weight: "1,240 KG",
-    cargo: "SEMICONDUCTOR COMPONENTS",
-    timeline: "ETA: 48 HOURS",
-    currentStage: 3,
-    type: 'air'
+const chartConfig = {
+  shipments: {
+    label: "Shipments (k)",
+    color: "hsl(var(--primary))",
   },
-  {
-    id: "2",
-    awb: "ZN-551-0092",
-    client: "AURORA LUXURY GROUP",
-    pickup: "MILAN (MXP)",
-    destination: "DUBAI (DXB)",
-    weight: "450 KG",
-    cargo: "HIGH-END TEXTILES",
-    timeline: "ETA: 72 HOURS",
-    currentStage: 2,
-    type: 'road'
+  revenue: {
+    label: "Revenue ($M)",
+    color: "hsl(var(--muted-foreground))",
   },
-  {
-    id: "3",
-    awb: "ZN-112-4430",
-    client: "OMNI MEDICAL CORP",
-    pickup: "SINGAPORE (SIN)",
-    destination: "HAMBURG (HAM)",
-    weight: "2,800 KG",
-    cargo: "CRITICAL HEALTHCARE ASSETS",
-    timeline: "ETA: 5 DAYS",
-    currentStage: 4,
-    type: 'sea'
-  },
-  {
-    id: "4",
-    awb: "ZN-773-2219",
-    client: "NOVA DEFENSE SYSTEMS",
-    pickup: "BANGALORE (BLR)",
-    destination: "LONDON (LHR)",
-    weight: "890 KG",
-    cargo: "AEROSPACE INSTRUMENTATION",
-    timeline: "ETA: 24 HOURS",
-    currentStage: 5,
-    type: 'air'
-  }
-];
+};
 
 export function AnalyticsDashboard() {
-  const [shipmentIndex, setShipmentIndex] = useState(0);
-  const [currentTime, setCurrentTime] = useState('');
-  const [isRefreshing, setIsRefreshing] = useState(false);
-
-  // --- Animation Cycle ---
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsRefreshing(true);
-      setTimeout(() => {
-        setShipmentIndex((prev) => (prev + 1) % SHIPMENTS.length);
-        setIsRefreshing(false);
-      }, 500);
-    }, 6000);
-
-    const timeInterval = setInterval(() => {
-      setCurrentTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }));
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-      clearInterval(timeInterval);
-    };
-  }, []);
-
-  const currentShipment = SHIPMENTS[shipmentIndex];
-
   return (
-    <section className="py-48 px-6 bg-black border-y border-white/5 relative overflow-hidden">
-      {/* Cinematic Overlays */}
+    <section className="py-48 px-6 bg-background relative overflow-hidden border-y border-foreground/5">
+      {/* Decorative Grid Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-      <div className="scanline" />
+           style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-      <div className="max-w-[1600px] mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row gap-16 justify-between items-start mb-24 reveal-on-scroll">
-          <div className="flex-1">
-            <div className="flex items-center gap-4 text-white/40 text-[10px] uppercase tracking-[0.5em] font-black mb-8">
-              <span className="w-2 h-2 bg-white animate-pulse" /> LIVE TERMINAL: ACTIVE
-              <span className="ml-4 font-mono">{currentTime} UTC</span>
-            </div>
-            <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none mb-10">
-              SHIPMENT<br />
-              <span className="text-white/40">INTELLIGENCE.</span>
-            </h2>
-            <p className="text-white/30 text-xl font-light max-w-lg">
-              Enterprise monitoring simulator visualizing global asset movements with absolute precision.
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-16 mb-24 reveal-on-scroll">
+          <div className="max-w-2xl">
+            <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-black mb-8">Performance Analytics</h2>
+            <h3 className="text-6xl md:text-8xl font-black text-foreground tracking-tighter leading-none mb-10">
+              STRATEGIC<br />
+              <span className="text-foreground/40">GROWTH.</span>
+            </h3>
+            <p className="text-foreground/50 text-xl font-light leading-relaxed">
+              visualizing the trajectory of ZN Synergies as we redefine global logistics infrastructure through consistent performance and enterprise scaling.
             </p>
           </div>
+
+          <div className="grid grid-cols-2 gap-px bg-foreground/10 border border-foreground/10 w-full lg:w-auto">
+            {[
+              { label: 'Yearly Expansion', value: '+42%', icon: <TrendingUp size={14} /> },
+              { label: 'Retention Rate', value: '96%', icon: <Users size={14} /> },
+              { label: 'Global Nodes', value: '240', icon: <Globe size={14} /> },
+              { label: 'Ops Efficiency', value: '99.8%', icon: <Activity size={14} /> }
+            ].map((stat, i) => (
+              <div key={i} className="bg-background p-8 flex flex-col gap-4">
+                <div className="text-foreground/20">{stat.icon}</div>
+                <div>
+                  <div className="text-3xl font-black tracking-tighter">{stat.value}</div>
+                  <div className="text-[10px] uppercase tracking-widest text-foreground/30 font-bold">{stat.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="reveal-on-scroll">
+          <div className="p-8 md:p-12 border border-foreground/10 bg-foreground/[0.02] glass-morphism rounded-none">
+            <div className="flex items-center justify-between mb-16">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 border border-foreground/10 flex items-center justify-center text-foreground/40">
+                  <BarChart3 size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black uppercase tracking-widest">Growth Index</h4>
+                  <p className="text-[10px] text-foreground/30 uppercase font-bold">Consolidated Shipment & Revenue Scaling</p>
+                </div>
+              </div>
+              <div className="flex gap-8">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-foreground" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40">Shipments</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-foreground/20" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40">Revenue</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[400px] w-full">
+              <ChartContainer config={chartConfig} className="h-full w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={growthData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="colorShipments" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="currentColor" stopOpacity={0.1}/>
+                        <stop offset="95%" stopColor="currentColor" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
+                    <XAxis 
+                      dataKey="year" 
+                      axisLine={false} 
+                      tickLine={false} 
+                      tick={{ fill: 'rgba(0,0,0,0.3)', fontSize: 10, fontWeight: 900 }}
+                      dy={10}
+                    />
+                    <YAxis 
+                      hide={true}
+                    />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Area 
+                      type="monotone" 
+                      dataKey="shipments" 
+                      stroke="currentColor" 
+                      strokeWidth={3}
+                      fillOpacity={1} 
+                      fill="url(#colorShipments)" 
+                    />
+                    <Area 
+                      type="monotone" 
+                      dataKey="revenue" 
+                      stroke="rgba(0,0,0,0.2)" 
+                      strokeWidth={2}
+                      strokeDasharray="5 5"
+                      fill="transparent" 
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            </div>
+          </div>
           
-          <div className="hidden lg:flex flex-1 pt-12 justify-end">
-             <div className="p-8 border border-white/10 bg-white/5 glass-morphism w-full max-w-sm">
-               <div className="flex justify-between items-center mb-10">
-                 <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Node Status</span>
-                 <Database size={14} className="text-white/20" />
-               </div>
-               <div className="space-y-6">
-                 {['SIN-H6', 'DXB-TERMINAL', 'JFK-SECURE'].map((node, i) => (
-                   <div key={i} className="flex items-center justify-between text-[10px] font-bold uppercase tracking-tighter">
-                     <span className="text-white/40">{node}</span>
-                     <span className="text-white">ENCRYPTED</span>
-                   </div>
-                 ))}
-               </div>
-             </div>
-          </div>
-        </div>
-
-        {/* The Tracking Dashboard UI */}
-        <div className={cn(
-          "bg-white/[0.02] border border-white/10 p-8 md:p-16 glass-morphism transition-all duration-700 reveal-on-scroll",
-          isRefreshing ? "opacity-0 scale-95" : "opacity-100 scale-100"
-        )}>
-          {/* Header */}
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-16 pb-12 border-b border-white/5">
-            <div className="flex gap-6 items-center">
-              <div className="w-16 h-16 border border-white/10 flex items-center justify-center text-white/40">
-                {currentShipment.type === 'air' ? <Plane size={32} /> : currentShipment.type === 'sea' ? <Ship size={32} /> : <Truck size={32} />}
+          <div className="mt-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-foreground/5 pt-12">
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-foreground/20">
+              * Simulated high-fidelity enterprise performance data for 2024 Audit
+            </p>
+            <div className="flex gap-4">
+              <div className="px-6 py-2 border border-foreground/10 text-[10px] font-black uppercase tracking-widest text-foreground/40">
+                Verified: AI-Core-ZN
               </div>
-              <div>
-                <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest block mb-1">AWB SIGNATURE</span>
-                <h4 className="text-3xl font-black text-white tracking-tighter uppercase">{currentShipment.awb}</h4>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 w-full lg:w-auto">
-              <div>
-                <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] block mb-2">Client</span>
-                <span className="text-sm font-bold text-white uppercase">{currentShipment.client}</span>
-              </div>
-              <div>
-                <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] block mb-2">Weight</span>
-                <span className="text-sm font-bold text-white uppercase">{currentShipment.weight}</span>
-              </div>
-              <div>
-                <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] block mb-2">Asset Type</span>
-                <span className="text-sm font-bold text-white uppercase tracking-tighter">{currentShipment.cargo}</span>
-              </div>
-              <div className="text-right">
-                <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] block mb-2">Status</span>
-                <span className="text-sm font-black text-white uppercase animate-pulse">{TRANSIT_STAGES[currentShipment.currentStage].label}</span>
+              <div className="px-6 py-2 border border-foreground/10 text-[10px] font-black uppercase tracking-widest text-foreground/40">
+                Sync: 12ms Latency
               </div>
             </div>
           </div>
-
-          {/* Stepper Logic */}
-          <div className="relative mb-24">
-            <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10 -translate-y-1/2" />
-            <div className="relative flex justify-between items-center">
-              {TRANSIT_STAGES.map((stage, idx) => {
-                const isActive = idx === currentShipment.currentStage;
-                const isComplete = idx < currentShipment.currentStage;
-                
-                return (
-                  <div key={idx} className="flex flex-col items-center gap-6 relative z-10">
-                    <div className={cn(
-                      "w-10 h-10 border flex items-center justify-center transition-all duration-700",
-                      isComplete ? "bg-white border-white text-black" : 
-                      isActive ? "bg-black border-white text-white scale-125 shadow-[0_0_20px_rgba(255,255,255,0.3)]" : 
-                      "bg-black border-white/10 text-white/20"
-                    )}>
-                      {isComplete ? <CheckCircle2 size={16} /> : stage.icon}
-                    </div>
-                    <div className="absolute top-16 whitespace-nowrap text-center">
-                      <span className={cn(
-                        "text-[9px] font-black uppercase tracking-widest",
-                        isActive ? "text-white" : isComplete ? "text-white/60" : "text-white/20"
-                      )}>
-                        {stage.label}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Footer Metadata */}
-          <div className="grid md:grid-cols-3 gap-8 mt-16 pt-12 border-t border-white/5">
-            <div className="flex gap-4 items-center">
-              <div className="w-10 h-10 bg-white/5 border border-white/5 flex items-center justify-center text-white/30">
-                <MapPin size={16} />
-              </div>
-              <div>
-                <span className="text-[8px] font-black text-white/30 uppercase tracking-widest block">Pickup Node</span>
-                <span className="text-xs font-bold text-white">{currentShipment.pickup}</span>
-              </div>
-            </div>
-            <div className="flex gap-4 items-center">
-              <div className="w-10 h-10 bg-white/5 border border-white/5 flex items-center justify-center text-white/30">
-                <Globe size={16} />
-              </div>
-              <div>
-                <span className="text-[8px] font-black text-white/30 uppercase tracking-widest block">Destination</span>
-                <span className="text-xs font-bold text-white">{currentShipment.destination}</span>
-              </div>
-            </div>
-            <div className="flex gap-4 items-center justify-end">
-              <div className="text-right">
-                <span className="text-[8px] font-black text-white/30 uppercase tracking-widest block">Operational Timeline</span>
-                <span className="text-xs font-black text-white animate-pulse">{currentShipment.timeline}</span>
-              </div>
-              <div className="w-10 h-10 bg-white text-black flex items-center justify-center">
-                <Clock size={16} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Global Overview Metrics */}
-        <div className="grid md:grid-cols-4 gap-px bg-white/10 border border-white/10 mt-12 reveal-on-scroll">
-          {[
-            { label: 'Active Streams', value: '42', icon: <Activity size={12} /> },
-            { label: 'Asset Security', value: 'ULTRA', icon: <ShieldCheck size={12} /> },
-            { label: 'Sync Latency', value: '12ms', icon: <Cpu size={12} /> },
-            { label: 'Terminal Access', value: 'Alpha', icon: <Terminal size={12} /> }
-          ].map((stat, i) => (
-            <div key={i} className="bg-black p-8 flex items-center justify-between group">
-              <div>
-                <span className="text-[8px] font-black uppercase tracking-[0.4em] text-white/30 block mb-2">{stat.label}</span>
-                <div className="text-xl font-black text-white tracking-tighter">{stat.value}</div>
-              </div>
-              <div className="text-white/10 group-hover:text-white transition-colors">
-                {stat.icon}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
