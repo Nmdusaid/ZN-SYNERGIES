@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect } from 'react';
@@ -16,6 +17,7 @@ import { CallToAction } from '@/components/sections/cta';
 import { Footer } from '@/components/sections/footer';
 import { ChatBot } from '@/components/features/chat-bot';
 import { CookieBanner } from '@/components/features/cookie-banner';
+import { ServiceIntelligence } from '@/components/sections/service-intelligence';
 
 export default function Home() {
   useEffect(() => {
@@ -43,6 +45,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <AboutUs />
+      <ServiceIntelligence />
       <Services />
       <Industries />
       <AnalyticsDashboard />

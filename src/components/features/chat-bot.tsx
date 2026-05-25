@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Loader2, Bot, Zap, Globe, ShieldCheck, Activity } from 'lucide-react';
+import { X, Send, Bot, Zap, Activity, Cpu, ShieldCheck } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { chatAssistant } from '@/ai/flows/chat-flow';
@@ -13,7 +13,7 @@ export function ChatBot() {
   const [messages, setMessages] = useState<{ role: 'user' | 'model', content: string }[]>([
     { 
       role: 'model', 
-      content: "SYSTEM ONLINE: ZN Intelligence Terminal Active.\n\nWelcome to ZN Synergies. I am your specialized logistics strategist. How may I assist your global operations today?"
+      content: "SYSTEM ONLINE: ZN Intelligence Terminal Active. How can I assist your logistics strategy today?"
     }
   ]);
   const [input, setInput] = useState('');
@@ -39,7 +39,7 @@ export function ChatBot() {
       setMessages(prev => [...prev, { role: 'model', content: response.response }]);
     } catch (error) {
       console.error(error);
-      setMessages(prev => [...prev, { role: 'model', content: 'PROTOCOL ERROR: Connection latency detected. Please re-verify link.' }]);
+      setMessages(prev => [...prev, { role: 'model', content: 'PROTOCOL ERROR: Link unstable. Please re-initiate.' }]);
     } finally {
       setIsLoading(false);
     }
@@ -48,119 +48,97 @@ export function ChatBot() {
   return (
     <div className="fixed bottom-8 right-8 z-[100]">
       {isOpen ? (
-        <div className="w-80 md:w-[420px] bg-background border border-foreground/20 shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col h-[650px] animate-in zoom-in-95 slide-in-from-bottom-10 duration-500 overflow-hidden">
-          {/* Advanced Header */}
+        <div className="w-80 md:w-[420px] bg-background border border-foreground/20 shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col h-[600px] animate-in zoom-in-95 slide-in-from-bottom-10 duration-500 overflow-hidden">
+          {/* Advanced Terminal Header */}
           <div className="p-4 border-b border-foreground/10 flex justify-between items-center bg-foreground/[0.03] relative">
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-2 h-2 bg-foreground rounded-full animate-pulse" />
+              <div className="relative w-2 h-2">
                 <div className="absolute inset-0 bg-foreground rounded-full animate-ping opacity-20" />
+                <div className="absolute inset-0 bg-foreground rounded-full animate-pulse" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-[0.3em] font-black">ZN Intelligence Terminal</span>
-                <span className="text-[8px] uppercase tracking-widest text-foreground/40 font-bold">Secure AI Node: SIN-449</span>
+                <span className="text-[9px] uppercase tracking-[0.3em] font-black">ZN Intelligence Node</span>
+                <span className="text-[7px] uppercase tracking-widest text-foreground/40 font-bold">Secure AI Connection</span>
               </div>
             </div>
             <button 
               onClick={() => setIsOpen(false)} 
-              className="w-10 h-10 flex items-center justify-center text-foreground/40 hover:text-foreground hover:bg-foreground/5 transition-all group"
+              className="text-foreground/40 hover:text-foreground p-2"
               aria-label="Close Terminal"
             >
-              <X size={20} className="group-hover:rotate-90 transition-transform duration-300" />
+              <X size={18} />
             </button>
-            {/* Scanning Line Animation */}
-            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-foreground/20 to-transparent animate-pulse" />
           </div>
           
+          {/* Neural Scanning Animation Overlay */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-foreground/20 to-transparent animate-scan" />
+
           {/* Messages Area */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-8 scrollbar-hide bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-90">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
             {messages.map((m, i) => (
               <div key={i} className={cn(
-                "flex flex-col gap-2 max-w-[85%] animate-in fade-in slide-in-from-bottom-2 duration-500",
+                "flex flex-col gap-2 max-w-[90%] animate-in fade-in slide-in-from-bottom-2 duration-500",
                 m.role === 'user' ? "ml-auto items-end" : "mr-auto items-start"
               )}>
                 <div className={cn(
                   "p-4 border text-[11px] leading-relaxed tracking-wide",
                   m.role === 'user' 
-                    ? "bg-foreground text-background border-foreground shadow-lg" 
-                    : "border-foreground/10 bg-background/80 backdrop-blur-md text-foreground/80"
+                    ? "bg-foreground text-background border-foreground" 
+                    : "border-foreground/10 bg-background/90 backdrop-blur-md text-foreground/80"
                 )}>
                   {m.content}
                 </div>
-                <span className="text-[8px] uppercase tracking-widest text-foreground/30 font-bold">
-                  {m.role === 'user' ? 'Client' : 'ZN-AI'} • {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </span>
               </div>
             ))}
             {isLoading && (
-              <div className="mr-auto flex flex-col gap-3 max-w-[85%] animate-pulse">
+              <div className="mr-auto flex flex-col gap-2 max-w-[85%]">
                 <div className="p-4 border border-foreground/10 bg-foreground/5 flex items-center gap-3">
                   <Activity size={12} className="animate-spin text-foreground/40" />
-                  <span className="text-[9px] uppercase tracking-[0.3em] font-black text-foreground/40">Decrypting Logistics Data...</span>
+                  <span className="text-[8px] uppercase tracking-[0.4em] font-black text-foreground/40">Analyzing Global Grid...</span>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Quick Actions (The "Advanced" part) */}
-          {!isLoading && messages.length < 3 && (
-            <div className="px-6 py-4 flex flex-wrap gap-2 bg-foreground/[0.02] border-t border-foreground/5">
-              {['Quote Inquiry', 'Shipment Status', 'Route Intel'].map((action) => (
-                <button 
-                  key={action}
-                  onClick={() => {
-                    setInput(action);
-                    setTimeout(() => handleSend(), 100);
-                  }}
-                  className="text-[9px] uppercase tracking-widest px-3 py-1.5 border border-foreground/10 hover:border-foreground hover:bg-foreground hover:text-background transition-all font-bold"
-                >
-                  {action}
-                </button>
-              ))}
-            </div>
-          )}
-
           {/* Input Terminal */}
-          <div className="p-4 border-t border-foreground/10 bg-background relative">
+          <div className="p-4 border-t border-foreground/10 bg-background">
             <div className="flex gap-2">
               <Input 
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="INPUT COMMAND..."
-                className="bg-foreground/[0.03] border-foreground/10 h-12 rounded-none text-[10px] tracking-widest uppercase font-bold focus:ring-0 focus:border-foreground/40 transition-all"
+                className="bg-foreground/[0.03] border-foreground/10 h-10 rounded-none text-[9px] tracking-widest uppercase font-bold focus:ring-0"
               />
               <Button 
                 onClick={handleSend} 
                 disabled={isLoading} 
-                className="bg-foreground text-background h-12 w-12 rounded-none hover:bg-foreground/90 transition-all active:scale-95"
+                className="bg-foreground text-background h-10 w-10 rounded-none"
               >
-                <Send size={16} />
+                <Send size={14} />
               </Button>
             </div>
           </div>
         </div>
       ) : (
-        /* Advanced Trigger Button */
+        /* Enhanced Advanced Trigger Button */
         <button 
           onClick={() => setIsOpen(true)}
-          className="group relative w-20 h-20 bg-foreground text-background flex items-center justify-center transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.3)] hover:scale-105"
+          className="group relative w-16 h-16 bg-foreground text-background flex items-center justify-center transition-all duration-500 shadow-2xl overflow-visible"
           aria-label="Access AI Terminal"
         >
-          {/* Orbital Rings */}
-          <div className="absolute inset-0 border border-foreground/10 rounded-full animate-ping opacity-20" />
-          <div className="absolute inset-[-8px] border border-foreground/5 rounded-full animate-spin-slow" />
+          {/* Orbital Rings - Animated */}
+          <div className="absolute inset-0 border border-foreground/20 rounded-full animate-ping opacity-10" />
+          <div className="absolute -inset-2 border border-foreground/5 rounded-full animate-spin-slow opacity-20" />
+          <div className="absolute -inset-4 border border-foreground/5 rounded-full animate-reverse-spin-slow opacity-10" />
           
-          <div className="relative z-10 flex flex-col items-center">
-            <div className="relative">
-              <Bot size={28} className="group-hover:scale-110 transition-transform duration-500" />
-              <Zap size={10} className="absolute -top-1 -right-1 text-background fill-background animate-pulse" />
-            </div>
-            <span className="text-[8px] font-black uppercase tracking-[0.2em] mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Terminal</span>
+          <div className="relative z-10">
+            <Bot size={24} className="group-hover:scale-110 transition-transform duration-500" />
+            <Zap size={8} className="absolute -top-1 -right-1 text-background animate-pulse" />
           </div>
-
-          {/* Status Glow */}
-          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-background animate-pulse" />
+          
+          {/* Status Indicator */}
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background shadow-lg" />
         </button>
       )}
     </div>
