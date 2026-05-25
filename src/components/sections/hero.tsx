@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -10,10 +9,10 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
       {/* Cinematic Background Layer */}
-      <div className="absolute inset-0 z-0 bg-black">
-        {/* Dynamic Overlays */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-background" />
+      <div className="absolute inset-0 z-0">
+        {/* Dynamic Overlays that adapt to theme */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.1)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background" />
       </div>
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-12 w-full">
