@@ -75,7 +75,7 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle - Keeps logic in one place */}
         <div className="md:hidden flex items-center gap-4 relative z-[60]">
           <ThemeToggle />
           <button 
@@ -93,13 +93,7 @@ export function Navbar() {
         "fixed inset-0 bg-background z-50 transition-transform duration-500 md:hidden flex flex-col items-center justify-center",
         isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
-        <button 
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-10 right-8 text-foreground/40 hover:text-foreground transition-colors"
-        >
-          <X size={32} />
-        </button>
-
+        {/* Redundant X button removed from here */}
         <div className="flex flex-col items-center gap-10 w-full px-12">
           {navLinks.map((link) => (
             <a

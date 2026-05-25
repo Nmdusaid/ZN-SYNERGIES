@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from 'react';
@@ -43,8 +44,12 @@ export function ChatBot() {
         <div className="w-80 md:w-[400px] bg-background border border-foreground/20 shadow-2xl flex flex-col h-[600px] animate-in slide-in-from-bottom-4 duration-500">
           <div className="p-4 border-b border-foreground/10 flex justify-between items-center bg-foreground/5">
             <span className="text-[10px] uppercase tracking-[0.3em] font-black">ZN Assistant</span>
-            <button onClick={() => setIsOpen(false)} className="text-foreground/40 hover:text-foreground">
-              <X size={16} />
+            <button 
+              onClick={() => setIsOpen(false)} 
+              className="w-8 h-8 flex items-center justify-center text-foreground/40 hover:text-foreground hover:bg-foreground/5 transition-colors"
+              aria-label="Close Chat"
+            >
+              <X size={20} />
             </button>
           </div>
           
@@ -89,6 +94,7 @@ export function ChatBot() {
         <button 
           onClick={() => setIsOpen(true)}
           className="w-16 h-16 bg-foreground text-background flex items-center justify-center hover:scale-105 transition-transform shadow-xl"
+          aria-label="Open Chat"
         >
           <MessageSquare size={24} />
         </button>
