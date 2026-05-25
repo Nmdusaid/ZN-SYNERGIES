@@ -17,18 +17,18 @@ export function Hero() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale contrast-125"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale contrast-110"
         >
           <source 
-            src="https://cdn.pixabay.com/video/2021/04/12/70815-536967756_large.mp4" 
+            src="https://assets.mixkit.co/videos/preview/mixkit-logistics-truck-driving-on-the-highway-4008-large.mp4" 
             type="video/mp4" 
           />
         </video>
         
-        {/* Dynamic Overlays */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.9)_100%)]" />
-        <div className="absolute inset-0 bg-background/40 backdrop-blur-[2px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background" />
+        {/* Dynamic Overlays - Adjusted for visibility */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
+        <div className="absolute inset-0 bg-background/20 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-background" />
       </div>
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-12 w-full">
