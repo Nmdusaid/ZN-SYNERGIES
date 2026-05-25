@@ -2,7 +2,6 @@
 "use client";
 
 import React from 'react';
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
 
 export function Hero() {
@@ -10,24 +9,10 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
-      {/* 4K Cinematic Background Video */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale contrast-110"
-        >
-          <source 
-            src="https://assets.mixkit.co/videos/preview/mixkit-logistics-truck-driving-on-the-highway-4008-large.mp4" 
-            type="video/mp4" 
-          />
-        </video>
-        
-        {/* Dynamic Overlays - Adjusted for visibility */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
-        <div className="absolute inset-0 bg-background/20 backdrop-blur-[1px]" />
+      {/* Cinematic Background Layer */}
+      <div className="absolute inset-0 z-0 bg-black">
+        {/* Dynamic Overlays */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-background" />
       </div>
 
