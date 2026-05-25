@@ -100,8 +100,18 @@
   50% { opacity: 0.2; }
 }
 
+@keyframes handshake {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(-1deg); }
+  75% { transform: translateY(5px) rotate(1deg); }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.animate-handshake {
+  animation: handshake 2s ease-in-out infinite;
 }
 
 .scanline {
