@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -5,7 +6,7 @@ import { Mail, Phone, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-background pt-32 pb-16 border-t border-white/5 px-8">
+    <footer id="footer" className="bg-background pt-32 pb-16 border-t border-white/5 px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
           <div className="space-y-10">

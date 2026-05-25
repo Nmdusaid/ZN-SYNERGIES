@@ -22,6 +22,7 @@ export function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '#about' },
     { name: 'Services', href: '#services' },
+    { name: 'Contact', href: '#footer' },
   ];
 
   const quoteMailto = "mailto:usaid6765@gmail.com?subject=Enterprise Quote Inquiry&body=I would like to request a quote for the following logistics operations:";
