@@ -20,9 +20,8 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '#services' },
     { name: 'About Us', href: '#about' },
-    { name: 'Contact Us', href: '#contact' },
+    { name: 'Services', href: '#services' },
   ];
 
   const quoteMailto = "mailto:usaid6765@gmail.com?subject=Enterprise Quote Inquiry&body=I would like to request a quote for the following logistics operations:";
@@ -75,7 +74,7 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Toggle - Keeps logic in one place */}
+        {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-4 relative z-[60]">
           <ThemeToggle />
           <button 
@@ -93,7 +92,6 @@ export function Navbar() {
         "fixed inset-0 bg-background z-50 transition-transform duration-500 md:hidden flex flex-col items-center justify-center",
         isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
-        {/* Redundant X button removed from here */}
         <div className="flex flex-col items-center gap-10 w-full px-12">
           {navLinks.map((link) => (
             <a

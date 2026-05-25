@@ -1,41 +1,8 @@
 
 {
-  "entities": {
-    "Shipment": {
-      "title": "Shipment",
-      "description": "Details of a specific logistics shipment",
-      "type": "object",
-      "properties": {
-        "awbNumber": { "type": "string", "description": "Airway Bill Number" },
-        "status": { "type": "string", "enum": ["Shipment Booked", "Cargo Received", "In Transit", "Customs Clearance", "Arrived at Destination", "Out for Delivery", "Delivered"] },
-        "origin": { "type": "string", "description": "Origin city/airport" },
-        "destination": { "type": "string", "description": "Destination city/airport" },
-        "currentLocation": { "type": "string", "description": "Last known location" },
-        "eta": { "type": "string", "format": "date-time" },
-        "progress": { "type": "number", "description": "Completion percentage 0-100" },
-        "flightDetails": { "type": "string" },
-        "history": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "timestamp": { "type": "string", "format": "date-time" },
-              "activity": { "type": "string" },
-              "location": { "type": "string" }
-            }
-          }
-        }
-      },
-      "required": ["awbNumber", "status", "origin", "destination"]
-    }
-  },
+  "entities": {},
   "auth": {
     "providers": ["google.com", "password"]
   },
-  "firestore": {
-    "/shipments/{shipmentId}": {
-      "schema": "#/entities/Shipment",
-      "description": "Enterprise shipment records"
-    }
-  }
+  "firestore": {}
 }
