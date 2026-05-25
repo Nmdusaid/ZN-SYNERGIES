@@ -19,7 +19,13 @@ export function CallToAction() {
         <div className="flex flex-col items-center text-center reveal-on-scroll">
           <h2 className="text-[10px] uppercase tracking-[0.8em] font-black mb-16 opacity-40">Strategic Partnership Protocol</h2>
           
-          <div className="mb-20 relative group">
+          <h3 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-none max-w-5xl mb-24">
+            Partner with a <br />
+            <span className="opacity-40">Logistics Team</span> <br />
+            You Can Trust.
+          </h3>
+
+          <div className="relative group">
             {/* Orbital glow effect for the handshake */}
             <div className="absolute inset-0 bg-background/10 rounded-full blur-3xl group-hover:bg-background/20 transition-all duration-700 scale-150" />
             
@@ -31,14 +37,8 @@ export function CallToAction() {
             <div className="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-background/30" />
             <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-background/30" />
           </div>
-
-          <h3 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-none max-w-5xl">
-            Partner with a <br />
-            <span className="opacity-40">Logistics Team</span> <br />
-            You Can Trust.
-          </h3>
           
-          <div className="mt-20 w-px h-32 bg-background/20" />
+          <div className="mt-24 w-px h-32 bg-background/20" />
           
           <p className="mt-12 text-[10px] uppercase tracking-[0.5em] font-black opacity-30">
             Secure • Reliable • Integrated
