@@ -1,10 +1,11 @@
+
 "use client";
 
 import React, { useState } from 'react';
 import { 
   Plane, Ship, Truck, Box, FileText, Warehouse, 
   ArrowRight, Anchor, Globe, FileCheck, Clock, 
-  Lock, Zap, X
+  Lock, Zap
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import {
@@ -13,7 +14,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
@@ -107,6 +107,8 @@ const services = [
 export function Services() {
   const [selectedProtocol, setSelectedProtocol] = useState<typeof services[0] | null>(null);
 
+  const quoteMailto = "mailto:usaid6765@gmail.com?subject=Strategic Booking Inquiry&body=I would like to initiate a booking for the following protocol:";
+
   return (
     <section id="services" className="py-24 md:py-48 px-6 bg-background border-y border-foreground/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
@@ -164,11 +166,6 @@ export function Services() {
             <div className="flex flex-col">
               {/* Header */}
               <div className="p-6 md:p-10 border-b border-foreground/5 bg-foreground/[0.02] relative">
-                <DialogClose asChild>
-                  <button className="absolute top-4 right-4 md:top-8 md:right-8 p-2 text-foreground/20 hover:text-foreground transition-colors z-50">
-                    <X size={24} />
-                  </button>
-                </DialogClose>
                 <div className="flex items-center gap-4 md:gap-6 mb-6 md:mb-8 pr-12">
                   <div className="w-12 h-12 md:w-16 md:h-16 border border-foreground/10 flex items-center justify-center text-foreground shrink-0">
                     {selectedProtocol.icon}
@@ -229,17 +226,13 @@ export function Services() {
                 </div>
               </div>
 
-              {/* Footer Action */}
-              <div className="p-6 md:p-10 bg-foreground text-background flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="flex items-center gap-4">
-                  <Globe size={20} className="animate-pulse-slow" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em]">Protocol Link Active</span>
-                </div>
+              {/* Footer Action - Cleaned up footer */}
+              <div className="p-6 md:p-10 bg-foreground text-background flex justify-center">
                 <Button 
-                  onClick={() => setSelectedProtocol(null)}
-                  className="w-full md:w-auto bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-10 text-[10px] font-black uppercase tracking-widest"
+                  onClick={() => window.open(quoteMailto + " " + selectedProtocol.title, '_blank')}
+                  className="w-full md:w-auto bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-12 text-[10px] font-black uppercase tracking-[0.2em]"
                 >
-                  Initiate Booking <ArrowRight className="ml-4" size={14} />
+                  Initiate Strategic Booking <ArrowRight className="ml-4" size={14} />
                 </Button>
               </div>
             </div>

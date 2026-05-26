@@ -42,7 +42,7 @@ export function AboutUs() {
             </div>
 
             {/* Corporate Profile Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-10 md:mb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-12 md:mb-20">
               {corporateProfile.map((item, i) => (
                 <div key={i} className="p-4 md:p-6 border border-foreground/5 bg-foreground/[0.02] hover:bg-foreground/[0.04] transition-colors">
                   <div className="flex items-center gap-2 md:gap-3 text-foreground/20 mb-1.5 md:mb-3">
@@ -54,17 +54,18 @@ export function AboutUs() {
               ))}
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-12">
+            {/* Stats Grid - Fixed responsiveness and spacing */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
               {stats.map((stat, idx) => (
-                <div key={idx} className="space-y-2 md:space-y-4">
+                <div key={idx} className="space-y-3 md:space-y-4">
                   <div className="w-8 h-8 md:w-10 md:h-10 border border-foreground/10 flex items-center justify-center text-foreground/40">
                     {React.cloneElement(stat.icon as React.ReactElement, { size: 16 })}
                   </div>
                   <div>
-                    <div className="text-xl md:text-4xl font-black text-foreground mb-0.5">
+                    <div className="text-2xl md:text-4xl font-black text-foreground mb-1 md:mb-2">
                       <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                     </div>
-                    <div className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-foreground/30 font-bold leading-tight">
+                    <div className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-foreground/30 font-black leading-tight">
                       {stat.label}
                     </div>
                   </div>

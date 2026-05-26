@@ -1,14 +1,14 @@
+
 "use client";
 
 import React, { useState } from 'react';
-import { Check, ShieldAlert, Zap, Globe, Lock, ArrowRight, ShieldCheck, Clock, FileText, X } from 'lucide-react';
+import { Check, ShieldAlert, Zap, Globe, Lock, ArrowRight, ShieldCheck, Clock, FileText } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
@@ -112,11 +112,6 @@ export function EnterpriseTiers() {
             <div className="flex flex-col">
               {/* Header */}
               <div className="p-6 md:p-10 border-b border-foreground/5 bg-foreground/[0.02] relative">
-                <DialogClose asChild>
-                  <button className="absolute top-4 right-4 md:top-8 md:right-8 p-2 text-foreground/20 hover:text-foreground transition-colors z-50">
-                    <X size={24} />
-                  </button>
-                </DialogClose>
                 <div className="flex items-center justify-between mb-8 pr-12">
                   <div className="flex items-center gap-4 md:gap-6">
                     <div className="w-12 h-12 md:w-16 md:h-16 border border-foreground/10 flex items-center justify-center text-foreground font-black text-xl md:text-2xl shrink-0">
@@ -177,17 +172,13 @@ export function EnterpriseTiers() {
                 </div>
               </div>
 
-              {/* Footer Action */}
-              <div className="p-6 md:p-10 bg-foreground text-background flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 rounded-full bg-background animate-pulse" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em]">Node Connection Active</span>
-                </div>
+              {/* Footer Action - Cleaned up footer */}
+              <div className="p-6 md:p-10 bg-foreground text-background flex justify-center">
                 <Button 
                   onClick={() => setSelectedTier(null)}
-                  className="w-full md:w-auto bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-10 text-[10px] font-black uppercase tracking-widest"
+                  className="w-full md:w-auto bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-12 text-[10px] font-black uppercase tracking-[0.2em]"
                 >
-                  Activate Tier <ArrowRight className="ml-4" size={14} />
+                  Activate Tier Protocol <ArrowRight className="ml-4" size={14} />
                 </Button>
               </div>
             </div>
