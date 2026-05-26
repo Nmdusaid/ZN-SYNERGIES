@@ -6,7 +6,6 @@ import { Check, ShieldAlert, Zap, Globe, Lock, ArrowRight, ShieldCheck, Clock, F
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
