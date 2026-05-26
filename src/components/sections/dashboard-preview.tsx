@@ -29,13 +29,12 @@ export function AnalyticsDashboard() {
   const [growthData, setGrowthData] = useState<{ year: string; value: number }[]>([]);
 
   useEffect(() => {
-    // Generate dynamic data for the last 5 years up to the current year
+    // Generate dynamic rolling 5-year data up to the current year
     const currentYear = new Date().getFullYear();
     const years = [];
     
     for (let i = 4; i >= 0; i--) {
       const year = currentYear - i;
-      // Exponential fake growth logic for demonstration
       const growthFactor = 1.35 + (Math.random() * 0.15);
       const baseValue = 400;
       const value = Math.floor(baseValue * Math.pow(growthFactor, 4 - i));
@@ -85,7 +84,7 @@ export function AnalyticsDashboard() {
         </div>
 
         <div className="reveal-on-scroll p-6 md:p-12 border border-foreground/10 bg-foreground/[0.02] rounded-none">
-          <div className="flex items-center justify-between mb-8 md:mb-12">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8 md:mb-12">
             <div className="flex flex-col gap-1">
               <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">
                 Rolling 5-Year Corporate Growth Index ({growthData[0]?.year}–{growthData[growthData.length - 1]?.year})

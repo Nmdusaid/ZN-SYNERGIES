@@ -1,10 +1,11 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 export function Footer() {
-  const [currentYear, setCurrentYear] = useState(2024);
+  const [currentYear, setCurrentYear] = useState(2025);
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
@@ -15,17 +16,16 @@ export function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16 mb-20 md:mb-24">
           <div className="space-y-6 md:space-y-10">
-            {/* Logo */}
             <div className="flex flex-col">
               <span className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase leading-none">
                 ZN <span className="text-white/40">SYNERGIES</span>
               </span>
               <span className="text-[8px] md:text-[10px] font-bold tracking-[0.4em] text-white/20 uppercase mt-2">
-                Logistics Excellence
+                Enterprise Logistics
               </span>
             </div>
             <p className="text-muted-foreground text-xs md:text-sm font-light leading-relaxed tracking-wide max-w-xs">
-              Reliable logistics solutions built for modern business transportation needs. Orchestrating movement with cinematic precision.
+              Reliable logistics solutions built for modern business transportation needs. Orchestrating movement with absolute cinematic precision.
             </p>
             <div className="flex gap-4 md:gap-6">
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors"><Linkedin size={16} /></a>
@@ -49,7 +49,7 @@ export function Footer() {
             <ul className="space-y-4 md:space-y-6 text-xs md:text-sm font-light text-muted-foreground">
               <li className="flex gap-3 md:gap-4 items-center">
                 <Phone size={12} className="text-foreground/40" />
-                <span>+65 800 ZN-GLOBAL</span>
+                <span>+91 000 000 0000</span>
               </li>
               <li className="flex gap-3 md:gap-4 items-center">
                 <Mail size={12} className="text-foreground/40" />

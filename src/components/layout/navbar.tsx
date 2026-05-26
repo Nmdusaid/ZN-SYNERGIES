@@ -35,8 +35,11 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        {/* Global Logo Identity - Simplified Spinning Globe */}
-        <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        {/* Global Logo Identity - Minimalist Spinning Globe */}
+        <div 
+          className="flex items-center gap-4 group cursor-pointer" 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
           <div className="relative flex items-center justify-center">
             <Globe 
               size={24} 
@@ -44,14 +47,14 @@ export function Navbar() {
             />
           </div>
           <div className="flex flex-col">
-            <span className="text-2xl md:text-3xl font-black tracking-tighter text-foreground uppercase leading-none">
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-foreground uppercase leading-none">
               ZN <span className="text-foreground/40">SYNERGIES</span>
             </span>
           </div>
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-12 lg:gap-16">
+        <div className="hidden md:flex items-center gap-10 lg:gap-16">
           {navLinks.map((link) => (
             <a
               key={link.name}

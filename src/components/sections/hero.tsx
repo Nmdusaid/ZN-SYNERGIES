@@ -9,10 +9,10 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
-      {/* Cinematic Background Layer */}
+      {/* Cinematic Identity Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.1)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.05)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background" />
       </div>
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 w-full">
@@ -23,7 +23,7 @@ export function Hero() {
               <div className="w-8 md:w-12 h-px bg-foreground/20" />
               <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.5em] text-foreground/40">Established Excellence 2011</span>
             </div>
-            <h1 className="text-[clamp(2.5rem,10vw,9rem)] font-black text-foreground leading-[0.9] md:leading-[0.8] tracking-tighter uppercase animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
+            <h1 className="text-[clamp(2.5rem,10vw,8rem)] font-black text-foreground leading-[0.9] md:leading-[0.85] tracking-tighter uppercase animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
               CINEMATIC<br />
               <span className="text-stroke">PRECISION.</span>
             </h1>
@@ -48,7 +48,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Decorative Elements - Hidden on small screens */}
       <div className="absolute bottom-10 right-10 md:bottom-20 md:right-20 animate-bounce opacity-20 hidden md:block">
         <div className="w-px h-24 bg-foreground" />
       </div>

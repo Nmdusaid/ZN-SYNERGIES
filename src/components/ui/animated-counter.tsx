@@ -40,7 +40,6 @@ export function AnimatedCounter({ end, suffix = "", duration = 2500 }: AnimatedC
       const linearProgress = Math.min((timestamp - startTimestamp) / duration, 1);
       
       // Quadratic Ease In: Starts slow and accelerates (slowly to fast)
-      // progress = t^2
       const easedProgress = Math.pow(linearProgress, 2);
       
       setCount(Math.floor(easedProgress * end));
@@ -48,7 +47,7 @@ export function AnimatedCounter({ end, suffix = "", duration = 2500 }: AnimatedC
       if (linearProgress < 1) {
         window.requestAnimationFrame(step);
       } else {
-        setCount(end); // Ensure we end at the exact target
+        setCount(end);
       }
     };
     window.requestAnimationFrame(step);
