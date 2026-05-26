@@ -32,6 +32,20 @@ const offices = [
     type: "Maritime Strategy Hub",
     angle: 315,
     radius: 1.0
+  },
+  {
+    city: "Coimbatore",
+    fullAddress: "Avinashi Road, Coimbatore, Tamil Nadu 641018",
+    type: "Industrial Node",
+    angle: 270,
+    radius: 0.7
+  },
+  {
+    city: "Ambur",
+    fullAddress: "Chennai-Bangalore Highway, Ambur, Tamil Nadu 635802",
+    type: "Logistics Hub",
+    angle: 180,
+    radius: 0.9
   }
 ];
 
@@ -86,8 +100,8 @@ export function Locations() {
           </h2>
         </div>
 
-        {/* Galaxy System - Scaling container */}
-        <div className="relative w-full aspect-square max-w-[260px] sm:max-w-lg md:max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
+        {/* Galaxy System - Increased mobile scale for better visibility */}
+        <div className="relative w-full aspect-square max-w-[320px] sm:max-w-xl md:max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
           
           {/* World Map Backdrop */}
           <div className="absolute inset-0 pointer-events-none opacity-5 md:opacity-10 flex items-center justify-center">
@@ -107,7 +121,7 @@ export function Locations() {
           </div>
 
           {/* Concentric Orbits */}
-          {[0.4, 0.6, 0.8, 1.0].map((scale, i) => (
+          {[0.4, 0.6, 0.7, 0.8, 0.9, 1.0].map((scale, i) => (
             <div 
               key={i}
               className="absolute inset-0 border border-foreground/5 rounded-full pointer-events-none"
@@ -133,13 +147,13 @@ export function Locations() {
                 onClick={() => openMap(office.fullAddress)}
               >
                 <div className="relative">
-                  <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-foreground rounded-full transition-transform duration-500 group-hover:scale-150" />
+                  <div className="w-2 h-2 md:w-3 md:h-3 bg-foreground rounded-full transition-transform duration-500 group-hover:scale-150" />
                   
                   {/* Tooltip-style Labels */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 md:mt-4 whitespace-nowrap">
                     <div className="bg-foreground text-background px-1.5 py-0.5 md:px-4 md:py-2 flex flex-col items-center shadow-lg">
-                      <span className="text-[5px] md:text-[10px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em]">{office.city}</span>
-                      <span className="text-[4px] md:text-[8px] font-bold opacity-50 uppercase tracking-[0.1em] hidden sm:block">{office.type}</span>
+                      <span className="text-[6px] md:text-[10px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em]">{office.city}</span>
+                      <span className="text-[5px] md:text-[8px] font-bold opacity-50 uppercase tracking-[0.1em] hidden sm:block">{office.type}</span>
                     </div>
                   </div>
                 </div>
