@@ -172,7 +172,7 @@ export function EnterpriseTiers() {
                 </div>
               </div>
 
-              {/* Footer Action - Cleaned up footer */}
+              {/* Footer Action */}
               <div className="p-6 md:p-10 bg-foreground text-background flex justify-center">
                 <Button 
                   onClick={() => setSelectedTier(null)}
