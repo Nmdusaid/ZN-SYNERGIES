@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
@@ -8,7 +9,7 @@ interface AnimatedCounterProps {
   duration?: number;
 }
 
-export function AnimatedCounter({ end, suffix = "", duration = 2000 }: AnimatedCounterProps) {
+export function AnimatedCounter({ end, suffix = "", duration = 2500 }: AnimatedCounterProps) {
   const [count, setCount] = useState(0);
   const countRef = useRef<HTMLSpanElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -36,10 +37,18 @@ export function AnimatedCounter({ end, suffix = "", duration = 2000 }: AnimatedC
     let startTimestamp: number | null = null;
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      setCount(Math.floor(progress * end));
-      if (progress < 1) {
+      const linearProgress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      // Quadratic Ease In: Starts slow and accelerates (slowly to fast)
+      // progress = t^2
+      const easedProgress = Math.pow(linearProgress, 2);
+      
+      setCount(Math.floor(easedProgress * end));
+      
+      if (linearProgress < 1) {
         window.requestAnimationFrame(step);
+      } else {
+        setCount(end); // Ensure we end at the exact target
       }
     };
     window.requestAnimationFrame(step);

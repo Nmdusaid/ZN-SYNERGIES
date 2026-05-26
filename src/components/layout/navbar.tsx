@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -34,13 +35,16 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        {/* Global Logo Identity - Circular Minimalist Design */}
-        <div className="flex items-center gap-8 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-all duration-500 bg-foreground/5">
-            <Globe size={32} className="text-foreground z-10" />
+        {/* Global Logo Identity - Simplified Spinning Globe */}
+        <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div className="relative flex items-center justify-center">
+            <Globe 
+              size={24} 
+              className="text-foreground animate-[spin_8s_linear_infinite]" 
+            />
           </div>
           <div className="flex flex-col">
-            <span className="text-3xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">
+            <span className="text-2xl md:text-3xl font-black tracking-tighter text-foreground uppercase leading-none">
               ZN <span className="text-foreground/40">SYNERGIES</span>
             </span>
           </div>
