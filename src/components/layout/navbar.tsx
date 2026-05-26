@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -35,7 +34,7 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        {/* Global Logo Identity - Minimalist Spinning Globe */}
+        {/* Minimalist Logo Identity */}
         <div 
           className="flex items-center gap-4 group cursor-pointer" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
