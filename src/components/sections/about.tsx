@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -8,35 +7,31 @@ import { PackageCheck, Users2, MapPin, Star, Clock, FileText, Calendar, Building
 
 export function AboutUs() {
   const stats = [
-    { label: "Deliveries Completed", value: 12000, suffix: "+", icon: <PackageCheck size={20} /> },
-    { label: "Logistics Partners", value: 50, suffix: "+", icon: <Users2 size={20} /> },
-    { label: "Service Locations", value: 120, suffix: "+", icon: <MapPin size={20} /> },
-    { label: "Client Satisfaction", value: 98, suffix: "%", icon: <Star size={20} /> },
-    { label: "Operational Support", value: 24, suffix: "/7", icon: <Clock size={20} /> },
+    { label: "Deliveries", value: 12000, suffix: "+", icon: <PackageCheck size={18} /> },
+    { label: "Partners", value: 50, suffix: "+", icon: <Users2 size={18} /> },
+    { label: "Locations", value: 120, suffix: "+", icon: <MapPin size={18} /> },
+    { label: "Satisfaction", value: 98, suffix: "%", icon: <Star size={18} /> },
+    { label: "Support", value: 24, suffix: "/7", icon: <Clock size={18} /> },
   ];
 
   const corporateProfile = [
     { label: "Founded", value: "17 Oct 2011", icon: <Calendar size={14} /> },
-    { label: "HQ", value: "Chennai, Tamil Nadu", icon: <MapPin size={14} /> },
-    { label: "Type", value: "Private Limited", icon: <Building2 size={14} /> },
+    { label: "HQ", value: "Chennai, TN", icon: <MapPin size={14} /> },
+    { label: "Type", value: "Private Ltd", icon: <Building2 size={14} /> },
     { label: "CIN", value: "U74900TN2011PTC082769", icon: <FileText size={14} /> },
   ];
 
   return (
-    <section id="about" className="py-48 px-6 bg-background relative overflow-hidden">
-      <div className="absolute top-1/4 -left-20 w-96 h-96 border border-foreground/5 rounded-full animate-pulse-slow pointer-events-none">
-        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent rotate-45" />
-      </div>
-
+    <section id="about" className="py-24 md:py-48 px-6 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-32 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-start">
           <div className="reveal-on-scroll">
-            <h2 className="text-6xl md:text-8xl font-black text-foreground mb-12 tracking-tighter leading-none">
+            <h2 className="text-4xl md:text-8xl font-black text-foreground mb-8 md:mb-12 tracking-tighter leading-none">
               ESTABLISHED<br />
               <span className="text-foreground/40">EXCELLENCE.</span>
             </h2>
             
-            <div className="space-y-8 text-foreground/50 text-xl font-light leading-relaxed max-w-lg mb-12">
+            <div className="space-y-6 md:space-y-8 text-foreground/50 text-lg md:text-xl font-light leading-relaxed max-w-lg mb-10 md:mb-12">
               <p>
                 Established on <span className="text-foreground font-bold">17 October 2011</span> in Chennai, Tamil Nadu, ZN Synergies Private Limited has evolved into a cornerstone of the Indian transportation and logistics sector.
               </p>
@@ -46,29 +41,29 @@ export function AboutUs() {
             </div>
 
             {/* Corporate Profile Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-20">
+            <div className="grid grid-cols-2 gap-4 mb-12 md:mb-20">
               {corporateProfile.map((item, i) => (
-                <div key={i} className="p-6 border border-foreground/5 bg-foreground/[0.02] hover:bg-foreground/[0.04] transition-colors">
-                  <div className="flex items-center gap-3 text-foreground/20 mb-3">
+                <div key={i} className="p-4 md:p-6 border border-foreground/5 bg-foreground/[0.02] hover:bg-foreground/[0.04] transition-colors">
+                  <div className="flex items-center gap-3 text-foreground/20 mb-2 md:mb-3">
                     {item.icon}
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em]">{item.label}</span>
+                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em]">{item.label}</span>
                   </div>
-                  <div className="text-sm font-bold text-foreground uppercase tracking-tight">{item.value}</div>
+                  <div className="text-xs md:text-sm font-bold text-foreground uppercase tracking-tight truncate">{item.value}</div>
                 </div>
               ))}
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-16">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
               {stats.map((stat, idx) => (
-                <div key={idx} className="space-y-4">
-                  <div className="w-10 h-10 border border-foreground/10 flex items-center justify-center text-foreground/40">
+                <div key={idx} className="space-y-3 md:space-y-4">
+                  <div className="w-8 h-8 md:w-10 md:h-10 border border-foreground/10 flex items-center justify-center text-foreground/40">
                     {stat.icon}
                   </div>
                   <div>
-                    <div className="text-4xl font-black text-foreground mb-2">
+                    <div className="text-2xl md:text-4xl font-black text-foreground mb-1">
                       <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                     </div>
-                    <div className="text-[10px] uppercase tracking-[0.3em] text-foreground/30 font-bold leading-tight">
+                    <div className="text-[8px] uppercase tracking-[0.2em] md:tracking-[0.3em] text-foreground/30 font-bold leading-tight">
                       {stat.label}
                     </div>
                   </div>
@@ -77,7 +72,7 @@ export function AboutUs() {
             </div>
           </div>
 
-          <div className="relative aspect-square w-full reveal-on-scroll delay-300">
+          <div className="relative aspect-square w-full reveal-on-scroll delay-300 hidden lg:block">
             <div className="absolute inset-0 border border-foreground/10 -translate-x-10 translate-y-10" />
             <div className="relative h-full w-full overflow-hidden grayscale contrast-150">
               <Image 
@@ -87,11 +82,11 @@ export function AboutUs() {
                 className="object-cover transition-all duration-1000 scale-110 hover:scale-100"
                 data-ai-hint="modern architecture"
               />
-              <div className="absolute bottom-10 left-10 right-10 p-10 bg-background/90 backdrop-blur-xl border border-foreground/10">
+              <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 p-6 md:p-10 bg-background/90 backdrop-blur-xl border border-foreground/10">
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/30">Company Status</span>
-                  <span className="text-2xl font-black text-foreground uppercase tracking-tighter flex items-center gap-4">
-                    ACTIVE <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/30">Status</span>
+                  <span className="text-xl md:text-2xl font-black text-foreground uppercase tracking-tighter flex items-center gap-4">
+                    ACTIVE <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500 animate-pulse" />
                   </span>
                 </div>
               </div>
