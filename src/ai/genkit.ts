@@ -1,3 +1,4 @@
+
 import {genkit} from 'genkit';
 import {googleAI} from '@genkit-ai/google-genai';
 import {config} from 'dotenv';
@@ -7,8 +8,8 @@ config();
 
 /**
  * ZN Synergies AI Core
- * Using gemini-1.5-flash for stable production-grade logistics intelligence.
- * Optimized model identifier for Genkit 1.x.
+ * Using gemini-1.5-flash with the standard plugin-based model reference.
+ * Optimized for stable production-grade logistics intelligence.
  */
 export const ai = genkit({
   plugins: [googleAI()],

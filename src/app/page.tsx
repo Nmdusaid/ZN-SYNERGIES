@@ -15,7 +15,6 @@ import { Sustainability } from '@/components/sections/sustainability';
 import { Locations } from '@/components/sections/locations';
 import { CallToAction } from '@/components/sections/cta';
 import { Footer } from '@/components/sections/footer';
-import { ChatBot } from '@/components/features/chat-bot';
 import { CookieBanner } from '@/components/features/cookie-banner';
 
 export default function Home() {
@@ -54,7 +53,6 @@ export default function Home() {
       <Locations />
       <CallToAction />
       <Footer />
-      <ChatBot />
       <CookieBanner />
     </main>
   );
