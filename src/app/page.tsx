@@ -15,7 +15,6 @@ import { Locations } from '@/components/sections/locations';
 import { CallToAction } from '@/components/sections/cta';
 import { Footer } from '@/components/sections/footer';
 import { CookieBanner } from '@/components/features/cookie-banner';
-import { ChatBot } from '@/components/features/chat-bot';
 
 export default function Home() {
   useEffect(() => {
@@ -54,7 +53,6 @@ export default function Home() {
       <CallToAction />
       <Footer />
       <CookieBanner />
-      <ChatBot />
     </main>
   );
 }
