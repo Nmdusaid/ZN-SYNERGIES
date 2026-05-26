@@ -5,6 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 import { PackageCheck, Users2, MapPin, Star, Clock, FileText, Calendar, Building2 } from 'lucide-react';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function AboutUs() {
   const stats = [
@@ -20,6 +21,21 @@ export function AboutUs() {
     { label: "HQ", value: "Chennai, TN", icon: <MapPin size={14} /> },
     { label: "Type", value: "Private Ltd", icon: <Building2 size={14} /> },
     { label: "CIN", value: "U74900TN2011PTC082769", icon: <FileText size={14} /> },
+  ];
+
+  const founders = [
+    { 
+      name: "Sajjad Hussain Hashmi", 
+      role: "Founder", 
+      id: "founder-1",
+      bio: "Founding visionary who established ZN Synergies with a mission for reliable logistics."
+    },
+    { 
+      name: "Siddique Hussain Hashmi", 
+      role: "Strategic Leadership", 
+      id: "founder-2",
+      bio: "Driving the global strategy and technological innovation across international hubs."
+    }
   ];
 
   return (
@@ -69,7 +85,40 @@ export function AboutUs() {
           </div>
         </div>
 
-        {/* Stats Grid - Optimized for full-width responsiveness and 2-column mobile layout */}
+        {/* Founders Showcase */}
+        <div className="mb-32 reveal-on-scroll">
+          <div className="text-center mb-16 md:mb-24">
+            <h3 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter uppercase mb-4">Leadership</h3>
+            <div className="w-12 h-1 bg-foreground/10 mx-auto" />
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+            {founders.map((founder, i) => {
+              const imageData = PlaceHolderImages.find(img => img.id === founder.id);
+              return (
+                <div key={i} className="flex flex-col md:flex-row gap-8 items-center md:items-start group">
+                  <div className="relative w-full max-w-[300px] aspect-[3/4] overflow-hidden border border-foreground/5 grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <Image 
+                      src={imageData?.imageUrl || `https://picsum.photos/seed/${founder.id}/600/800`}
+                      alt={founder.name}
+                      fill
+                      className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                      data-ai-hint={imageData?.imageHint || "professional man"}
+                    />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <span className="text-[10px] uppercase tracking-[0.4em] text-foreground/40 font-black mb-2 block">{founder.role}</span>
+                    <h4 className="text-2xl md:text-3xl font-black text-foreground uppercase tracking-tighter mb-4">{founder.name}</h4>
+                    <p className="text-foreground/50 text-sm md:text-base font-light leading-relaxed">
+                      {founder.bio}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Stats Grid */}
         <div className="reveal-on-scroll border-t border-foreground/5 pt-20">
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-16 lg:gap-24 w-full">
             {stats.map((stat, idx) => (

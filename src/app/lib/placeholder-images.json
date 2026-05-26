@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -23,6 +24,18 @@
       "description": "Air freight cargo aircraft",
       "imageUrl": "https://picsum.photos/seed/zn-plane/800/600",
       "imageHint": "cargo aircraft"
+    },
+    {
+      "id": "founder-1",
+      "description": "Sajjad Hussain Hashmi - Founder",
+      "imageUrl": "https://picsum.photos/seed/founder1/600/800",
+      "imageHint": "professional man"
+    },
+    {
+      "id": "founder-2",
+      "description": "Siddique Hussain Hashmi - Strategic Leader",
+      "imageUrl": "https://picsum.photos/seed/founder2/600/800",
+      "imageHint": "business man"
     }
   ]
 }
