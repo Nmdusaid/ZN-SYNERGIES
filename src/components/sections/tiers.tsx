@@ -2,13 +2,14 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Check, ShieldAlert, Zap, Globe, Lock, ArrowRight, ShieldCheck, Clock, FileText } from 'lucide-react';
+import { Check, ShieldAlert, Zap, Globe, Lock, ArrowRight, ShieldCheck, Clock, FileText, X } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
@@ -58,11 +59,11 @@ export function EnterpriseTiers() {
   const [selectedTier, setSelectedTier] = useState<typeof tiers[0] | null>(null);
 
   return (
-    <section className="py-48 px-6 bg-background">
+    <section className="py-24 md:py-48 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-32 reveal-on-scroll">
+        <div className="text-center mb-16 md:mb-32 reveal-on-scroll">
           <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Service Framework</h2>
-          <h3 className="text-6xl md:text-8xl font-black text-foreground tracking-tighter uppercase leading-none">
+          <h3 className="text-4xl md:text-8xl font-black text-foreground tracking-tighter uppercase leading-none">
             OPERATIONAL<br />
             <span className="text-foreground/40 text-stroke">TIERS.</span>
           </h3>
@@ -72,23 +73,23 @@ export function EnterpriseTiers() {
           {tiers.map((tier, idx) => (
             <div 
               key={idx} 
-              className="group bg-background p-16 flex flex-col hover:bg-foreground/[0.02] transition-all duration-700 reveal-on-scroll" 
+              className="group bg-background p-8 md:p-16 flex flex-col hover:bg-foreground/[0.02] transition-all duration-700 reveal-on-scroll" 
               style={{ transitionDelay: `${idx * 200}ms` }}
             >
               <div className="text-[10px] uppercase tracking-[0.3em] text-foreground/40 font-black mb-6 flex items-center gap-3">
                 <div className="w-4 h-px bg-foreground/20" /> LEVEL {tier.level}
               </div>
               
-              <h4 className="text-5xl font-black text-foreground mb-8 tracking-tighter uppercase">{tier.name}</h4>
+              <h4 className="text-4xl md:text-5xl font-black text-foreground mb-6 md:mb-8 tracking-tighter uppercase">{tier.name}</h4>
               
-              <p className="text-foreground/50 text-sm font-light mb-12 h-12 leading-relaxed">
+              <p className="text-foreground/50 text-sm font-light mb-8 md:mb-12 h-auto md:h-12 leading-relaxed">
                 {tier.focus}
               </p>
               
-              <ul className="space-y-6 mt-auto">
+              <ul className="space-y-4 md:space-y-6 mt-auto">
                 {tier.features.map((feature, fidx) => (
-                  <li key={fidx} className="flex items-center gap-4 text-[11px] uppercase tracking-widest text-foreground/30 font-bold group/item">
-                    <Check size={14} className="text-foreground/20 group-hover/item:text-foreground transition-colors" />
+                  <li key={fidx} className="flex items-center gap-4 text-[10px] md:text-[11px] uppercase tracking-widest text-foreground/30 font-bold group/item">
+                    <Check size={14} className="text-foreground/20 group-hover/item:text-foreground transition-colors shrink-0" />
                     {feature}
                   </li>
                 ))}
@@ -96,7 +97,7 @@ export function EnterpriseTiers() {
 
               <button 
                 onClick={() => setSelectedTier(tier)}
-                className="mt-20 w-full py-8 border border-foreground/10 text-[10px] uppercase tracking-[0.4em] font-black hover:bg-foreground hover:text-background transition-all duration-500 flex items-center justify-center gap-4"
+                className="mt-12 md:mt-20 w-full py-6 md:py-8 border border-foreground/10 text-[10px] uppercase tracking-[0.4em] font-black hover:bg-foreground hover:text-background transition-all duration-500 flex items-center justify-center gap-4"
               >
                 Learn More <ArrowRight size={14} />
               </button>
@@ -107,35 +108,42 @@ export function EnterpriseTiers() {
 
       {/* Tier Intelligence Modal */}
       <Dialog open={!!selectedTier} onOpenChange={(open) => !open && setSelectedTier(null)}>
-        <DialogContent className="max-w-3xl bg-background border border-foreground/10 rounded-none p-0 overflow-hidden shadow-2xl">
+        <DialogContent className="max-w-3xl w-[95vw] md:w-full bg-background border border-foreground/10 rounded-none p-0 overflow-hidden shadow-2xl">
           {selectedTier && (
             <div className="flex flex-col">
               {/* Header */}
-              <div className="p-10 border-b border-foreground/5 bg-foreground/[0.02]">
-                <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 border border-foreground/10 flex items-center justify-center text-foreground font-black text-2xl">
+              <div className="p-6 md:p-10 border-b border-foreground/5 bg-foreground/[0.02] relative">
+                <DialogClose asChild>
+                  <button className="absolute top-4 right-4 md:top-8 md:right-8 p-2 text-foreground/20 hover:text-foreground transition-colors z-50">
+                    <X size={24} />
+                  </button>
+                </DialogClose>
+                <div className="flex items-center justify-between mb-8 pr-12">
+                  <div className="flex items-center gap-4 md:gap-6">
+                    <div className="w-12 h-12 md:w-16 md:h-16 border border-foreground/10 flex items-center justify-center text-foreground font-black text-xl md:text-2xl shrink-0">
                       {selectedTier.level}
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-[0.5em] text-foreground/30 font-bold">Strategic Tier</span>
-                      <DialogTitle className="text-4xl font-black text-foreground uppercase tracking-tighter">
+                      <span className="text-[8px] md:text-[10px] uppercase tracking-[0.5em] text-foreground/30 font-bold">Strategic Tier</span>
+                      <DialogTitle className="text-2xl md:text-4xl font-black text-foreground uppercase tracking-tighter">
                         {selectedTier.name} PROTOCOL
                       </DialogTitle>
                     </div>
                   </div>
-                  {selectedTier.name === 'Critical' && <ShieldAlert className="text-foreground/20" size={32} />}
-                  {selectedTier.name === 'Priority' && <Zap className="text-foreground/20" size={32} />}
-                  {selectedTier.name === 'Strategic' && <Globe className="text-foreground/20" size={32} />}
+                  <div className="hidden sm:block">
+                    {selectedTier.name === 'Critical' && <ShieldAlert className="text-foreground/20" size={32} />}
+                    {selectedTier.name === 'Priority' && <Zap className="text-foreground/20" size={32} />}
+                    {selectedTier.name === 'Strategic' && <Globe className="text-foreground/20" size={32} />}
+                  </div>
                 </div>
-                <DialogDescription className="text-foreground/50 text-lg font-light leading-relaxed">
+                <DialogDescription className="text-foreground/50 text-base md:text-lg font-light leading-relaxed">
                   {selectedTier.details.description}
                 </DialogDescription>
               </div>
 
               {/* Data Grid */}
-              <div className="p-10 grid md:grid-cols-2 gap-12">
-                <div className="space-y-10">
+              <div className="p-6 md:p-10 grid md:grid-cols-2 gap-8 md:gap-12 overflow-y-auto max-h-[60vh]">
+                <div className="space-y-8 md:space-y-10">
                   <div className="flex gap-4">
                     <ShieldCheck size={18} className="text-foreground/20 shrink-0" />
                     <div>
@@ -152,7 +160,7 @@ export function EnterpriseTiers() {
                   </div>
                 </div>
 
-                <div className="space-y-10">
+                <div className="space-y-8 md:space-y-10">
                   <div className="flex gap-4">
                     <Clock size={18} className="text-foreground/20 shrink-0" />
                     <div>
@@ -171,14 +179,14 @@ export function EnterpriseTiers() {
               </div>
 
               {/* Footer Action */}
-              <div className="p-10 bg-foreground text-background flex justify-between items-center">
+              <div className="p-6 md:p-10 bg-foreground text-background flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="flex items-center gap-4">
                   <div className="w-2 h-2 rounded-full bg-background animate-pulse" />
                   <span className="text-[10px] font-black uppercase tracking-[0.3em]">Node Connection Active</span>
                 </div>
                 <Button 
                   onClick={() => setSelectedTier(null)}
-                  className="bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-10 text-[10px] font-black uppercase tracking-widest"
+                  className="w-full md:w-auto bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-10 text-[10px] font-black uppercase tracking-widest"
                 >
                   Activate Tier <ArrowRight className="ml-4" size={14} />
                 </Button>

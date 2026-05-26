@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { 
   Plane, Ship, Truck, Box, FileText, Warehouse, 
   ArrowRight, Anchor, Globe, FileCheck, Clock, 
-  Lock, Zap 
+  Lock, Zap, X
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import {
@@ -14,6 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
@@ -108,17 +109,17 @@ export function Services() {
   const [selectedProtocol, setSelectedProtocol] = useState<typeof services[0] | null>(null);
 
   return (
-    <section id="services" className="py-48 px-6 bg-background border-y border-foreground/5 relative overflow-hidden">
+    <section id="services" className="py-24 md:py-48 px-6 bg-background border-y border-foreground/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="mb-32 reveal-on-scroll">
+        <div className="mb-16 md:mb-32 reveal-on-scroll">
           <div className="flex items-center gap-4 text-foreground/40 text-[10px] uppercase tracking-[0.4em] mb-6 font-bold">
             <Globe size={14} /> Global Logistics Support
           </div>
-          <h2 className="text-5xl md:text-8xl font-black text-foreground mb-8 tracking-tighter uppercase leading-none">
+          <h2 className="text-4xl md:text-8xl font-black text-foreground mb-8 tracking-tighter uppercase leading-none">
             INTEGRATED<br />
             <span className="text-foreground/30">OPERATIONS.</span>
           </h2>
-          <p className="text-foreground/50 text-xl font-light leading-relaxed max-w-2xl">
+          <p className="text-foreground/50 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
             We help businesses move cargo safely and efficiently with professional logistics support and on-time delivery services across domestic and international markets.
           </p>
         </div>
@@ -127,22 +128,22 @@ export function Services() {
           {services.map((service, idx) => (
             <div 
               key={idx}
-              className="group bg-background p-16 hover:bg-foreground/[0.02] transition-all duration-700 reveal-on-scroll"
+              className="group bg-background p-8 md:p-16 hover:bg-foreground/[0.02] transition-all duration-700 reveal-on-scroll"
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              <div className="mb-12 w-16 h-16 flex items-center justify-center border border-foreground/10 group-hover:border-foreground transition-all">
+              <div className="mb-8 md:mb-12 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center border border-foreground/10 group-hover:border-foreground transition-all">
                 {service.icon}
               </div>
               
-              <div className="text-[10px] text-foreground/30 uppercase tracking-[0.4em] font-bold mb-6 flex items-center gap-3">
+              <div className="text-[10px] text-foreground/30 uppercase tracking-[0.4em] font-bold mb-4 md:mb-6 flex items-center gap-3">
                 <div className="w-4 h-px bg-foreground/20" /> {service.tag}
               </div>
               
-              <h4 className="text-3xl font-black text-foreground mb-6 uppercase tracking-tighter leading-tight">
+              <h4 className="text-2xl md:text-3xl font-black text-foreground mb-4 md:mb-6 uppercase tracking-tighter leading-tight">
                 {service.title}
               </h4>
               
-              <p className="text-foreground/40 text-sm font-light leading-relaxed mb-10">
+              <p className="text-foreground/40 text-sm font-light leading-relaxed mb-8 md:mb-10">
                 {service.description}
               </p>
 
@@ -159,30 +160,35 @@ export function Services() {
 
       {/* Protocol Intelligence Modal */}
       <Dialog open={!!selectedProtocol} onOpenChange={(open) => !open && setSelectedProtocol(null)}>
-        <DialogContent className="max-w-3xl bg-background border border-foreground/10 rounded-none p-0 overflow-hidden shadow-2xl">
+        <DialogContent className="max-w-3xl w-[95vw] md:w-full bg-background border border-foreground/10 rounded-none p-0 overflow-hidden shadow-2xl">
           {selectedProtocol && (
             <div className="flex flex-col">
               {/* Header */}
-              <div className="p-10 border-b border-foreground/5 bg-foreground/[0.02]">
-                <div className="flex items-center gap-6 mb-8">
-                  <div className="w-16 h-16 border border-foreground/10 flex items-center justify-center text-foreground">
+              <div className="p-6 md:p-10 border-b border-foreground/5 bg-foreground/[0.02] relative">
+                <DialogClose asChild>
+                  <button className="absolute top-4 right-4 md:top-8 md:right-8 p-2 text-foreground/20 hover:text-foreground transition-colors z-50">
+                    <X size={24} />
+                  </button>
+                </DialogClose>
+                <div className="flex items-center gap-4 md:gap-6 mb-6 md:mb-8 pr-12">
+                  <div className="w-12 h-12 md:w-16 md:h-16 border border-foreground/10 flex items-center justify-center text-foreground shrink-0">
                     {selectedProtocol.icon}
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.5em] text-foreground/30 font-bold">Strategic Protocol</span>
-                    <DialogTitle className="text-4xl font-black text-foreground uppercase tracking-tighter">
+                    <span className="text-[8px] md:text-[10px] uppercase tracking-[0.5em] text-foreground/30 font-bold">Strategic Protocol</span>
+                    <DialogTitle className="text-2xl md:text-4xl font-black text-foreground uppercase tracking-tighter">
                       {selectedProtocol.title}
                     </DialogTitle>
                   </div>
                 </div>
-                <DialogDescription className="text-foreground/50 text-lg font-light leading-relaxed">
+                <DialogDescription className="text-foreground/50 text-base md:text-lg font-light leading-relaxed">
                   Enterprise-grade {selectedProtocol.title.toLowerCase()} infrastructure protocols for mission-critical logistics operations.
                 </DialogDescription>
               </div>
 
               {/* Data Grid */}
-              <div className="p-10 grid md:grid-cols-2 gap-12">
-                <div className="space-y-10">
+              <div className="p-6 md:p-10 grid md:grid-cols-2 gap-8 md:gap-12 overflow-y-auto max-h-[60vh]">
+                <div className="space-y-8 md:space-y-10">
                   <div className="flex gap-4">
                     <FileCheck size={18} className="text-foreground/20 shrink-0" />
                     <div>
@@ -206,7 +212,7 @@ export function Services() {
                   </div>
                 </div>
 
-                <div className="space-y-10">
+                <div className="space-y-8 md:space-y-10">
                   <div className="flex gap-4">
                     <Box size={18} className="text-foreground/20 shrink-0" />
                     <div>
@@ -225,14 +231,14 @@ export function Services() {
               </div>
 
               {/* Footer Action */}
-              <div className="p-10 bg-foreground text-background flex justify-between items-center">
+              <div className="p-6 md:p-10 bg-foreground text-background flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="flex items-center gap-4">
                   <Globe size={20} className="animate-pulse-slow" />
                   <span className="text-[10px] font-black uppercase tracking-[0.3em]">Protocol Link Active</span>
                 </div>
                 <Button 
                   onClick={() => setSelectedProtocol(null)}
-                  className="bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-10 text-[10px] font-black uppercase tracking-widest"
+                  className="w-full md:w-auto bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-10 text-[10px] font-black uppercase tracking-widest"
                 >
                   Initiate Booking <ArrowRight className="ml-4" size={14} />
                 </Button>
