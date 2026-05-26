@@ -1,8 +1,9 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Plane, Truck, Ship } from 'lucide-react';
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
@@ -34,17 +35,40 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        {/* Minimalist Logo Identity */}
+        {/* Cinematic Logo Identity with Orbital Galaxy */}
         <div 
-          className="flex items-center gap-4 group cursor-pointer" 
+          className="flex items-center gap-6 group cursor-pointer" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div className="relative flex items-center justify-center">
+          <div className="relative w-12 h-12 flex items-center justify-center">
+            {/* Central Spinning Globe */}
             <Globe 
-              size={24} 
-              className="text-foreground animate-[spin_8s_linear_infinite]" 
+              size={20} 
+              className="text-foreground animate-[spin_10s_linear_infinite] relative z-10" 
             />
+            
+            {/* Orbital Icon Galaxy */}
+            <div className="absolute inset-0 animate-[spin_15s_linear_infinite]">
+              {/* Flight Icon */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1">
+                <Plane size={10} className="text-foreground/60 rotate-45" />
+              </div>
+              
+              {/* Ship Icon */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1">
+                <Ship size={10} className="text-foreground/60" />
+              </div>
+              
+              {/* Truck Icon */}
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1">
+                <Truck size={10} className="text-foreground/60" />
+              </div>
+            </div>
+
+            {/* Subtle Orbital Ring */}
+            <div className="absolute inset-0 border border-foreground/5 rounded-full" />
           </div>
+
           <div className="flex flex-col">
             <span className="text-xl md:text-2xl font-black tracking-tighter text-foreground uppercase leading-none">
               ZN <span className="text-foreground/40">SYNERGIES</span>
