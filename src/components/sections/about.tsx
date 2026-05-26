@@ -9,10 +9,10 @@ import { PackageCheck, Users2, MapPin, Star, Clock, FileText, Calendar, Building
 export function AboutUs() {
   const stats = [
     { label: "Deliveries", value: 12000, suffix: "+", icon: <PackageCheck size={18} /> },
-    { label: "Partners", value: 50, suffix: "+", icon: <Users2 size={18} /> },
-    { label: "Locations", value: 120, suffix: "+", icon: <MapPin size={18} /> },
-    { label: "Satisfaction", value: 98, suffix: "%", icon: <Star size={18} /> },
     { label: "Support", value: 24, suffix: "/7", icon: <Clock size={18} /> },
+    { label: "Locations", value: 120, suffix: "+", icon: <MapPin size={18} /> },
+    { label: "Partners", value: 50, suffix: "+", icon: <Users2 size={18} /> },
+    { label: "Satisfaction", value: 98, suffix: "%", icon: <Star size={18} /> },
   ];
 
   const corporateProfile = [
