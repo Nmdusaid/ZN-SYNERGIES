@@ -1,10 +1,16 @@
 
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 export function Footer() {
+  const [currentYear, setCurrentYear] = useState(2024);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer id="footer" className="bg-background pt-32 pb-16 border-t border-white/5 px-8">
       <div className="max-w-7xl mx-auto">
@@ -58,6 +64,7 @@ export function Footer() {
             <p className="text-xs text-muted-foreground mb-6 font-light">Insights into global trade and logistics.</p>
             <div className="flex border-b border-white/10 pb-2">
               <input 
+                suppressHydrationWarning
                 type="email" 
                 placeholder="EMAIL ADDRESS" 
                 className="bg-transparent border-none text-[10px] tracking-widest outline-none flex-1 placeholder:text-muted-foreground" 
@@ -69,7 +76,7 @@ export function Footer() {
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
-            © 2024 ZN SYNERGIES LTD. ALL RIGHTS RESERVED.
+            © {currentYear} ZN SYNERGIES LTD. ALL RIGHTS RESERVED.
           </p>
           <div className="flex gap-12 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
