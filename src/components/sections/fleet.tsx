@@ -32,20 +32,20 @@ const fleet = [
 
 export function FleetShowcase() {
   return (
-    <section id="fleet" className="py-32 px-6 relative bg-black overflow-hidden">
+    <section id="fleet" className="py-20 md:py-32 px-6 relative bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-32 reveal-on-scroll">
-          <h2 className="text-white/30 font-bold tracking-[0.5em] uppercase text-xs mb-6">Hardware & Infrastructure</h2>
-          <h3 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-none">THE MODERN FLEET</h3>
-          <div className="w-24 h-px bg-white/20 mx-auto" />
+        <div className="text-center mb-20 md:mb-32 reveal-on-scroll">
+          <h2 className="text-white/30 font-bold tracking-[0.5em] uppercase text-[10px] md:text-xs mb-6">Hardware & Infrastructure</h2>
+          <h3 className="text-4xl sm:text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-tight md:leading-none">THE MODERN FLEET</h3>
+          <div className="w-16 md:w-24 h-px bg-white/20 mx-auto" />
         </div>
 
-        <div className="space-y-48">
+        <div className="space-y-24 md:space-y-48">
           {fleet.map((item, idx) => {
             const imageData = PlaceHolderImages.find(img => img.id === item.id);
             return (
               <div key={idx} className={cn(
-                "flex flex-col items-center gap-24 reveal-on-scroll",
+                "flex flex-col items-center gap-12 md:gap-24 reveal-on-scroll",
                 idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'
               )}>
                 <div className="flex-1 relative aspect-video w-full group">
@@ -61,18 +61,18 @@ export function FleetShowcase() {
                   </div>
                 </div>
                 
-                <div className="flex-1 space-y-10">
-                  <div className="space-y-6">
-                    <span className="text-white/10 font-black text-9xl block leading-none">0{idx + 1}</span>
-                    <h4 className="text-5xl font-black text-white tracking-tighter">{item.title}</h4>
-                    <p className="text-muted-foreground text-xl font-light leading-relaxed max-w-md">
+                <div className="flex-1 space-y-6 md:space-y-10 w-full">
+                  <div className="space-y-4 md:space-y-6">
+                    <span className="text-white/10 font-black text-7xl md:text-9xl block leading-none">0{idx + 1}</span>
+                    <h4 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase">{item.title}</h4>
+                    <p className="text-muted-foreground text-lg md:text-xl font-light leading-relaxed max-w-md">
                       {item.desc}
                     </p>
                   </div>
                   
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-3 md:gap-4">
                     {item.specs.map((spec, sidx) => (
-                      <div key={sidx} className="px-6 py-2 border border-white/10 text-[10px] font-bold text-white uppercase tracking-[0.2em]">
+                      <div key={sidx} className="px-4 md:px-6 py-2 border border-white/10 text-[8px] md:text-[10px] font-bold text-white uppercase tracking-[0.2em]">
                         {spec}
                       </div>
                     ))}
