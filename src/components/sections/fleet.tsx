@@ -35,7 +35,7 @@ export function FleetShowcase() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-24 md:mb-40 reveal-on-scroll">
           <h2 className="text-white/30 font-bold tracking-[0.5em] uppercase text-[10px] md:text-xs mb-6">Hardware & Infrastructure</h2>
-          <h3 className="text-[clamp(2rem,8vw,5rem)] font-black text-white mb-8 tracking-tighter leading-[0.9]">THE MODERN FLEET</h3>
+          <h3 className="text-[clamp(2.5rem,8vw,5.5rem)] font-black text-white mb-8 tracking-tighter leading-[0.9]">THE MODERN FLEET</h3>
           <div className="w-20 h-px bg-white/20 mx-auto" />
         </div>
 
@@ -62,7 +62,7 @@ export function FleetShowcase() {
                 </div>
                 
                 {/* Text Component */}
-                <div className="flex-1 space-y-8 md:space-y-12 w-full text-left">
+                <div className="flex-1 space-y-6 md:space-y-12 w-full text-left">
                   <div className="space-y-4 md:space-y-8">
                     <span className="text-white/10 font-black text-[clamp(4rem,15vw,10rem)] block leading-none tracking-tighter">
                       0{idx + 1}
@@ -70,14 +70,14 @@ export function FleetShowcase() {
                     <h4 className="text-[clamp(1.5rem,6vw,3.5rem)] font-black text-white tracking-tighter uppercase leading-tight">
                       {item.title}
                     </h4>
-                    <p className="text-muted-foreground text-base md:text-xl font-light leading-relaxed max-w-lg">
+                    <p className="text-muted-foreground text-sm md:text-xl font-light leading-relaxed max-w-lg">
                       {item.desc}
                     </p>
                   </div>
                   
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-3 md:gap-4">
                     {item.specs.map((spec, sidx) => (
-                      <div key={sidx} className="px-5 py-3 border border-white/10 text-[9px] md:text-[11px] font-black text-white uppercase tracking-[0.2em] bg-white/[0.02]">
+                      <div key={sidx} className="px-4 py-2 md:px-5 md:py-3 border border-white/10 text-[8px] md:text-[11px] font-black text-white uppercase tracking-[0.2em] bg-white/[0.02]">
                         {spec}
                       </div>
                     ))}

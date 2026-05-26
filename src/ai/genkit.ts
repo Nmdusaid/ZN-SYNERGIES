@@ -8,7 +8,7 @@ config();
 /**
  * ZN Synergies AI Core
  * Using gemini-1.5-flash for stable production-grade logistics intelligence.
- * Correct model identifier for Genkit 1.x with Google AI plugin.
+ * Optimized model identifier for Genkit 1.x.
  */
 export const ai = genkit({
   plugins: [googleAI()],
