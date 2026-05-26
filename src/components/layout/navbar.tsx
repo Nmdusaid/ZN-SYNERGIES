@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, Globe, Plane, Truck, Ship } from 'lucide-react';
+import { Menu, X, Globe, Plane, Truck, Ship, Warehouse } from 'lucide-react';
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
@@ -49,19 +49,24 @@ export function Navbar() {
             
             {/* Orbital Icon Galaxy */}
             <div className="absolute inset-0 animate-[spin_15s_linear_infinite]">
-              {/* Flight Icon */}
+              {/* Flight Icon - Top */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1">
                 <Plane size={10} className="text-foreground/60 rotate-45" />
               </div>
               
-              {/* Ship Icon */}
+              {/* Ship Icon - Bottom */}
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1">
                 <Ship size={10} className="text-foreground/60" />
               </div>
               
-              {/* Truck Icon */}
+              {/* Truck Icon - Left */}
               <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1">
                 <Truck size={10} className="text-foreground/60" />
+              </div>
+
+              {/* Warehouse Icon - Right */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1">
+                <Warehouse size={10} className="text-foreground/60" />
               </div>
             </div>
 
