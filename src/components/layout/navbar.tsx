@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Plane, Ship, Truck } from 'lucide-react';
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
@@ -34,17 +34,25 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        {/* Global Logo Identity */}
-        <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="w-12 h-12 border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-colors duration-500 bg-foreground/5">
-            <Globe size={24} className="text-foreground animate-pulse-slow" />
+        {/* Global Logo Identity with Galaxy Animation */}
+        <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div className="relative w-16 h-16 rounded-full border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-all duration-500 bg-foreground/5">
+            <Globe size={24} className="text-foreground z-10" />
+            
+            {/* Galaxy Orbits */}
+            <div className="absolute inset-0 animate-[spin_8s_linear_infinite]">
+              <Plane size={12} className="absolute top-0 left-1/2 -translate-x-1/2 text-foreground/40 group-hover:text-foreground transition-colors" />
+            </div>
+            <div className="absolute inset-0 animate-[spin_12s_linear_infinite]">
+              <Ship size={10} className="absolute bottom-0 left-1/2 -translate-x-1/2 text-foreground/40 group-hover:text-foreground transition-colors" />
+            </div>
+            <div className="absolute inset-0 animate-[spin_10s_linear_infinite_reverse]">
+              <Truck size={10} className="absolute top-1/2 left-0 -translate-y-1/2 text-foreground/40 group-hover:text-foreground transition-colors" />
+            </div>
           </div>
           <div className="flex flex-col">
             <span className="text-2xl md:text-3xl font-black tracking-tighter text-foreground uppercase leading-[0.8]">
               ZN <span className="text-foreground/40">SYNERGIES</span>
-            </span>
-            <span className="text-[10px] font-bold tracking-[0.4em] text-foreground/20 uppercase mt-2">
-              Global Logistics Excellence
             </span>
           </div>
         </div>
