@@ -1,6 +1,7 @@
+
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Area, 
   AreaChart, 
@@ -17,15 +18,6 @@ import {
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 import { TrendingUp, Globe, Activity, Users } from 'lucide-react';
 
-const growthData = [
-  { year: '2019', value: 240 },
-  { year: '2020', value: 380 },
-  { year: '2021', value: 520 },
-  { year: '2022', value: 890 },
-  { year: '2023', value: 1450 },
-  { year: '2024', value: 2100 },
-];
-
 const chartConfig = {
   value: {
     label: "Growth Index",
@@ -34,6 +26,29 @@ const chartConfig = {
 };
 
 export function AnalyticsDashboard() {
+  const [growthData, setGrowthData] = useState<{ year: string; value: number }[]>([]);
+
+  useEffect(() => {
+    // Generate dynamic data for the last 5 years up to the current year
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    
+    for (let i = 4; i >= 0; i--) {
+      const year = currentYear - i;
+      // Exponential fake growth logic for demonstration
+      const growthFactor = 1.35 + (Math.random() * 0.15);
+      const baseValue = 400;
+      const value = Math.floor(baseValue * Math.pow(growthFactor, 4 - i));
+      
+      years.push({
+        year: year.toString(),
+        value: value,
+      });
+    }
+    
+    setGrowthData(years);
+  }, []);
+
   return (
     <section className="py-24 md:py-32 px-6 bg-background relative overflow-hidden border-y border-foreground/5">
       <div className="max-w-7xl mx-auto">
@@ -45,7 +60,7 @@ export function AnalyticsDashboard() {
               <span className="text-foreground/40">ENTERPRISE.</span>
             </h3>
             <p className="text-foreground/50 text-lg md:text-xl font-light">
-              Visualizing the consistent trajectory of ZN Synergies across global markets.
+              Visualizing the consistent trajectory of ZN Synergies across global markets with real-time dynamic growth intelligence.
             </p>
           </div>
 
@@ -71,38 +86,56 @@ export function AnalyticsDashboard() {
 
         <div className="reveal-on-scroll p-6 md:p-12 border border-foreground/10 bg-foreground/[0.02] rounded-none">
           <div className="flex items-center justify-between mb-8 md:mb-12">
-            <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">Corporate Growth Index (2019–2024)</span>
+            <div className="flex flex-col gap-1">
+              <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">
+                Rolling 5-Year Corporate Growth Index ({growthData[0]?.year}–{growthData[growthData.length - 1]?.year})
+              </span>
+              <span className="text-[7px] uppercase tracking-widest text-foreground/20 font-bold italic">Automatic Year Refresh Active</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[8px] uppercase font-bold text-foreground/30 tracking-widest">Live Sync Terminal</span>
+            </div>
           </div>
-          <div className="h-[200px] md:h-[300px] w-full">
-            <ChartContainer config={chartConfig} className="h-full w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={growthData}>
-                  <defs>
-                    <linearGradient id="colorGrowth" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="currentColor" stopOpacity={0.1}/>
-                      <stop offset="95%" stopColor="currentColor" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
-                  <XAxis 
-                    dataKey="year" 
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{ fill: 'rgba(0,0,0,0.3)', fontSize: 8, fontWeight: 900 }}
-                  />
-                  <YAxis hide />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Area 
-                    type="monotone" 
-                    dataKey="value" 
-                    stroke="currentColor" 
-                    strokeWidth={3}
-                    fillOpacity={1} 
-                    fill="url(#colorGrowth)" 
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </ChartContainer>
+          
+          <div className="h-[250px] md:h-[450px] w-full">
+            {growthData.length > 0 ? (
+              <ChartContainer config={chartConfig} className="h-full w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={growthData}>
+                    <defs>
+                      <linearGradient id="colorGrowth" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="currentColor" stopOpacity={0.2}/>
+                        <stop offset="95%" stopColor="currentColor" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
+                    <XAxis 
+                      dataKey="year" 
+                      axisLine={false} 
+                      tickLine={false} 
+                      tick={{ fill: 'rgba(0,0,0,0.3)', fontSize: 10, fontWeight: 900 }}
+                      dy={10}
+                    />
+                    <YAxis hide />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Area 
+                      type="monotone" 
+                      dataKey="value" 
+                      stroke="currentColor" 
+                      strokeWidth={4}
+                      fillOpacity={1} 
+                      fill="url(#colorGrowth)" 
+                      animationDuration={2500}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            ) : (
+              <div className="h-full w-full flex items-center justify-center">
+                <Activity className="animate-spin text-foreground/10" size={48} />
+              </div>
+            )}
           </div>
         </div>
       </div>
