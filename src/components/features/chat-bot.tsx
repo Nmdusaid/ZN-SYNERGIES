@@ -1,8 +1,7 @@
-
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Bot, Zap, Activity, Cpu, ShieldCheck } from 'lucide-react';
+import { X, Send, Bot, Zap, Activity, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { chatAssistant } from '@/ai/flows/chat-flow';
@@ -13,7 +12,7 @@ export function ChatBot() {
   const [messages, setMessages] = useState<{ role: 'user' | 'model', content: string }[]>([
     { 
       role: 'model', 
-      content: "SYSTEM ONLINE: ZN Intelligence Terminal Active. How can I assist your logistics strategy today?"
+      content: "SYSTEM ONLINE: ZN Intelligence Node Active. How can I assist your logistics strategy or provide information on our global hubs today?"
     }
   ]);
   const [input, setInput] = useState('');
@@ -39,7 +38,7 @@ export function ChatBot() {
       setMessages(prev => [...prev, { role: 'model', content: response.response }]);
     } catch (error) {
       console.error(error);
-      setMessages(prev => [...prev, { role: 'model', content: 'PROTOCOL ERROR: Link unstable. Please re-initiate.' }]);
+      setMessages(prev => [...prev, { role: 'model', content: 'PROTOCOL ERROR: Intelligence link unstable. Please re-initiate command.' }]);
     } finally {
       setIsLoading(false);
     }
@@ -54,11 +53,11 @@ export function ChatBot() {
             <div className="flex items-center gap-3">
               <div className="relative w-2 h-2">
                 <div className="absolute inset-0 bg-foreground rounded-full animate-ping opacity-20" />
-                <div className="absolute inset-0 bg-foreground rounded-full animate-pulse" />
+                <div className="absolute inset-0 bg-foreground rounded-full" />
               </div>
               <div className="flex flex-col">
                 <span className="text-[9px] uppercase tracking-[0.3em] font-black">ZN Intelligence Node</span>
-                <span className="text-[7px] uppercase tracking-widest text-foreground/40 font-bold">Secure AI Connection</span>
+                <span className="text-[7px] uppercase tracking-widest text-foreground/40 font-bold">Secure Connection Established</span>
               </div>
             </div>
             <button 
@@ -70,8 +69,8 @@ export function ChatBot() {
             </button>
           </div>
           
-          {/* Neural Scanning Animation Overlay */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-foreground/20 to-transparent animate-scan" />
+          {/* Scanning Animation Line */}
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-foreground/20 animate-scan pointer-events-none" />
 
           {/* Messages Area */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
@@ -94,7 +93,7 @@ export function ChatBot() {
               <div className="mr-auto flex flex-col gap-2 max-w-[85%]">
                 <div className="p-4 border border-foreground/10 bg-foreground/5 flex items-center gap-3">
                   <Activity size={12} className="animate-spin text-foreground/40" />
-                  <span className="text-[8px] uppercase tracking-[0.4em] font-black text-foreground/40">Analyzing Global Grid...</span>
+                  <span className="text-[8px] uppercase tracking-[0.4em] font-black text-foreground/40">Querying Corporate Grid...</span>
                 </div>
               </div>
             )}
@@ -108,12 +107,12 @@ export function ChatBot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="INPUT COMMAND..."
-                className="bg-foreground/[0.03] border-foreground/10 h-10 rounded-none text-[9px] tracking-widest uppercase font-bold focus:ring-0"
+                className="bg-foreground/[0.03] border-foreground/10 h-12 rounded-none text-[9px] tracking-widest uppercase font-bold focus:ring-0"
               />
               <Button 
                 onClick={handleSend} 
                 disabled={isLoading} 
-                className="bg-foreground text-background h-10 w-10 rounded-none"
+                className="bg-foreground text-background h-12 w-12 rounded-none"
               >
                 <Send size={14} />
               </Button>
@@ -127,10 +126,8 @@ export function ChatBot() {
           className="group relative w-16 h-16 bg-foreground text-background flex items-center justify-center transition-all duration-500 shadow-2xl overflow-visible"
           aria-label="Access AI Terminal"
         >
-          {/* Orbital Rings - Animated */}
+          {/* Orbital Rings - Decorative */}
           <div className="absolute inset-0 border border-foreground/20 rounded-full animate-ping opacity-10" />
-          <div className="absolute -inset-2 border border-foreground/5 rounded-full animate-spin-slow opacity-20" />
-          <div className="absolute -inset-4 border border-foreground/5 rounded-full animate-reverse-spin-slow opacity-10" />
           
           <div className="relative z-10">
             <Bot size={24} className="group-hover:scale-110 transition-transform duration-500" />
