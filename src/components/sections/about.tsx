@@ -25,7 +25,7 @@ export function AboutUs() {
   return (
     <section id="about" className="py-20 md:py-48 px-6 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-32 items-start mb-32">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-32 items-center mb-32">
           <div className="reveal-on-scroll">
             <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black text-foreground mb-6 md:mb-12 tracking-tighter leading-[0.95] md:leading-none uppercase">
               ESTABLISHED<br />
@@ -55,9 +55,9 @@ export function AboutUs() {
             </div>
           </div>
 
-          <div className="relative aspect-square w-full reveal-on-scroll delay-300 hidden lg:block">
-            <div className="absolute inset-0 border border-foreground/10 -translate-x-10 translate-y-10" />
-            <div className="relative h-full w-full overflow-hidden grayscale contrast-150">
+          <div className="relative aspect-square w-full reveal-on-scroll delay-300">
+            <div className="absolute inset-0 border border-foreground/10 -translate-x-4 translate-y-4 md:-translate-x-10 md:translate-y-10" />
+            <div className="relative h-full w-full overflow-hidden grayscale contrast-150 border border-foreground/5">
               <Image 
                 src="https://picsum.photos/seed/zn-about-hq/1200/1200" 
                 alt="ZN Synergies Headquarters" 
@@ -65,14 +65,6 @@ export function AboutUs() {
                 className="object-cover transition-all duration-1000 scale-110 hover:scale-100"
                 data-ai-hint="modern architecture"
               />
-              <div className="absolute bottom-10 left-10 right-10 p-10 bg-background/90 backdrop-blur-xl border border-foreground/10">
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/30">Status</span>
-                  <span className="text-2xl font-black text-foreground uppercase tracking-tighter flex items-center gap-4">
-                    ACTIVE <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
