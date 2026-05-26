@@ -40,38 +40,38 @@ export function Navbar() {
           className="flex items-center gap-6 group cursor-pointer" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div className="relative w-12 h-12 flex items-center justify-center">
-            {/* Central Spinning Globe */}
+          <div className="relative w-16 h-16 flex items-center justify-center">
+            {/* Central Spinning Globe - Increased Size */}
             <Globe 
-              size={20} 
+              size={28} 
               className="text-foreground animate-[spin_10s_linear_infinite] relative z-10" 
             />
             
-            {/* Orbital Icon Galaxy */}
+            {/* Orbital Icon Galaxy - Increased Sizes and Spacing */}
             <div className="absolute inset-0 animate-[spin_15s_linear_infinite]">
               {/* Flight Icon - Top */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1">
-                <Plane size={10} className="text-foreground/60 rotate-45" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2">
+                <Plane size={14} className="text-foreground/80 rotate-45" />
               </div>
               
               {/* Ship Icon - Bottom */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1">
-                <Ship size={10} className="text-foreground/60" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-2">
+                <Ship size={14} className="text-foreground/80" />
               </div>
               
               {/* Truck Icon - Left */}
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1">
-                <Truck size={10} className="text-foreground/60" />
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2">
+                <Truck size={14} className="text-foreground/80" />
               </div>
 
               {/* Warehouse Icon - Right */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1">
-                <Warehouse size={10} className="text-foreground/60" />
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2">
+                <Warehouse size={14} className="text-foreground/80" />
               </div>
             </div>
 
             {/* Subtle Orbital Ring */}
-            <div className="absolute inset-0 border border-foreground/5 rounded-full" />
+            <div className="absolute inset-0 border border-foreground/10 rounded-full" />
           </div>
 
           <div className="flex flex-col">
