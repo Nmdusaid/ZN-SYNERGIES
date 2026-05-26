@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, Globe, Plane, Ship, Box, Warehouse, Truck } from 'lucide-react';
+import { Menu, X, Globe, Plane, Ship, Box, Warehouse } from 'lucide-react';
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
@@ -34,33 +34,33 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        {/* Global Logo Identity - Circular Orbital Design */}
-        <div className="flex items-center gap-6 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="relative w-16 h-16 rounded-full border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-all duration-500 bg-foreground/5 overflow-hidden">
-            <Globe size={22} className="text-foreground z-10" />
+        {/* Global Logo Identity - Circular Orbital Design - Increased Size */}
+        <div className="flex items-center gap-8 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full border border-foreground/10 flex items-center justify-center group-hover:border-foreground transition-all duration-500 bg-foreground/5">
+            <Globe size={28} className="text-foreground z-10" />
             
             {/* Static Icon Galaxy - Fixed Angles */}
             <div className="absolute inset-0 pointer-events-none">
               {/* Plane at Top Right (45 deg) */}
-              <div className="absolute top-[15%] right-[15%]">
-                <Plane size={10} className="text-foreground/30 group-hover:text-foreground transition-colors" />
+              <div className="absolute top-[12%] right-[12%]">
+                <Plane size={14} className="text-foreground/30 group-hover:text-foreground transition-colors" />
               </div>
               {/* Ship at Bottom Left (225 deg) */}
-              <div className="absolute bottom-[15%] left-[15%]">
-                <Ship size={10} className="text-foreground/30 group-hover:text-foreground transition-colors" />
+              <div className="absolute bottom-[12%] left-[12%]">
+                <Ship size={14} className="text-foreground/30 group-hover:text-foreground transition-colors" />
               </div>
               {/* Box at Top Left (315 deg) */}
-              <div className="absolute top-[15%] left-[15%]">
-                <Box size={10} className="text-foreground/30 group-hover:text-foreground transition-colors" />
+              <div className="absolute top-[12%] left-[12%]">
+                <Box size={14} className="text-foreground/30 group-hover:text-foreground transition-colors" />
               </div>
               {/* Warehouse at Bottom Right (135 deg) */}
-              <div className="absolute bottom-[15%] right-[15%]">
-                <Warehouse size={10} className="text-foreground/30 group-hover:text-foreground transition-colors" />
+              <div className="absolute bottom-[12%] right-[12%]">
+                <Warehouse size={14} className="text-foreground/30 group-hover:text-foreground transition-colors" />
               </div>
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-2xl md:text-3xl font-black tracking-tighter text-foreground uppercase leading-none">
+            <span className="text-3xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">
               ZN <span className="text-foreground/40">SYNERGIES</span>
             </span>
           </div>
