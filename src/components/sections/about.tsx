@@ -42,10 +42,10 @@ export function AboutUs() {
             </div>
 
             {/* Corporate Profile Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-12 md:mb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-16 md:mb-24">
               {corporateProfile.map((item, i) => (
                 <div key={i} className="p-4 md:p-6 border border-foreground/5 bg-foreground/[0.02] hover:bg-foreground/[0.04] transition-colors">
-                  <div className="flex items-center gap-2 md:gap-3 text-foreground/20 mb-1.5 md:mb-3">
+                  <div className="flex items-center gap-2 md:gap-3 text-foreground/20 mb-2 md:mb-3">
                     {item.icon}
                     <span className="text-[7px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em]">{item.label}</span>
                   </div>
@@ -54,18 +54,18 @@ export function AboutUs() {
               ))}
             </div>
             
-            {/* Stats Grid - Enhanced Responsiveness */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-6 md:gap-12">
+            {/* Stats Grid - Enhanced Spacing and Responsiveness */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-12 md:gap-12">
               {stats.map((stat, idx) => (
                 <div key={idx} className="space-y-4">
                   <div className="w-8 h-8 md:w-10 md:h-10 border border-foreground/10 flex items-center justify-center text-foreground/40">
                     {React.cloneElement(stat.icon as React.ReactElement, { size: 16 })}
                   </div>
-                  <div>
-                    <div className="text-2xl md:text-4xl font-black text-foreground mb-1 md:mb-2 leading-none">
+                  <div className="flex flex-col">
+                    <div className="text-3xl md:text-4xl font-black text-foreground mb-1 md:mb-2 leading-none tracking-tighter">
                       <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                     </div>
-                    <div className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-foreground/30 font-black leading-tight">
+                    <div className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-foreground/30 font-black leading-tight">
                       {stat.label}
                     </div>
                   </div>
