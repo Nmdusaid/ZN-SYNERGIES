@@ -60,7 +60,7 @@ export function Locations() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-48 px-6 bg-background border-t border-foreground/5 overflow-hidden relative min-h-[600px] md:min-h-screen flex flex-col items-center justify-center">
+    <section id="contact" className="py-20 md:py-48 px-6 bg-background border-t border-foreground/5 overflow-hidden relative min-h-[500px] md:min-h-screen flex flex-col items-center justify-center">
       {/* Background Stars */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
         {stars.map((star, i) => (
@@ -78,20 +78,20 @@ export function Locations() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10 w-full">
-        <div className="text-center mb-16 md:mb-24 reveal-on-scroll">
-          <div className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-6 md:mb-8">Global Infrastructure</div>
-          <h2 className="text-4xl md:text-8xl font-black text-foreground tracking-tighter leading-none mb-8 md:mb-10 uppercase">
+        <div className="text-center mb-12 md:mb-24 reveal-on-scroll">
+          <div className="text-foreground/30 text-[9px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.5em] font-bold mb-4 md:mb-8">Global Infrastructure</div>
+          <h2 className="text-[clamp(2rem,6vw,5rem)] font-black text-foreground tracking-tighter leading-[0.95] md:leading-none mb-6 md:mb-10 uppercase">
             STRATEGIC<br />
             <span className="text-foreground/40">GALAXY.</span>
           </h2>
         </div>
 
         {/* Galaxy System - Scaling container */}
-        <div className="relative w-full aspect-square max-w-[280px] sm:max-w-lg md:max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
+        <div className="relative w-full aspect-square max-w-[260px] sm:max-w-lg md:max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
           
           {/* World Map Backdrop */}
           <div className="absolute inset-0 pointer-events-none opacity-5 md:opacity-10 flex items-center justify-center">
-             <svg viewBox="0 0 1000 500" className="w-[140%] md:w-[120%] h-auto text-foreground fill-current">
+             <svg viewBox="0 0 1000 500" className="w-[130%] md:w-[120%] h-auto text-foreground fill-current">
                 <path d="M150,150 L160,140 L180,145 L200,130 L220,135 L240,120 L260,130 L280,125 L300,140 L320,150 L310,170 L290,180 L270,190 L250,200 L230,190 L210,185 L190,170 Z" />
                 <path d="M450,120 L470,110 L500,105 L530,115 L550,130 L540,160 L520,180 L490,190 L460,180 L440,150 Z" />
                 <path d="M500,80 L530,70 L570,75 L600,60 L640,65 L680,80 L700,100 L720,130 L700,160 L670,180 L630,190 L600,170 L570,160 L540,140 L520,120 Z" />
@@ -100,10 +100,10 @@ export function Locations() {
 
           {/* Central Hub */}
           <div className="relative z-30 flex flex-col items-center justify-center text-center">
-             <span className="text-lg sm:text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">
+             <span className="text-base sm:text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">
               ZN <span className="text-foreground/40">SYNERGIES</span>
             </span>
-            <div className="w-6 md:w-12 h-px bg-foreground/20 mt-2 md:mt-4" />
+            <div className="w-8 md:w-12 h-px bg-foreground/20 mt-2 md:mt-4" />
           </div>
 
           {/* Concentric Orbits */}
@@ -133,12 +133,12 @@ export function Locations() {
                 onClick={() => openMap(office.fullAddress)}
               >
                 <div className="relative">
-                  <div className="w-2 h-2 md:w-3 md:h-3 bg-foreground rounded-full transition-transform duration-500 group-hover:scale-150" />
+                  <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-foreground rounded-full transition-transform duration-500 group-hover:scale-150" />
                   
                   {/* Tooltip-style Labels */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 md:mt-4 whitespace-nowrap">
-                    <div className="bg-foreground text-background px-2 py-1 md:px-4 md:py-2 flex flex-col items-center shadow-lg">
-                      <span className="text-[6px] md:text-[10px] font-black uppercase tracking-[0.2em]">{office.city}</span>
+                    <div className="bg-foreground text-background px-1.5 py-0.5 md:px-4 md:py-2 flex flex-col items-center shadow-lg">
+                      <span className="text-[5px] md:text-[10px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em]">{office.city}</span>
                       <span className="text-[4px] md:text-[8px] font-bold opacity-50 uppercase tracking-[0.1em] hidden sm:block">{office.type}</span>
                     </div>
                   </div>

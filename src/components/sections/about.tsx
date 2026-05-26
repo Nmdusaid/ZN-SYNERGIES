@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -22,16 +23,16 @@ export function AboutUs() {
   ];
 
   return (
-    <section id="about" className="py-24 md:py-48 px-6 bg-background relative overflow-hidden">
+    <section id="about" className="py-20 md:py-48 px-6 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-32 items-start">
           <div className="reveal-on-scroll">
-            <h2 className="text-4xl md:text-8xl font-black text-foreground mb-8 md:mb-12 tracking-tighter leading-none">
+            <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black text-foreground mb-6 md:mb-12 tracking-tighter leading-[0.95] md:leading-none uppercase">
               ESTABLISHED<br />
               <span className="text-foreground/40">EXCELLENCE.</span>
             </h2>
             
-            <div className="space-y-6 md:space-y-8 text-foreground/50 text-lg md:text-xl font-light leading-relaxed max-w-lg mb-10 md:mb-12">
+            <div className="space-y-4 md:space-y-8 text-foreground/50 text-base md:text-xl font-light leading-relaxed max-w-lg mb-8 md:mb-12">
               <p>
                 Established on <span className="text-foreground font-bold">17 October 2011</span> in Chennai, Tamil Nadu, ZN Synergies Private Limited has evolved into a cornerstone of the Indian transportation and logistics sector.
               </p>
@@ -41,29 +42,29 @@ export function AboutUs() {
             </div>
 
             {/* Corporate Profile Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-12 md:mb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-10 md:mb-20">
               {corporateProfile.map((item, i) => (
                 <div key={i} className="p-4 md:p-6 border border-foreground/5 bg-foreground/[0.02] hover:bg-foreground/[0.04] transition-colors">
-                  <div className="flex items-center gap-3 text-foreground/20 mb-2 md:mb-3">
+                  <div className="flex items-center gap-2 md:gap-3 text-foreground/20 mb-1.5 md:mb-3">
                     {item.icon}
-                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em]">{item.label}</span>
+                    <span className="text-[7px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em]">{item.label}</span>
                   </div>
-                  <div className="text-xs md:text-sm font-bold text-foreground uppercase tracking-tight truncate">{item.value}</div>
+                  <div className="text-[11px] md:text-sm font-bold text-foreground uppercase tracking-tight truncate">{item.value}</div>
                 </div>
               ))}
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-12">
               {stats.map((stat, idx) => (
-                <div key={idx} className="space-y-3 md:space-y-4">
+                <div key={idx} className="space-y-2 md:space-y-4">
                   <div className="w-8 h-8 md:w-10 md:h-10 border border-foreground/10 flex items-center justify-center text-foreground/40">
-                    {stat.icon}
+                    {React.cloneElement(stat.icon as React.ReactElement, { size: 16 })}
                   </div>
                   <div>
-                    <div className="text-2xl md:text-4xl font-black text-foreground mb-1">
+                    <div className="text-xl md:text-4xl font-black text-foreground mb-0.5">
                       <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                     </div>
-                    <div className="text-[8px] uppercase tracking-[0.2em] md:tracking-[0.3em] text-foreground/30 font-bold leading-tight">
+                    <div className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-foreground/30 font-bold leading-tight">
                       {stat.label}
                     </div>
                   </div>
@@ -82,11 +83,11 @@ export function AboutUs() {
                 className="object-cover transition-all duration-1000 scale-110 hover:scale-100"
                 data-ai-hint="modern architecture"
               />
-              <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 p-6 md:p-10 bg-background/90 backdrop-blur-xl border border-foreground/10">
+              <div className="absolute bottom-10 left-10 right-10 p-10 bg-background/90 backdrop-blur-xl border border-foreground/10">
                 <div className="flex flex-col gap-2">
                   <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/30">Status</span>
-                  <span className="text-xl md:text-2xl font-black text-foreground uppercase tracking-tighter flex items-center gap-4">
-                    ACTIVE <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-2xl font-black text-foreground uppercase tracking-tighter flex items-center gap-4">
+                    ACTIVE <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                   </span>
                 </div>
               </div>
