@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect } from 'react';
@@ -12,8 +13,10 @@ import { FleetShowcase } from '@/components/sections/fleet';
 import { Industries } from '@/components/sections/industries';
 import { Sustainability } from '@/components/sections/sustainability';
 import { Locations } from '@/components/sections/locations';
+import { Testimonials } from '@/components/sections/testimonials';
 import { CallToAction } from '@/components/sections/cta';
 import { Footer } from '@/components/sections/footer';
+import { ChatBot } from '@/components/features/chat-bot';
 import { CookieBanner } from '@/components/features/cookie-banner';
 
 export default function Home() {
@@ -46,12 +49,14 @@ export default function Home() {
       <Services />
       <Methodology />
       <EnterpriseTiers />
+      <Testimonials />
       <FleetShowcase />
       <Industries />
       <Sustainability />
       <Locations />
       <CallToAction />
       <Footer />
+      <ChatBot />
       <CookieBanner />
     </main>
   );

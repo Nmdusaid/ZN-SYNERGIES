@@ -1,7 +1,8 @@
+
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Bot, Zap, Activity, MessageSquare } from 'lucide-react';
+import { X, Send, Bot, Zap, Activity } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { chatAssistant } from '@/ai/flows/chat-flow';
@@ -69,9 +70,6 @@ export function ChatBot() {
             </button>
           </div>
           
-          {/* Scanning Animation Line */}
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-foreground/20 animate-scan pointer-events-none" />
-
           {/* Messages Area */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
             {messages.map((m, i) => (
@@ -120,21 +118,16 @@ export function ChatBot() {
           </div>
         </div>
       ) : (
-        /* Enhanced Advanced Trigger Button */
         <button 
           onClick={() => setIsOpen(true)}
           className="group relative w-16 h-16 bg-foreground text-background flex items-center justify-center transition-all duration-500 shadow-2xl overflow-visible"
           aria-label="Access AI Terminal"
         >
-          {/* Orbital Rings - Decorative */}
           <div className="absolute inset-0 border border-foreground/20 rounded-full animate-ping opacity-10" />
-          
           <div className="relative z-10">
             <Bot size={24} className="group-hover:scale-110 transition-transform duration-500" />
             <Zap size={8} className="absolute -top-1 -right-1 text-background animate-pulse" />
           </div>
-          
-          {/* Status Indicator */}
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background shadow-lg" />
         </button>
       )}
