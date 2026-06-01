@@ -21,7 +21,7 @@ export function Clients() {
       <div className="max-w-7xl mx-auto px-6 mb-24 reveal-on-scroll">
         <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8">
           <div className="max-w-2xl text-center md:text-left">
-            <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Strategic Partnerships</h2>
+            <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Client Portfolio</h2>
             <h3 className="text-4xl md:text-7xl font-black text-foreground tracking-tighter uppercase leading-none">
               ENTERPRISE<br />
               <span className="text-foreground/40 text-stroke">CLIENTS.</span>
@@ -30,7 +30,7 @@ export function Clients() {
           <div className="flex flex-col items-center md:items-end gap-3 text-foreground/20">
             <div className="flex items-center gap-2">
               <ShieldCheck size={16} />
-              <span className="text-[10px] uppercase font-black tracking-widest">Global Network Verified</span>
+              <span className="text-[10px] uppercase font-black tracking-widest">Global Grid Verified</span>
             </div>
             <p className="text-[11px] font-light italic text-center md:text-right max-w-[200px]">
               Reliable logistics for the world's most demanding corporate supply chains.

@@ -5,14 +5,13 @@ import React from 'react';
 import Image from 'next/image';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 import { PackageCheck, Users2, MapPin, Star, Clock, FileText, Calendar, Building2 } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function AboutUs() {
   const stats = [
     { label: "Deliveries", value: 12000, suffix: "+", icon: <PackageCheck size={18} /> },
     { label: "Support", value: 24, suffix: "/7", icon: <Clock size={18} /> },
     { label: "Locations", value: 120, suffix: "+", icon: <MapPin size={18} /> },
-    { label: "Partners", value: 50, suffix: "+", icon: <Users2 size={18} /> },
+    { label: "Clients", value: 50, suffix: "+", icon: <Users2 size={18} /> },
     { label: "Satisfaction", value: 98, suffix: "%", icon: <Star size={18} /> },
   ];
 
@@ -93,16 +92,15 @@ export function AboutUs() {
           </div>
           <div className="grid md:grid-cols-2 gap-8 md:gap-16">
             {founders.map((founder, i) => {
-              const imageData = PlaceHolderImages.find(img => img.id === founder.id);
               return (
                 <div key={i} className="flex flex-col md:flex-row gap-8 items-center md:items-start group">
                   <div className="relative w-full max-w-[300px] aspect-[3/4] overflow-hidden border border-foreground/5 grayscale group-hover:grayscale-0 transition-all duration-700">
                     <Image 
-                      src={imageData?.imageUrl || `https://picsum.photos/seed/${founder.id}/600/800`}
+                      src={`https://picsum.photos/seed/${founder.id}/600/800`}
                       alt={founder.name}
                       fill
                       className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                      data-ai-hint={imageData?.imageHint || "professional man"}
+                      data-ai-hint="professional man"
                     />
                   </div>
                   <div className="flex-1 text-center md:text-left">
