@@ -46,6 +46,13 @@ const offices = [
     type: "Logistics Hub",
     angle: 180,
     radius: 0.9
+  },
+  {
+    city: "Qatar",
+    fullAddress: "West Bay, Doha, Qatar",
+    type: "Middle East Strategic Hub",
+    angle: 80,
+    radius: 1.2
   }
 ];
 
@@ -100,7 +107,7 @@ export function Locations() {
           </h2>
         </div>
 
-        {/* Galaxy System - Increased mobile scale for better visibility */}
+        {/* Galaxy System */}
         <div className="relative w-full aspect-square max-w-[320px] sm:max-w-xl md:max-w-3xl mx-auto flex items-center justify-center reveal-on-scroll">
           
           {/* World Map Backdrop */}
@@ -121,7 +128,7 @@ export function Locations() {
           </div>
 
           {/* Concentric Orbits */}
-          {[0.4, 0.6, 0.7, 0.8, 0.9, 1.0].map((scale, i) => (
+          {[0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2].map((scale, i) => (
             <div 
               key={i}
               className="absolute inset-0 border border-foreground/5 rounded-full pointer-events-none"
@@ -131,7 +138,7 @@ export function Locations() {
 
           {/* Location Nodes */}
           {offices.map((office, idx) => {
-            const orbitRadius = 50 * office.radius;
+            const orbitRadius = 45 * office.radius;
             const x = Math.cos((office.angle * Math.PI) / 180) * orbitRadius;
             const y = Math.sin((office.angle * Math.PI) / 180) * orbitRadius;
 
@@ -147,7 +154,7 @@ export function Locations() {
                 onClick={() => openMap(office.fullAddress)}
               >
                 <div className="relative">
-                  <div className="w-2 h-2 md:w-3 md:h-3 bg-foreground rounded-full transition-transform duration-500 group-hover:scale-150" />
+                  <div className="w-2 h-2 md:w-3 md:h-3 bg-foreground rounded-full transition-transform duration-500 group-hover:scale-150 shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                   
                   {/* Tooltip-style Labels */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 md:mt-4 whitespace-nowrap">

@@ -24,10 +24,10 @@ export function AboutUs() {
 
   const founders = [
     { 
-      name: "Siddique Hussain Hashmi", 
+      name: "Siddique Hussain Hashimi", 
       role: "Managing Director & Founder", 
       id: "founder-2",
-      bio: "As the Managing Director and Founder, Siddique Hussain Hashmi orchestrates the global logistics architecture of ZN Synergies, driving technological synergy and strategic movement across international nodes."
+      bio: "As the Managing Director and Founder, Siddique Hussain Hashimi orchestrates the global logistics architecture of ZN Synergies, driving technological synergy and strategic movement across international nodes."
     },
     { 
       name: "Sajjad Hussain Hashmi", 
@@ -52,7 +52,7 @@ export function AboutUs() {
                 Established on <span className="text-foreground font-bold">17 October 2011</span> in Chennai, Tamil Nadu, ZN Synergies Private Limited has evolved into a cornerstone of the global transportation sector.
               </p>
               <p>
-                Under the strategic direction of <span className="text-foreground font-bold">Siddique Hussain Hashmi</span>, we orchestrate freight solutions with cinematic precision and absolute discipline.
+                Under the strategic direction of <span className="text-foreground font-bold">Siddique Hussain Hashimi</span>, we orchestrate freight solutions with cinematic precision and absolute discipline.
               </p>
             </div>
 
