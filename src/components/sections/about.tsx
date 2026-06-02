@@ -25,15 +25,15 @@ export function AboutUs() {
   const founders = [
     { 
       name: "Siddique Hussain Hashmi", 
-      role: "Managing Director", 
+      role: "Managing Director & Founder", 
       id: "founder-2",
-      bio: "As the Managing Director, Siddique Hussain Hashmi orchestrates our global logistics architecture, driving technological synergy and strategic movement across international nodes."
+      bio: "As the Managing Director and Founder, Siddique Hussain Hashmi orchestrates the global logistics architecture of ZN Synergies, driving technological synergy and strategic movement across international nodes."
     },
     { 
       name: "Sajjad Hussain Hashmi", 
       role: "Founder", 
       id: "founder-1",
-      bio: "The founding visionary of ZN Synergies, Sajjad Hussain Hashmi established the firm on the principles of absolute reliability and mission-critical precision."
+      bio: "A founding visionary of ZN Synergies, Sajjad Hussain Hashmi established the firm on the principles of absolute reliability and mission-critical precision, shaping its core operational values."
     }
   ];
 
@@ -52,7 +52,7 @@ export function AboutUs() {
                 Established on <span className="text-foreground font-bold">17 October 2011</span> in Chennai, Tamil Nadu, ZN Synergies Private Limited has evolved into a cornerstone of the global transportation sector.
               </p>
               <p>
-                Under the strategic direction of <span className="text-foreground font-bold">Siddique Hussain Hashmi</span> and the founding vision of <span className="text-foreground font-bold">Sajjad Hussain Hashmi</span>, we orchestrate freight solutions with cinematic precision.
+                Under the strategic direction of <span className="text-foreground font-bold">Siddique Hussain Hashmi</span>, we orchestrate freight solutions with cinematic precision and absolute discipline.
               </p>
             </div>
 
@@ -84,7 +84,7 @@ export function AboutUs() {
           </div>
         </div>
 
-        {/* Founders Showcase - Siddique First, Sajjad Second */}
+        {/* Founders Showcase */}
         <div className="mb-32 reveal-on-scroll">
           <div className="text-center mb-16 md:mb-24">
             <h3 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter uppercase mb-4">Leadership</h3>
@@ -116,7 +116,7 @@ export function AboutUs() {
           </div>
         </div>
 
-        {/* Stats Grid - 2 Column on Mobile/Tablet */}
+        {/* Stats Grid */}
         <div className="reveal-on-scroll border-t border-foreground/5 pt-20">
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-24 w-full">
             {stats.map((stat, idx) => (

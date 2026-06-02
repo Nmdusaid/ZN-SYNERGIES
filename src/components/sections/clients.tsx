@@ -19,7 +19,7 @@ export function Clients() {
       <div className="max-w-7xl mx-auto px-6 mb-24 reveal-on-scroll">
         <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8">
           <div className="max-w-2xl text-center md:text-left">
-            <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Global Client Portfolio</h2>
+            <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Enterprise Client Portfolio</h2>
             <h3 className="text-4xl md:text-7xl font-black text-foreground tracking-tighter uppercase leading-none">
               ENTERPRISE<br />
               <span className="text-foreground/40 text-stroke">CLIENTS.</span>
@@ -41,7 +41,7 @@ export function Clients() {
       <div className="flex flex-col gap-6 md:gap-12 py-10">
         
         {/* Row 1: Forward Slow */}
-        <div className="relative flex overflow-hidden group border-y border-foreground/[0.03] py-8 md:py-12 bg-foreground/[0.01]">
+        <div className="relative flex overflow-hidden group border-y border-foreground/5 py-8 md:py-12 bg-transparent">
           <div className="flex animate-marquee-slow whitespace-nowrap">
             {row1.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
@@ -53,8 +53,8 @@ export function Clients() {
           </div>
         </div>
 
-        {/* Row 2: Reverse Medium - Now visible all the time */}
-        <div className="relative flex overflow-hidden group border-b border-foreground/[0.03] pb-8 md:py-12 bg-foreground/[0.02]">
+        {/* Row 2: Reverse Medium */}
+        <div className="relative flex overflow-hidden group border-b border-foreground/5 pb-8 md:py-12 bg-transparent">
           <div className="flex animate-marquee-reverse whitespace-nowrap">
             {row2.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
@@ -67,7 +67,7 @@ export function Clients() {
         </div>
 
         {/* Row 3: Forward Extra Slow */}
-        <div className="relative flex overflow-hidden group border-b border-foreground/[0.03] pb-8 md:py-12 bg-foreground/[0.01]">
+        <div className="relative flex overflow-hidden group border-b border-foreground/5 pb-8 md:py-12 bg-transparent">
           <div className="flex animate-marquee-slow whitespace-nowrap" style={{ animationDuration: '100s' }}>
             {row3.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
