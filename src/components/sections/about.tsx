@@ -27,13 +27,13 @@ export function AboutUs() {
       name: "Siddique Hussain Hashmi", 
       role: "Managing Director", 
       id: "founder-2",
-      bio: "As the Managing Director, he drives global logistics strategy and leads technological innovation across international hubs."
+      bio: "As the Managing Director, Siddique Hussain Hashmi orchestrates our global logistics architecture, driving technological synergy and strategic movement across international nodes."
     },
     { 
       name: "Sajjad Hussain Hashmi", 
       role: "Founder", 
       id: "founder-1",
-      bio: "The founding visionary who established ZN Synergies with a mission for absolute reliability and precision in logistics."
+      bio: "The founding visionary of ZN Synergies, Sajjad Hussain Hashmi established the firm on the principles of absolute reliability and mission-critical precision."
     }
   ];
 
@@ -49,10 +49,10 @@ export function AboutUs() {
             
             <div className="space-y-4 md:space-y-8 text-foreground/50 text-base md:text-xl font-light leading-relaxed max-w-lg mb-8 md:mb-12">
               <p>
-                Established on <span className="text-foreground font-bold">17 October 2011</span> in Chennai, Tamil Nadu, ZN Synergies Private Limited has evolved into a cornerstone of the Indian transportation and logistics sector.
+                Established on <span className="text-foreground font-bold">17 October 2011</span> in Chennai, Tamil Nadu, ZN Synergies Private Limited has evolved into a cornerstone of the global transportation sector.
               </p>
               <p>
-                Under the strategic direction of <span className="text-foreground font-bold">Siddique Hussain Hashmi</span> and the founding leadership of <span className="text-foreground font-bold">Sajjad Hussain Hashmi</span>, we orchestrate global freight solutions with absolute precision.
+                Under the strategic direction of <span className="text-foreground font-bold">Siddique Hussain Hashmi</span> and the founding vision of <span className="text-foreground font-bold">Sajjad Hussain Hashmi</span>, we orchestrate freight solutions with cinematic precision.
               </p>
             </div>
 
@@ -84,7 +84,7 @@ export function AboutUs() {
           </div>
         </div>
 
-        {/* Founders Showcase */}
+        {/* Founders Showcase - Siddique First, Sajjad Second */}
         <div className="mb-32 reveal-on-scroll">
           <div className="text-center mb-16 md:mb-24">
             <h3 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter uppercase mb-4">Leadership</h3>
@@ -116,9 +116,9 @@ export function AboutUs() {
           </div>
         </div>
 
-        {/* Stats Grid */}
+        {/* Stats Grid - 2 Column on Mobile/Tablet */}
         <div className="reveal-on-scroll border-t border-foreground/5 pt-20">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-16 lg:gap-24 w-full">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-24 w-full">
             {stats.map((stat, idx) => (
               <div key={idx} className="space-y-4 md:space-y-6 group">
                 <div className="w-8 h-8 md:w-10 md:h-10 border border-foreground/10 flex items-center justify-center text-foreground/40 group-hover:border-foreground group-hover:text-foreground transition-all duration-500">

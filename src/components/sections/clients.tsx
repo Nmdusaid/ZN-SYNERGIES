@@ -4,23 +4,22 @@
 import React from 'react';
 import { Globe, ShieldCheck, Zap } from 'lucide-react';
 
-const clientLogos = [
-  "SAMSUNG", "HYUNDAI", "FORD", "TOYOTA", "LG ELECTRONICS", "AMAZON",
-  "MAERSK", "DHL GLOBAL", "FEDEX", "EMIRATES", "HAPAG-LLOYD", "MSC GROUP",
-  "KUEHNE+NAGEL", "DB SCHENKER", "BMW GROUP", "RELIANCE", "TATA MOTORS", "VOLVO"
-];
+const row1Clients = ["SAMSUNG", "HYUNDAI", "FORD", "TOYOTA", "LG ELECTRONICS", "AMAZON", "APPLE", "SONY"];
+const row2Clients = ["MAERSK", "DHL GLOBAL", "FEDEX", "EMIRATES", "HAPAG-LLOYD", "MSC GROUP", "UPS", "COSCO"];
+const row3Clients = ["TATA MOTORS", "RELIANCE", "VOLVO", "BMW GROUP", "SIEMENS", "GE", "SHELL", "BP"];
 
 export function Clients() {
-  const row1 = [...clientLogos.slice(0, 6), ...clientLogos.slice(0, 6)];
-  const row2 = [...clientLogos.slice(6, 12), ...clientLogos.slice(6, 12)];
-  const row3 = [...clientLogos.slice(12, 18), ...clientLogos.slice(12, 18)];
+  // Duplicate arrays for seamless looping
+  const row1 = [...row1Clients, ...row1Clients];
+  const row2 = [...row2Clients, ...row2Clients];
+  const row3 = [...row3Clients, ...row3Clients];
 
   return (
     <section id="clients" className="py-24 md:py-48 bg-background relative overflow-hidden border-y border-foreground/5">
       <div className="max-w-7xl mx-auto px-6 mb-24 reveal-on-scroll">
         <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8">
           <div className="max-w-2xl text-center md:text-left">
-            <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Client Portfolio</h2>
+            <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Global Client Portfolio</h2>
             <h3 className="text-4xl md:text-7xl font-black text-foreground tracking-tighter uppercase leading-none">
               ENTERPRISE<br />
               <span className="text-foreground/40 text-stroke">CLIENTS.</span>
@@ -32,16 +31,16 @@ export function Clients() {
               <span className="text-[10px] uppercase font-black tracking-widest">Global Grid Verified</span>
             </div>
             <p className="text-[11px] font-light italic text-center md:text-right max-w-[200px]">
-              Reliable logistics for the world's most demanding corporate supply chains.
+              Orchestrating logistics for the world's most demanding corporate supply chains.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Cinematic Animated Marquee Container */}
-      <div className="flex flex-col gap-8 md:gap-16 py-10">
+      {/* Cinematic Triple-Row Animated Marquee */}
+      <div className="flex flex-col gap-6 md:gap-12 py-10">
         
-        {/* Row 1: Forward Slow */}
+        {/* Row 1: Forward Slow - Tech & Retail */}
         <div className="relative flex overflow-hidden group border-y border-foreground/[0.03] py-8 md:py-12 bg-foreground/[0.01]">
           <div className="flex animate-marquee-slow whitespace-nowrap">
             {row1.map((client, idx) => (
@@ -54,7 +53,7 @@ export function Clients() {
           </div>
         </div>
 
-        {/* Row 2: Reverse Slow */}
+        {/* Row 2: Reverse Medium - Logistics & Shipping */}
         <div className="relative flex overflow-hidden group border-b border-foreground/[0.03] pb-8 md:pb-12 bg-foreground/[0.02]">
           <div className="flex animate-marquee-reverse whitespace-nowrap">
             {row2.map((client, idx) => (
@@ -67,9 +66,9 @@ export function Clients() {
           </div>
         </div>
 
-        {/* Row 3: Forward Slow */}
+        {/* Row 3: Forward Extra Slow - Industrial & Automotive */}
         <div className="relative flex overflow-hidden group border-b border-foreground/[0.03] pb-8 md:pb-12 bg-foreground/[0.01]">
-          <div className="flex animate-marquee-slow whitespace-nowrap">
+          <div className="flex animate-marquee-slow whitespace-nowrap" style={{ animationDuration: '100s' }}>
             {row3.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
                 <span className="text-2xl md:text-7xl font-black text-foreground/10 group-hover/item:text-foreground group-hover/item:scale-110 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
