@@ -40,12 +40,12 @@ export function Clients() {
       {/* Cinematic Triple-Row Animated Marquee */}
       <div className="flex flex-col gap-6 md:gap-12 py-10">
         
-        {/* Row 1: Forward Slow - Tech & Retail */}
+        {/* Row 1: Forward Slow */}
         <div className="relative flex overflow-hidden group border-y border-foreground/[0.03] py-8 md:py-12 bg-foreground/[0.01]">
           <div className="flex animate-marquee-slow whitespace-nowrap">
             {row1.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
-                <span className="text-2xl md:text-7xl font-black text-foreground/10 group-hover/item:text-foreground group-hover/item:scale-110 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
+                <span className="text-2xl md:text-7xl font-black text-foreground/20 group-hover/item:text-foreground group-hover/item:scale-110 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
                   {client}
                 </span>
               </div>
@@ -53,12 +53,12 @@ export function Clients() {
           </div>
         </div>
 
-        {/* Row 2: Reverse Medium - Logistics & Shipping */}
-        <div className="relative flex overflow-hidden group border-b border-foreground/[0.03] pb-8 md:pb-12 bg-foreground/[0.02]">
+        {/* Row 2: Reverse Medium - Now visible all the time */}
+        <div className="relative flex overflow-hidden group border-b border-foreground/[0.03] pb-8 md:py-12 bg-foreground/[0.02]">
           <div className="flex animate-marquee-reverse whitespace-nowrap">
             {row2.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
-                <span className="text-2xl md:text-7xl font-black text-foreground/5 group-hover/item:text-foreground group-hover/item:scale-110 text-stroke group-hover/item:text-stroke-0 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
+                <span className="text-2xl md:text-7xl font-black text-foreground/20 group-hover/item:text-foreground group-hover/item:scale-110 text-stroke-sm md:text-stroke transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
                   {client}
                 </span>
               </div>
@@ -66,12 +66,12 @@ export function Clients() {
           </div>
         </div>
 
-        {/* Row 3: Forward Extra Slow - Industrial & Automotive */}
-        <div className="relative flex overflow-hidden group border-b border-foreground/[0.03] pb-8 md:pb-12 bg-foreground/[0.01]">
+        {/* Row 3: Forward Extra Slow */}
+        <div className="relative flex overflow-hidden group border-b border-foreground/[0.03] pb-8 md:py-12 bg-foreground/[0.01]">
           <div className="flex animate-marquee-slow whitespace-nowrap" style={{ animationDuration: '100s' }}>
             {row3.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
-                <span className="text-2xl md:text-7xl font-black text-foreground/10 group-hover/item:text-foreground group-hover/item:scale-110 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
+                <span className="text-2xl md:text-7xl font-black text-foreground/20 group-hover/item:text-foreground group-hover/item:scale-110 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
                   {client}
                 </span>
               </div>
