@@ -58,7 +58,7 @@ export function Clients() {
           <div className="flex animate-marquee-reverse whitespace-nowrap">
             {row2.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
-                <span className="text-2xl md:text-7xl font-black text-foreground/20 group-hover/item:text-foreground group-hover/item:scale-110 text-stroke-sm md:text-stroke transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
+                <span className="text-2xl md:text-7xl font-black text-foreground group-hover/item:text-foreground group-hover/item:scale-110 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
                   {client}
                 </span>
               </div>

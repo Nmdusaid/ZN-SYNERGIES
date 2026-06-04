@@ -5,7 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/sections/footer';
-import { ShieldCheck, Award, Globe, FileCheck } from 'lucide-react';
+import { ShieldCheck, Award, Globe, FileCheck, Anchor } from 'lucide-react';
 
 const affiliations = [
   {
@@ -14,6 +14,13 @@ const affiliations = [
     role: "World's Largest Network",
     description: "Exclusive member of the WCA Inter Global network, providing audited and secure global movement capabilities across 190 countries.",
     imageUrl: "https://tse3.mm.bing.net/th/id/OIP.xYrFOtHGzHP6RKeBAjXBCgHaHa?pid=Api&P=0&h=180"
+  },
+  {
+    name: "CCHAA",
+    id: "affil-cchaa",
+    role: "Chennai Custom House Agents' Association",
+    description: "A prestigious member of the Chennai Custom House Agents' Association, ensuring excellence in customs clearance and regulatory compliance within India's primary maritime hub.",
+    imageUrl: "https://picsum.photos/seed/cchaa/400/400"
   },
   {
     name: "FIATA",
@@ -57,10 +64,10 @@ export default function AffiliationsPage() {
           </div>
 
           {/* Affiliations Grid */}
-          <div className="grid md:grid-cols-2 gap-px bg-foreground/10 border border-foreground/10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
             {affiliations.map((item, idx) => (
-              <div key={idx} className="bg-background p-12 md:p-20 flex flex-col items-center md:items-start group transition-all duration-700 hover:bg-foreground/[0.02]">
-                <div className="relative w-32 h-32 md:w-48 md:h-48 mb-12 grayscale group-hover:grayscale-0 transition-all duration-700">
+              <div key={idx} className="bg-background p-12 md:p-16 flex flex-col items-center md:items-start group transition-all duration-700 hover:bg-foreground/[0.02]">
+                <div className="relative w-32 h-32 md:w-40 md:h-40 mb-12 grayscale group-hover:grayscale-0 transition-all duration-700">
                   <Image 
                     src={item.imageUrl}
                     alt={item.name}
@@ -73,11 +80,11 @@ export default function AffiliationsPage() {
                   <span className="text-[10px] uppercase tracking-[0.4em] text-foreground/30 font-black block">
                     {item.role}
                   </span>
-                  <h2 className="text-3xl md:text-5xl font-black text-foreground uppercase tracking-tighter">
+                  <h2 className="text-2xl md:text-3xl font-black text-foreground uppercase tracking-tighter">
                     {item.name}
                   </h2>
                   <div className="w-12 h-px bg-foreground/10 group-hover:w-full transition-all duration-700 mt-6" />
-                  <p className="text-foreground/50 text-sm md:text-base font-light leading-relaxed pt-6">
+                  <p className="text-foreground/50 text-xs md:text-sm font-light leading-relaxed pt-6">
                     {item.description}
                   </p>
                 </div>

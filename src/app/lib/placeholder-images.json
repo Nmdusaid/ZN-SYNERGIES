@@ -33,7 +33,7 @@
     },
     {
       "id": "founder-2",
-      "description": "Siddique Hussain Hashmi - Strategic Leader",
+      "description": "Siddique Hussain Hashimi - Managing Director",
       "imageUrl": "https://picsum.photos/seed/founder2/600/800",
       "imageHint": "business man"
     },
@@ -42,6 +42,12 @@
       "description": "WCA Inter Global Member",
       "imageUrl": "https://tse3.mm.bing.net/th/id/OIP.xYrFOtHGzHP6RKeBAjXBCgHaHa?pid=Api&P=0&h=180",
       "imageHint": "logistics logo"
+    },
+    {
+      "id": "affil-cchaa",
+      "description": "Chennai Custom House Agents' Association",
+      "imageUrl": "https://picsum.photos/seed/cchaa/400/400",
+      "imageHint": "customs association logo"
     }
   ]
 }
