@@ -56,7 +56,7 @@ export function AnalyticsDashboard() {
             <h2 className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-black mb-6 md:mb-8">Growth Metrics</h2>
             <h3 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter leading-none mb-6 md:mb-10 uppercase">
               SCALING<br />
-              <span className="text-foreground/40">ENTERPRISE.</span>
+              <span className="text-foreground/40 text-stroke">ENTERPRISE.</span>
             </h3>
             <p className="text-foreground/50 text-lg md:text-xl font-light">
               Visualizing the consistent trajectory of ZN Synergies across global markets with real-time dynamic growth intelligence.

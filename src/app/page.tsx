@@ -16,6 +16,7 @@ import { Clients } from '@/components/sections/clients';
 import { CallToAction } from '@/components/sections/cta';
 import { Footer } from '@/components/sections/footer';
 import { CookieBanner } from '@/components/features/cookie-banner';
+import { AnalyticsDashboard } from '@/components/sections/dashboard-preview';
 
 export default function Home() {
   useEffect(() => {
@@ -46,6 +47,7 @@ export default function Home() {
       <Services />
       <Methodology />
       <EnterpriseTiers />
+      <AnalyticsDashboard />
       <Clients />
       <FleetShowcase />
       <Industries />
