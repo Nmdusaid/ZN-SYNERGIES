@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Menu, X, Globe, Plane, Truck, Ship, Warehouse } from 'lucide-react';
 import { ThemeToggle } from "@/components/theme-toggle";
+import Link from 'next/link';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,9 +21,10 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Clients', href: '#clients' },
+    { name: 'About Us', href: '/#about' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Clients', href: '/#clients' },
+    { name: 'Affiliations', href: '/affiliations' },
     { name: 'Contact', href: '#footer' },
   ];
 
@@ -37,9 +39,9 @@ export function Navbar() {
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
         {/* Cinematic Logo Identity with Orbital Galaxy */}
-        <div 
-          className="flex items-center gap-3 md:gap-6 group cursor-pointer" 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        <Link 
+          href="/"
+          className="flex items-center gap-3 md:gap-6 group cursor-pointer no-underline" 
         >
           <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
             {/* Central Spinning Globe */}
@@ -76,19 +78,19 @@ export function Navbar() {
               ZN <span className="text-foreground/40">SYNERGIES</span>
             </span>
           </div>
-        </div>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8 lg:gap-16">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
-              className="text-[10px] lg:text-[11px] uppercase tracking-[0.3em] font-bold text-foreground/50 hover:text-foreground transition-all relative group"
+              className="text-[10px] lg:text-[11px] uppercase tracking-[0.3em] font-bold text-foreground/50 hover:text-foreground transition-all relative group no-underline"
             >
               {link.name}
               <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-foreground transition-all duration-300 group-hover:w-full" />
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -123,14 +125,14 @@ export function Navbar() {
       )}>
         <div className="flex flex-col items-center gap-8 w-full px-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               className="text-2xl font-black uppercase tracking-tighter hover:text-foreground/50 transition-colors no-underline"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <a 
             href={quoteMailto}
