@@ -13,6 +13,8 @@ import { Industries } from '@/components/sections/industries';
 import { Sustainability } from '@/components/sections/sustainability';
 import { Locations } from '@/components/sections/locations';
 import { Clients } from '@/components/sections/clients';
+import { Testimonials } from '@/components/sections/testimonials';
+import { FAQ } from '@/components/sections/faq';
 import { CallToAction } from '@/components/sections/cta';
 import { Footer } from '@/components/sections/footer';
 import { CookieBanner } from '@/components/features/cookie-banner';
@@ -49,9 +51,11 @@ export default function Home() {
       <EnterpriseTiers />
       <AnalyticsDashboard />
       <Clients />
+      <Testimonials />
       <FleetShowcase />
       <Industries />
       <Sustainability />
+      <FAQ />
       <Locations />
       <CallToAction />
       <Footer />
