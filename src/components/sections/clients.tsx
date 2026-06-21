@@ -4,9 +4,9 @@
 import React from 'react';
 import { Globe, ShieldCheck, Zap } from 'lucide-react';
 
-const row1Clients = ["SAMSUNG", "HYUNDAI", "FORD", "TOYOTA", "LG ELECTRONICS", "AMAZON", "APPLE", "SONY"];
-const row2Clients = ["MAERSK", "DHL GLOBAL", "FEDEX", "EMIRATES", "HAPAG-LLOYD", "MSC GROUP", "UPS", "COSCO"];
-const row3Clients = ["TATA MOTORS", "RELIANCE", "VOLVO", "BMW GROUP", "SIEMENS", "GE", "SHELL", "BP"];
+const row1Clients = ["AIR - ASIA", "HYUNDAI", "FARIDA GROUP", "INDO-GERMA", "HONEY WELL", "ITRON", "CATERPILLAR", "SONY"];
+const row2Clients = ["CAPGEIMINI", "CONTINENTAL", "INDOSHELL-MOULD", "KH GROUP", "HUAWEI", "INFOSYS", "BOSCH", "HCL TECHNOLOGIES"];
+const row3Clients = ["MARINE MACHINES", "NSN", "QUALOCMM", "SAMSUNG", "SOJITZ", "MACKAY", "MOHIB GROUP", "NMH LEATHER COMPANY"];
 
 export function Clients() {
   // Duplicate arrays for seamless looping
@@ -58,7 +58,7 @@ export function Clients() {
           <div className="flex animate-marquee-reverse whitespace-nowrap">
             {row2.map((client, idx) => (
               <div key={idx} className="flex items-center justify-center px-12 md:px-32 group/item">
-                <span className="text-2xl md:text-7xl font-black text-foreground group-hover/item:text-foreground group-hover/item:scale-110 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
+                <span className="text-2xl md:text-7xl font-black text-foreground/20 group-hover/item:text-foreground group-hover/item:scale-110 transition-all duration-700 cursor-default uppercase tracking-tighter select-none">
                   {client}
                 </span>
               </div>

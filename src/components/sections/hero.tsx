@@ -33,13 +33,13 @@ export function Hero() {
               <span className="text-[7px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-foreground/40">Established Excellence 2011</span>
             </div>
             <h1 className="text-[clamp(2rem,8vw,7rem)] font-black text-foreground leading-[0.95] md:leading-[0.85] tracking-tighter uppercase animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
-              CINEMATIC<br />
+              SMART LOGISTICS.
               <span className="text-stroke">PRECISION.</span>
             </h1>
           </div>
           
           <p className="max-w-lg text-sm md:text-xl text-foreground/60 font-light leading-relaxed animate-in fade-in slide-in-from-left-12 duration-1000 delay-400">
-            Architecting the world's most complex supply chains with absolute discipline. Luxury infrastructure for a high-stakes global economy.
+            Fast, secure, and reliable logistics solutions tailored to your needs. From local deliveries to global freight management, we ensure every shipment reaches its destination on time.
           </p>
           
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-10 animate-in fade-in slide-in-from-left-16 duration-1000 delay-600">
@@ -51,7 +51,7 @@ export function Hero() {
             </a>
             
             <div className="flex items-center gap-3 text-[7px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-foreground/20">
-              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-green-500 animate-pulse" /> Global Network Online
+              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-red-500 animate-pulse" /> Global Network Online
             </div>
           </div>
         </div>

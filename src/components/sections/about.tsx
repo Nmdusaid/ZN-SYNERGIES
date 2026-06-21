@@ -27,18 +27,13 @@ export function AboutUs() {
       name: "Siddique Hussain Hashimi", 
       role: "Managing Director & Founder", 
       id: "founder-2",
+      imageUrl: "/images/siddique sir.jpeg",
       bio: "As the Managing Director and Founder, Siddique Hussain Hashimi orchestrates the global logistics architecture of ZN Synergies, driving technological synergy and strategic movement across international nodes."
     },
-    { 
-      name: "Sajjad Hussain Hashmi", 
-      role: "Founder", 
-      id: "founder-1",
-      bio: "A founding visionary of ZN Synergies, Sajjad Hussain Hashmi established the firm on the principles of absolute reliability and mission-critical precision, shaping its core operational values."
-    }
   ];
 
   return (
-    <section id="about" className="py-20 md:py-48 px-6 bg-background relative overflow-hidden">
+    <section id="about" className="py-20 md:py-48 px-6 bg-background relative overflow-hidden transition-colors duration-500">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 md:gap-32 items-center mb-32">
           <div className="reveal-on-scroll">
@@ -71,15 +66,20 @@ export function AboutUs() {
           </div>
 
           <div className="relative aspect-square w-full reveal-on-scroll delay-300">
-            <div className="absolute inset-0 border border-foreground/10 -translate-x-4 translate-y-4 md:-translate-x-10 md:translate-y-10" />
-            <div className="relative h-full w-full overflow-hidden grayscale contrast-150 border border-foreground/5">
-              <Image 
-                src="https://picsum.photos/seed/zn-about-hq/1200/1200" 
-                alt="ZN Synergies Headquarters" 
-                fill 
-                className="object-cover transition-all duration-1000 scale-110 hover:scale-100"
-                data-ai-hint="modern architecture"
-              />
+            <div className="absolute inset-0 -translate-x-4 translate-y-4 md:-translate-x-10 md:translate-y-10" />
+            <div className="relative h-full w-full flex items-center justify-center">
+                <div className="w-56 h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden  animate-slow-rotate transition-all duration-700 group hover:grayscale-0">
+                <Image 
+                  src="/images/ZN-image.png" 
+                  alt="ZN Synergies Headquarters" 
+                  fill 
+                  quality={100}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                  priority
+                  className="object-cover transition-transform duration-700 transform-gpu group-hover:scale-105 will-change-transform"
+                  data-ai-hint="modern architecture"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -90,23 +90,26 @@ export function AboutUs() {
             <h3 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter uppercase mb-4">Leadership</h3>
             <div className="w-12 h-1 bg-foreground/10 mx-auto" />
           </div>
-          <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+          <div className="grid gap-8 md:grid-cols-1">
             {founders.map((founder, i) => {
               return (
-                <div key={i} className="flex flex-col md:flex-row gap-8 items-center md:items-start group">
-                  <div className="relative w-full max-w-[300px] aspect-[3/4] overflow-hidden border border-foreground/5 grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <Image 
-                      src={`https://picsum.photos/seed/${founder.id}/600/800`}
+                <div key={i} className="mx-auto flex max-w-3xl flex-col items-center gap-10 rounded-[1.5rem] p-8 md:p-12">
+                  <div className="relative w-full max-w-[340px] aspect-[3/4] overflow-hidden rounded-[1.5rem]">
+                    <Image
+                      src={founder.imageUrl}
                       alt={founder.name}
                       fill
-                      className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                      quality={100}
+                      sizes="(max-width: 640px) 100vw, 340px"
+                      priority
+                      className="object-cover object-center transition-transform duration-1000 hover:scale-105"
                       data-ai-hint="professional man"
                     />
                   </div>
-                  <div className="flex-1 text-center md:text-left">
-                    <span className="text-[10px] uppercase tracking-[0.4em] text-foreground/40 font-black mb-2 block">{founder.role}</span>
-                    <h4 className="text-2xl md:text-3xl font-black text-foreground uppercase tracking-tighter mb-4">{founder.name}</h4>
-                    <p className="text-foreground/50 text-sm md:text-base font-light leading-relaxed">
+                  <div className="text-center">
+                    <span className="text-[10px] uppercase tracking-[0.4em] text-foreground/40 font-black mb-4 block">{founder.role}</span>
+                    <h4 className="text-3xl md:text-4xl font-black text-foreground uppercase tracking-tighter mb-6">{founder.name}</h4>
+                    <p className="text-foreground/70 text-base md:text-lg font-light leading-relaxed">
                       {founder.bio}
                     </p>
                   </div>

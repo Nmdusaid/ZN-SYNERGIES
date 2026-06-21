@@ -13,37 +13,74 @@ const affiliations = [
     id: "affil-wca",
     role: "World's Largest Network",
     description: "Exclusive member of the WCA Inter Global network, providing audited and secure global movement capabilities across 190 countries.",
-    imageUrl: "https://tse3.mm.bing.net/th/id/OIP.xYrFOtHGzHP6RKeBAjXBCgHaHa?pid=Api&P=0&h=180"
+    imageUrl: "/images/bcba.png"
   },
   {
     name: "CCHAA",
     id: "affil-cchaa",
     role: "Chennai Custom House Agents' Association",
     description: "A prestigious member of the Chennai Custom House Agents' Association, ensuring excellence in customs clearance and regulatory compliance within India's primary maritime hub.",
-    imageUrl: "https://picsum.photos/seed/cchaa/400/400"
+    imageUrl: "/images/bchaai.png"
   },
   {
     name: "FIATA",
     id: "affil-fiata",
     role: "Federation of Forwarders",
     description: "Adhering to the international standards of the International Federation of Freight Forwarders Associations for multimodal excellence.",
-    imageUrl: "https://picsum.photos/seed/fiata/400/400"
+    imageUrl: "/images/fiata.png"
   },
   {
     name: "IATA",
     id: "affil-iata",
-    role: "Aviation Standard",
-    description: "Registered air freight partner ensuring compliance with the highest safety and professional standards in global aviation logistics.",
-    imageUrl: "https://picsum.photos/seed/iata/400/400"
+    role: "ocean carriers and shipping",
+    description: "The Federal Maritime Commission is a U.S. agency that oversees and regulates international shipping by sea",
+    imageUrl: "/images/eagle.png"
   },
   {
-    name: "AEO Certified",
-    id: "affil-aeo",
-    role: "Trusted Trader Status",
-    description: "Authorized Economic Operator status ensuring expedited customs clearance and high-level security protocols for international trade.",
-    imageUrl: "https://picsum.photos/seed/aeo/400/400"
+    name: "FFI",
+    id: "affil-ffi",
+    role: "FFI (Freight Forwarding Industry)",
+    description:"FFI refers to companies that arrange and manage the transportation of goods from one place to another on behalf of customers.",
+    imageUrl: "/images/ffi.png"
   }
+  
 ];
+
+// Added affiliations
+const additionalAffiliations = [
+  {
+    name: "MTO",
+    id: "affil-bifa",
+    role: "Maintenance Technique Optimization (MTO)",
+    description:"Maintenance Technique Optimization is the process of selecting the best maintenance methods to improve equipment reliability and reduce costs.",
+    imageUrl: "/images/mto.png"
+  },
+  {
+    name: "olo family",
+    id: "affil-cscmp",
+    role: "Supply Chain Leadership",
+    description: "A group of related logistics and supply chain services working together to provide end-to-end transportation solutions..",
+    imageUrl: "/images/olo.png"
+  },
+  {
+    name: "CCHA",
+    id: "affil-clecat",
+    role: "European Forwarding",
+    description: "CLECAT member representing European freight forwarders, promoting efficient and secure cross-border logistics.",
+    imageUrl: "/images/cch.JPEG"
+  },
+    {
+    name: "WCA World  ",
+    id: "affil-clecat",
+    role: "European Forwarding",
+    description: "A global network that connects logistics and freight companies to collaborate and provide international shipping services.",
+    imageUrl: "/images/wca world.png"
+  },
+
+];
+
+// merge additional affiliations into main list
+affiliations.push(...additionalAffiliations);
 
 export default function AffiliationsPage() {
   return (
@@ -64,17 +101,19 @@ export default function AffiliationsPage() {
           </div>
 
           {/* Affiliations Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {affiliations.map((item, idx) => (
-              <div key={idx} className="bg-background p-12 md:p-16 flex flex-col items-center md:items-start group transition-all duration-700 hover:bg-foreground/[0.02]">
-                <div className="relative w-32 h-32 md:w-40 md:h-40 mb-12 grayscale group-hover:grayscale-0 transition-all duration-700">
-                  <Image 
-                    src={item.imageUrl}
-                    alt={item.name}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+              <div key={idx} className="bg-background p-12 md:p-16 flex flex-col items-center md:items-start group border border-transparent dark:border-foreground/10 transition-colors duration-300 transition-transform duration-1000 ease-in-out will-change-transform hover:-translate-y-2 hover:shadow-xl hover:border-foreground/20">
+                <div className="relative self-center w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 mb-12 transition-all duration-700">
+                      <Image 
+                        src={item.imageUrl}
+                        alt={item.name}
+                        fill
+                        quality={100}
+                        sizes="(max-width: 1024px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-contain"
+                      />
+                    </div>
                 
                 <div className="space-y-4 text-center md:text-left">
                   <span className="text-[10px] uppercase tracking-[0.4em] text-foreground/30 font-black block">

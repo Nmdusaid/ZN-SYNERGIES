@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -265,7 +266,14 @@ export function Tracker() {
                   </h4>
                   <div className="flex items-center gap-8 mb-10">
                     <div className="w-20 h-20 border border-foreground/10 relative overflow-hidden grayscale contrast-125">
-                      <img src="https://picsum.photos/seed/lead/200/200" alt="Officer" className="object-cover" />
+                      <Image 
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=100"
+                        alt="Officer"
+                        fill
+                        quality={100}
+                        sizes="80px"
+                        className="object-cover"
+                      />
                     </div>
                     <div>
                       <p className="text-xl font-black text-foreground tracking-tight">CAPT. R. VANCE</p>

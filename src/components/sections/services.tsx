@@ -226,14 +226,7 @@ export function Services() {
               </div>
 
               {/* Footer Action */}
-              <div className="p-6 md:p-10 bg-foreground text-background flex justify-center">
-                <Button 
-                  onClick={() => window.open(quoteMailto + " " + selectedProtocol.title, '_blank')}
-                  className="w-full md:w-auto bg-background text-foreground hover:bg-background/90 rounded-none h-14 px-12 text-[10px] font-black uppercase tracking-[0.2em]"
-                >
-                  Initiate Strategic Booking <ArrowRight className="ml-4" size={14} />
-                </Button>
-              </div>
+          
             </div>
           )}
         </DialogContent>

@@ -35,7 +35,7 @@ export function Sustainability() {
           <div className="reveal-on-scroll">
             <div className="text-foreground/30 text-[10px] uppercase tracking-[0.5em] font-bold mb-8">Future Forward</div>
             <h2 className="text-6xl md:text-8xl font-black text-foreground mb-12 tracking-tighter leading-none">
-              GREEN<br />
+            ZN<br />
               <span className="text-foreground/40">SYNERGY.</span>
             </h2>
             <div className="space-y-8 text-foreground/50 text-xl font-light leading-relaxed max-w-lg">

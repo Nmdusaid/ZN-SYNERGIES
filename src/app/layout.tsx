@@ -1,15 +1,18 @@
 
 import type {Metadata} from 'next';
+// @ts-ignore: CSS side-effect import declaration missing in TS config
 import './globals.css';
 import { ThemeProvider } from "@/components/theme-provider";
 import { FirebaseClientProvider } from "@/firebase/client-provider";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'ZN SYNERGIES | PROFESSIONAL LOGISTICS',
-  description: 'Enterprise-grade global logistics with predictive intelligence and high-contrast precision.',
+  title: "ZN SYNERGIES-LOGISTICS",
+  description: "Enterprise-grade global logistics with predictive intelligence and high-contrast precision.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

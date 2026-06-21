@@ -53,9 +53,11 @@ export function FleetShowcase() {
                   <div className="absolute -inset-2 md:-inset-4 border border-white/5 group-hover:border-white/20 transition-colors duration-700 pointer-events-none" />
                   <div className={cn("relative h-full w-full overflow-hidden grayscale contrast-125 brightness-75", item.animationClass)}>
                     <Image 
-                      src={imageData?.imageUrl || `https://picsum.photos/seed/${item.id}/800/600`} 
+                      src={imageData?.imageUrl || `https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=100`} 
                       alt={item.title}
                       fill
+                      quality={100}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 70vw"
                       className="object-cover transition-transform duration-1000 group-hover:scale-110"
                       data-ai-hint={imageData?.imageHint || "logistics vehicle"}
                     />

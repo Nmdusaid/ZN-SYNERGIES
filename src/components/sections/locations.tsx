@@ -102,8 +102,8 @@ export function Locations() {
         <div className="text-center mb-12 md:mb-24 reveal-on-scroll">
           <div className="text-foreground/30 text-[9px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.5em] font-bold mb-4 md:mb-8">Global Infrastructure</div>
           <h2 className="text-[clamp(2rem,6vw,5rem)] font-black text-foreground tracking-tighter leading-[0.95] md:leading-none mb-6 md:mb-10 uppercase">
-            STRATEGIC<br />
-            <span className="text-foreground/40">GALAXY.</span>
+     CONNECTED<br />
+            <span className="text-foreground/40"> WORLD - WIDE</span>
           </h2>
         </div>
 
