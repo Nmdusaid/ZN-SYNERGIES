@@ -30,19 +30,29 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('active');
+          const target = entry.target as HTMLElement;
+          const delay = target.dataset.revealDelay;
+          if (delay) {
+            target.style.transitionDelay = delay;
+          }
+          target.classList.add('active');
         }
       });
     }, observerOptions);
 
-    const elements = document.querySelectorAll('.reveal-on-scroll');
-    elements.forEach(el => observer.observe(el));
+    const elements = document.querySelectorAll<HTMLElement>('.parallax-page section, .reveal-on-scroll');
+    elements.forEach((el, idx) => {
+      if (!el.dataset.revealDelay) {
+        el.dataset.revealDelay = `${Math.min(300, idx * 70)}ms`;
+      }
+      observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <main className="relative bg-background min-h-screen">
+    <main className="parallax-page relative bg-background min-h-screen">
       <Navbar />
       <Hero />
       <AboutUs />

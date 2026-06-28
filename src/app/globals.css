@@ -137,13 +137,18 @@
   pointer-events: none;
 }
 
-.reveal-on-scroll {
-  @apply opacity-0 translate-y-12 transition-all duration-1000;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+.reveal-on-scroll,
+.parallax-page section {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
 }
 
-.reveal-on-scroll.active {
-  @apply opacity-100 translate-y-0;
+.reveal-on-scroll.active,
+.parallax-page section.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 ::-webkit-scrollbar {
@@ -156,4 +161,14 @@
 
 ::-webkit-scrollbar-thumb {
   @apply bg-foreground/20 hover:bg-foreground/50 transition-colors;
+}
+
+.parallax-page {
+  perspective: 1px;
+  transform-style: preserve-3d;
+}
+
+.parallax-page section[data-parallax-speed],
+.parallax-page [data-parallax-speed] {
+  will-change: transform;
 }

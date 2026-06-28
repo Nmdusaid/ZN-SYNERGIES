@@ -38,7 +38,11 @@ export function Testimonials() {
 
         <div className="grid md:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10">
           {ratings.map((item, idx) => (
-            <div key={idx} className="bg-background p-10 md:p-16 flex flex-col hover:bg-foreground/[0.02] transition-all duration-700 reveal-on-scroll">
+            <div
+              key={idx}
+              className="bg-background p-10 md:p-16 flex flex-col hover:bg-foreground/[0.02] transition-all duration-700 reveal-on-scroll"
+              style={{ transitionDelay: `${idx * 120}ms` }}
+            >
               <div className="flex gap-1 mb-8">
                 {[...Array(item.rating)].map((_, i) => (
                   <Star key={i} size={12} className="fill-foreground text-foreground" />

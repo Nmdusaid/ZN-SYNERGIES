@@ -5,6 +5,7 @@ import './globals.css';
 import { ThemeProvider } from "@/components/theme-provider";
 import { FirebaseClientProvider } from "@/firebase/client-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { ParallaxProvider } from "@/components/parallax-provider";
 
 export const metadata: Metadata = {
   title: "ZN SYNERGIES-LOGISTICS",
@@ -25,7 +26,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-sans bg-background text-foreground overflow-x-hidden antialiased">
+      <body className="parallax-page font-sans bg-background text-foreground overflow-x-hidden antialiased ">
         <FirebaseClientProvider>
           <ThemeProvider
             attribute="class"
@@ -33,7 +34,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <ParallaxProvider>
+              {children}
+            </ParallaxProvider>
             <Toaster />
           </ThemeProvider>
         </FirebaseClientProvider>

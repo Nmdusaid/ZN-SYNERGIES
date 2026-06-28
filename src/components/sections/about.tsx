@@ -100,7 +100,7 @@ export function AboutUs() {
                       alt={founder.name}
                       fill
                       quality={100}
-                      sizes="(max-width: 640px) 100vw, 340px"
+                      sizes="(max-width: 1024px) 100vw, 1024px"
                       priority
                       className="object-cover object-center transition-transform duration-1000 hover:scale-105"
                       data-ai-hint="professional man"

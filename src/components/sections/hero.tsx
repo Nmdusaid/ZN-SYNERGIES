@@ -8,24 +8,27 @@ export function Hero() {
   const quoteMailto = "mailto:usaid6765@gmail.com?subject=Enterprise Inquiry&body=I would like to discuss a luxury logistics solution for my enterprise.";
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
+    <section className="relative isolate min-h-screen overflow-hidden bg-background" data-parallax-speed="0.04">
       {/* Cinematic Identity Background - Video Element */}
-      <div className="absolute inset-0 z-0">
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-40 grayscale"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-shipping-containers-at-a-commercial-port-at-night-10026-large.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.2)_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background" />
-      </div>
+  <div className="absolute inset-0 z-0 overflow-hidden bg-black" data-parallax-speed="0.08">
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="absolute inset-0 h-full w-full min-h-screen min-w-full object-cover object-center"
+  >
+    <source src="/videos/hero.mp4" type="video/mp4" />
+    <source src="/videos/hero.webm" type="video/webm" />
+    Your browser does not support the video tag.
+  </video>
 
-      <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 w-full">
-        <div className="max-w-4xl space-y-6 md:space-y-12">
+  <div className="absolute inset-0 z-10 bg-black/10 pointer-events-none" />
+</div>
+
+      <div className="relative z-20 flex min-h-screen items-center justify-center px-6 pt-10 md:px-12 md:pt-12">
+        <div className="mx-auto w-full max-w-[1600px]">
+          <div className="max-w-4xl space-y-6 md:space-y-12">
           {/* Typographic Identity */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 md:gap-4 animate-in fade-in slide-in-from-left-4 duration-1000">
@@ -54,6 +57,7 @@ export function Hero() {
               <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-red-500 animate-pulse" /> Global Network Online
             </div>
           </div>
+        </div>
         </div>
       </div>
 
